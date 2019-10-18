@@ -1,0 +1,2 @@
+version 1 ( updated 18-10-2019 ) - Fernando Ortiz de Mello
+- Re-inserido a função 'add_cpf_no_moodle' no hook 'eb_moodle_user_profile_details'
