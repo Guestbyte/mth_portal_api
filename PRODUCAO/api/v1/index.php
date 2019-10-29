@@ -14,16 +14,17 @@ header("Access-Control-Allow-Headers: Authorization");
 
 $method = $_SERVER['REQUEST_METHOD'];
 $params = explode('/', trim($_SERVER['REQUEST_URI'], '/'));
-$route = $params['3'];
-@$route2 = $params['4'];
-@$route3 = $params['5'];
-@$route4 = $params['6'];
+$route = $params['2'];
+@$route2 = $params['3'];
+@$route3 = $params['4'];
+@$route4 = $params['5'];
 
 wh_log('==================[ Incoming Request ]==================');
 // wh_log("Params:\n" . print_r($params, true));
 
 // Declaring routes
 $no_route = (!$route) ? true : false;
+$route_teste = ($route == 'echo') ? true : false;
 $route_mailchimp_subscribe = ($route == 'mailchimp' && $route2 == 'subscribe') ? true : false;
 $route_woocommerce_webhooks = ($route == 'woocommerce' && $route2 == 'webhooks' && !isset($route3)) ? true : false;
 $route_woocommerce_webhooks_id = ($route == 'woocommerce' && $route2 == 'webhooks' && is_numeric($route3)) ? true : false;
@@ -41,6 +42,11 @@ switch (true) {
     break;
   case ($route_woocommerce_webhooks_id):
     echo route_woocommerce_webhooks($route3);
+    die();
+    break;
+  case ($route_teste):
+    $data['status'] = 'echo done!';
+    echo json_encode($data, JSON_UNESCAPED_UNICODE);
     die();
     break;
     // case ($route_woocommerce_webhooks_force):
@@ -61,7 +67,7 @@ switch (true) {
       "name" => "Dashboard Formar - API Personalizada",
       "description" => "WebService para dashboards do Mathema. [Fernando - 03/07/2019]",
       "home" => "https://mathema.com.br",
-      "url" => "https://mathema.com.br/dashboard/v1/index.php",
+      "url" => "https://mathema.com.br/api/v1/",
       "version" => "v1.0.1 alpha - 09/2019",
       "status" => "Em desenvolvimento",
       "author" => "Fernando Ortiz de Mello - fernando.ortiz@mathema.com.br",
@@ -343,6 +349,12 @@ function route_mailchimp_subscribe($post)
     $mc_array['merge_fields'][$key] = $value;
   }
 
+  foreach ($data->tags as $key => $value) {
+    $mc_array['tags'][$key] = $value;
+  }
+
+  wh_log("Mailchimp data: \n" . print_r($data, true));
+  wh_log("Mailchimp mc_array: \n" . print_r($mc_array, true));
   $result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
 
   if ($result['status'] !== 'subscribed') {

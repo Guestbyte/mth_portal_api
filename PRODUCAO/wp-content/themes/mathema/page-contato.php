@@ -63,41 +63,41 @@ $(document).ready(function() {
 //JS: Integração com Mailchimp 
 //[23/10/2019 - Fernando]
 
-$(".wpcf7-submit").click(function() {
-    const basepathAPI = "https://mathema.com.br/api/v1/index.php";
+// $(".wpcf7-submit").click(function() {
+//     const basepathAPI = "https://mathema.com.br/api/v1/index.php";
 
-    console.log("Nome: " + $("#name").val());
-    console.log("Email: " + $("#email").val());
-    console.log("Assunto: " + $("input[name=assunto]").val());
-    console.log("Mensagem: " + $("textarea[name=mensagem]").val());
-    console.log("Destinatario: " + $("select[name=destinatario]").val());
+//     console.log("Nome: " + $("#name").val());
+//     console.log("Email: " + $("#email").val());
+//     console.log("Assunto: " + $("input[name=assunto]").val());
+//     console.log("Mensagem: " + $("textarea[name=mensagem]").val());
+//     console.log("Destinatario: " + $("select[name=destinatario]").val());
 
-    var form = new FormData();
-    form.append("list_id", "2da8383add");
-    form.append("status", "subscribed");
-    form.append("email_address", $("#email").val());
-    form.append("merge_fields[FNAME]", $("#name").val());
+//     var form = new FormData();
+//     form.append("list_id", "2da8383add");
+//     form.append("status", "subscribed");
+//     form.append("email_address", $("#email").val());
+//     form.append("merge_fields[FNAME]", $("#name").val());
 
-    var settings = {
-        async: true,
-        crossDomain: true,
-        url: basepathAPI + "/mailchimp/subscribe/",
-        method: "POST",
-        processData: false,
-        contentType: false,
-        mimeType: "multipart/form-data",
-        data: form
-    };
+//     var settings = {
+//         async: true,
+//         crossDomain: true,
+//         url: basepathAPI + "/mailchimp/subscribe/",
+//         method: "POST",
+//         processData: false,
+//         contentType: false,
+//         mimeType: "multipart/form-data",
+//         data: form
+//     };
 
-    $.ajax(settings)
-        .done(function(response) {
-            console.log("MTH-API: Mailchimp: subscribe done!");
-        })
-        .fail(function(error) {
-            console.log("MTH-API: Mailchimp: error on subscribe:");
-            console.log(error.responseText);
-        });
-});
+//     $.ajax(settings)
+//         .done(function(response) {
+//             console.log("MTH-API: Mailchimp: subscribe done!");
+//         })
+//         .fail(function(error) {
+//             console.log("MTH-API: Mailchimp: error on subscribe:");
+//             console.log(error.responseText);
+//         });
+// });
 </script>
 <!-- FOOTER -->
 <?php get_footer(); ?>
