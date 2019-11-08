@@ -6,6 +6,7 @@ use \DrewM\MailChimp\MailChimp;
 $MailChimp = new MailChimp('6b64f119d239790236c85be24171200e-us16');
 // $mailchimp_list_id = '2da8383add'; // Lista MATHEMA ONLINE : https://us16.admin.mailchimp.com/lists/members?id=131005
 // $mailchimp_list_id = '803e6a1581'; // Lista CLIENTES MATHEMA ONLINE II : https://us16.admin.mailchimp.com/lists/members?id=165933
+// $mailchimp_list_id = 'f3397d3993'; // Lista 'Leads Portal' : https://us16.admin.mailchimp.com/lists/members?id=177689
 
 header("Access-Control-Allow-Origin: *");
 header("Content-type: application/json; charset=utf-8");
@@ -357,12 +358,22 @@ function route_mailchimp_subscribe($post)
   wh_log("Mailchimp mc_array: \n" . print_r($mc_array, true));
   $result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
 
-  if ($result['status'] !== 'subscribed') {
-    wh_log("Mailchimp Error: \n" . print_r($result, true));
-    $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
-    $return['return'] = $result;
-    header('HTTP/1.1 500 Internal Server Error');
-    return json_encode($return, JSON_UNESCAPED_UNICODE);
+  if ($result['title'] == 'Member Exists') {
+    wh_log("Member Exists on list, tryng to update...");
+    $subscriber_hash = md5($email_address);
+
+    $put_result = $MailChimp->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
+
+    if ($put_result['status'] !== 'subscribed') {
+      wh_log("Mailchimp Error: \n" . print_r($put_result, true));
+      $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
+      $return['return'] = $put_result;
+      header('HTTP/1.1 500 Internal Server Error');
+      return json_encode($return, JSON_UNESCAPED_UNICODE);
+    }
+
+    wh_log("Success updated to Mailchimp!\n" . print_r($put_result, true));
+    return json_encode($put_result, JSON_UNESCAPED_UNICODE);
   }
 
   wh_log("Success subscribed to Mailchimp!\n" . print_r($result, true));
@@ -416,6 +427,7 @@ function route_woocommerce_webhooks($order_id = false)
   foreach ($order->line_items as $item) {
     unset($product);
     $product = WP_API("GET", "/wc/v3/products/" . $item->product_id . "?");
+    $mc_nome_curso = $item->name;
 
     if (!isset($product->id)) {
       wh_log("Error retriving product data: \n" . print_r($product, true));
@@ -438,11 +450,11 @@ function route_woocommerce_webhooks($order_id = false)
         break;
       case "120":
         array_push($product_type, "PLANO_FASE");
-        $mth_campanha_plano = true;
+        $mth_campanha_plano = false;
         break;
       case "400":
         array_push($product_type, "PLANO_PREMIUM");
-        $mth_campanha_plano = true;
+        $mth_campanha_plano = false;
         break;
       default:
         array_push($product_type, "TIPO_NAO_IDENTIFICADO: " . $product->acf->carga_horaria_produto);
@@ -488,6 +500,7 @@ function route_woocommerce_webhooks($order_id = false)
   $mc_array['merge_fields']['CIDADE'] = $order->billing->city;
   $mc_array['merge_fields']['ESTADO'] = $order->billing->state;
   $mc_array['merge_fields']['CEP'] = $order->billing->postcode;
+  $mc_array['merge_fields']['CURSO'] = $mc_nome_curso;
 
   if (isset($order->coupon_lines[0]->code)) {
     $mc_array['merge_fields']['CUPOM'] = $order->coupon_lines[0]->code;
@@ -510,15 +523,33 @@ function route_woocommerce_webhooks($order_id = false)
   if ($mc_result['status'] == 'subscribed') {
     wh_log("Success subscribed to Mailchimp!");
     header('HTTP/1.1 200 OK');
+  } elseif ($mc_result['title'] == 'Member Exists') {
+    wh_log("Member Exists on list, tryng to update...");
+    $subscriber_hash = md5($order->billing->email);
+    wh_log("dump array on update: \n" . print_r($mc_array, true));
+
+    $put_result = $MailChimp->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
+
+    if ($put_result['status'] !== 'subscribed') {
+      wh_log("Mailchimp Error: \n" . print_r($put_result, true));
+      $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
+      $return['return'] = $put_result;
+      header('HTTP/1.1 500 Internal Server Error');
+      return json_encode($return, JSON_UNESCAPED_UNICODE);
+    }
+
+    $return['status'] = '200';
+    wh_log("Success updated to Mailchimp!\n" . print_r($put_result, true));
+    return json_encode($put_result, JSON_UNESCAPED_UNICODE);
   } else {
+
     wh_log("Mailchimp Error: \n" . print_r($mc_result, true));
     $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
     header('HTTP/1.1 500 Internal Server Error');
-    // break;
     return json_encode($return, JSON_UNESCAPED_UNICODE);
   }
 
   $return['status'] = '200';
-
+  wh_log('------------------[ route_woocommerce_webhooks ]------------------ END');
   return json_encode($return, JSON_UNESCAPED_UNICODE);
 }
