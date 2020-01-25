@@ -1,0 +1,13 @@
+{
+    "name": "fernando.ortiz/api",
+    "description": "API do Portal Mathema",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Fernando Ortiz Mello",
+            "email": "guestbyte@gmail.com"
+        }
+    ],
+    "require": {}
+}
