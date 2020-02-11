@@ -14,7 +14,7 @@ function route_mailchimp_subscribe($post)
         $err_array['status'] = 'Data posted is invalid!';
         $err_array['post'] = $post;
         wh_log("Data posted not valid.\n" . print_r($err_array, true));
-        header('HTTP/1.1 400 Bad Request');
+        // header('HTTP/1.1 400 Bad Request');
         return json_encode($err_array, JSON_UNESCAPED_UNICODE);
     }
 
@@ -43,7 +43,7 @@ function route_mailchimp_subscribe($post)
             wh_log("Mailchimp Error: \n" . print_r($put_result, true));
             $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
             $return['return'] = $put_result;
-            header('HTTP/1.1 500 Internal Server Error');
+            // header('HTTP/1.1 500 Internal Server Error');
             return json_encode($return, JSON_UNESCAPED_UNICODE);
         }
 
@@ -59,43 +59,48 @@ function route_woocommerce_webhooks($order_id = false)
 {
     wh_log('------------------[ route_woocommerce_webhooks ]------------------');
     global $MailChimp;
-    $mc_list_id = '803e6a1581'; // CLIENTES MATHEMA ONLINE II : https://us16.admin.mailchimp.com/lists/members?id=165933
+    $mc_customers_list_id = '803e6a1581'; // CLIENTES MATHEMA ONLINE II : https://us16.admin.mailchimp.com/lists/members?id=165933
+    $mc_onhold_list_id = '31cfca9bfd'; 
+
     $rawData = file_get_contents("php://input");
     $jsonData = json_decode($rawData);
 
+    // $order_id = '69126';
+
     if ($order_id) {
-        $jsonData->arg = $order_id;
+        $jsonData->id = $order_id;
         wh_log("Manually process order: " . $jsonData->arg);
     }
 
-    if (!isset($jsonData->arg)) {
+    $order_id = ($jsonData->id) ? $jsonData->id : $jsonData->arg;
+
+    if (!isset($order_id)) {
         wh_log("Error identifing order id!");
         $return['error_imput'] = 'Error identifing order id.';
         wh_log("error dump _input:\n" . print_r(json_decode($rawData), true));
-        header('HTTP/1.1 400 Bad Request');
+        // header('HTTP/1.1 400 Bad Request');
         return json_encode($return, JSON_UNESCAPED_UNICODE);
     }
 
-    wh_log("Proccessing order: " . @$jsonData->arg);
+    wh_log("Proccessing order: " . @$order_id);
 
-    $order = WP_API("GET", "/wc/v3/orders/" . $jsonData->arg . "?");
-    return json_encode($order, JSON_UNESCAPED_UNICODE);
+    $order = WP_API("GET", "/wc/v3/orders/" . $order_id . "?");
 
     if (!isset($order->id)) {
         wh_log("Error retriving order data: \n" . print_r($order, true));
         $return['error_order'] = 'Error on retriving order data.';
-        header('HTTP/1.1 500 Internal Server Error');
+        // header('HTTP/1.1 500 Internal Server Error');
         return json_encode($return, JSON_UNESCAPED_UNICODE);
     }
 
-    wh_log("Subscribing on MailChimp: " . $jsonData->arg);
+    wh_log("Subscribing on MailChimp: " . $order_id);
 
     $mc_array['status'] = 'subscribed';
     $mc_array['email_address'] = $order->billing->email;
     $mc_array['merge_fields']['NOME'] = $order->billing->first_name;
     $mc_array['merge_fields']['SOBRENOME'] = $order->billing->last_name;
     $mc_array['merge_fields']['COMPRA'] = $order->date_created;
-    $mc_array['merge_fields']['PAGAMENTO'] = $order->date_completed;
+    ($order->date_completed) ? $mc_array['merge_fields']['PAGAMENTO'] = $order->date_completed : false ;
     $mc_array['merge_fields']['SITUACAO'] = $order->status;
     $mc_array['merge_fields']['ENDERECO'] = $order->billing->address_1;
     $mc_array['merge_fields']['BAIRRO'] = $order->billing->neighborhood;
@@ -126,7 +131,7 @@ function route_woocommerce_webhooks($order_id = false)
         if (!isset($product->id)) {
             wh_log("Error retriving product data: \n" . print_r($product, true));
             $return['error_product'] = 'Error on retriving order data.';
-            header('HTTP/1.1 500 Internal Server Error');
+            // header('HTTP/1.1 500 Internal Server Error');
             break;
         }
 
@@ -170,6 +175,7 @@ function route_woocommerce_webhooks($order_id = false)
         switch ($item->key) {
             case "Tipo de pagamento": // Curso gratis
                 $mc_array['merge_fields']['FORMA_PAGM'] = $item->value;
+                $order_payment_method = $item->value;
                 break;
         }
     }
@@ -198,6 +204,22 @@ function route_woocommerce_webhooks($order_id = false)
     // }
 
     // return json_encode($mc_array, JSON_UNESCAPED_UNICODE);
+
+    $order_onhold = ($order->status == 'on-hold');
+    $order_pending = ($order->status == 'pending');
+    $order_boleto = ($order_payment_method == 'Boleto');   
+
+    $order_onhold_boleto = ($order_onhold and $order_boleto);
+    $order_pending_boleto = ($order_pending and $order_boleto);
+
+    $mc_list_id = ($order_onhold_boleto or $order_pending_boleto) ? $mc_onhold_list_id : $mc_customers_list_id ;
+
+    if ($order_onhold_boleto){
+        wh_log("Order status: $order->status | Payment method: $order_payment_method. Subscribing on diferent audience: $mc_list_id");
+    }
+
+    // return json_encode($mc_list_id, JSON_UNESCAPED_UNICODE);
+    
     $mc_result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
 
     $member_subscribed = ($mc_result['status'] == 'subscribed');
@@ -218,12 +240,12 @@ function route_woocommerce_webhooks($order_id = false)
             wh_log("dump array posted on update: \n" . print_r($mc_array, true));
             $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
             $return['return'] = $put_result;
-            header('HTTP/1.1 500 Internal Server Error');
+            // header('HTTP/1.1 500 Internal Server Error');
             return json_encode($return, JSON_UNESCAPED_UNICODE);
         }
 
         wh_log("Member data updated, tryng to update TAGs...");
-        // $mc_results = $MailChimp->get("lists/$mc_list_id/segments?count=1000&fields=segments.name,segments.id,segments.type");
+        
         $mc_results = $MailChimp->get("lists/$mc_list_id/segments?count=1000");
 
         $mc_results_no_statics = array_filter($mc_results['segments'], function ($v, $k) {
@@ -249,7 +271,7 @@ function route_woocommerce_webhooks($order_id = false)
                 wh_log("dump array posted on update: \n" . print_r($mc_array, true));
                 $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
                 $return['return'] = $put_result;
-                header('HTTP/1.1 500 Internal Server Error');
+                // header('HTTP/1.1 500 Internal Server Error');
                 return json_encode($return, JSON_UNESCAPED_UNICODE);
             }
             wh_log("TAG created: " . $tag);
@@ -290,8 +312,8 @@ function route_woocommerce_webhooks($order_id = false)
         wh_log("Mailchimp Error: \n" . print_r($mc_result, true));
         wh_log("dump array posted: \n" . print_r($mc_array, true));
         $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
-        header('HTTP/1.1 500 Internal Server Error');
-        return json_encode($return, JSON_UNESCAPED_UNICODE);
+        // header('HTTP/1.1 500 Internal Server Error');
+        return json_encode($mc_result, JSON_UNESCAPED_UNICODE);
     }
 
     $return['status'] = '200';
@@ -299,17 +321,18 @@ function route_woocommerce_webhooks($order_id = false)
     return json_encode($return, JSON_UNESCAPED_UNICODE);
 }
 
-function route_woocommerce_webhooks_bulk($status = 'completed', $after = '2020-01-20T00:00:00')
+function route_woocommerce_webhooks_bulk($status = 'completed', $after = '2020-02-01T00:00:00', $before = '2020-03-01T00:00:00')
 {
 
+    wh_log("Bulk process started: Status=$status, After: $after, Before: $before ");
     wh_log("Gethering orders... ");
 
-    $orders = json_decode(WP_API("GET", "/wc/v3/orders/?order=asc&status[0]=$status&after=$after&"));
+    $orders = json_decode(WP_API("GET", "/wc/v3/orders/?order=asc&status[0]=$status&after=$after&before=$before&"));
 
     if (!isset($orders)) {
         wh_log("Error retriving order data: \n" . print_r($orders, true));
         $return['error_order'] = 'Error on retriving order data.';
-        header('HTTP/1.1 500 Internal Server Error');
+        // header('HTTP/1.1 500 Internal Server Error');
         return json_encode($return, JSON_UNESCAPED_UNICODE);
     }
 
@@ -504,7 +527,7 @@ function MTH_get_jwt_token()
         $err_array['status'] = 'Error on generate new token!';
         $err_array['error'] = $err;
         wh_log("Data posted not valid.\n" . print_r($err_array, true));
-        header('HTTP/1.1 400 Bad Request');
+        // header('HTTP/1.1 400 Bad Request');
         return json_encode($err_array, JSON_UNESCAPED_UNICODE);
     }
 
