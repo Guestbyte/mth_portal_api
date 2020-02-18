@@ -76,11 +76,11 @@ span,
 applet,
 object,
 iframe,
-h1,
 h2,
 h3,
 h4,
 h5,
+h6,
 h6,
 p,
 blockquote,
@@ -256,16 +256,20 @@ h5,
 h6 {
     line-height: 1.2em;
     margin: 0;
+    font-family: 'GloberRegular';
+    font-weight: normal;
 }
 
-h1 {
+h1,
+h2 {
     font-size: 35px;
     color: #426DA9;
     position: relative;
     padding-bottom: 26px;
 }
 
-h1:after {
+h1:after,
+h2:after {
     content: "";
     background-color: #426DA9;
     width: 60px;
@@ -275,17 +279,17 @@ h1:after {
     bottom: 0;
 }
 
-h2 {
+h3 {
     font-size: 28px;
 }
 
-h3 {
+h4 {
     font-size: 24px;
 }
 
-h4 {}
-
 h5 {}
+
+h6 {}
 
 h6 {}
 
@@ -485,6 +489,46 @@ select {
     vertical-align: top;
     padding: 0 10px;
     line-height: 46px;
+}
+
+.fase-escolar-container {
+    background: #FFF;
+    border: 2px solid #426DA9;
+    width: calc( 100% - 10px);
+    padding: 10px;
+    display: block;
+    float: left;
+    margin: 0 5px 12px;
+}
+
+.fase-escolar-titulo {
+    font-family: 'GloberRegular';
+    font-size: 15px;
+    color: #426DA9;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.fase-escolar-container span.fase-escolar,
+.fase-escolar-container span.fase-escolar span {
+    width: 100%;
+    margin: 0;
+}
+
+.fase-escolar-container span.fase-escolar span span.wpcf7-list-item {
+    margin: 0 30px 0 0;
+    width: auto;
+}
+
+.fase-escolar-container span.fase-escolar span span.wpcf7-list-item input {
+    display: inline-block;
+}
+
+.fase-escolar-container span.fase-escolar span span.wpcf7-list-item span {
+    color: #426DA9;
+    display: inline-block;
+    width: auto;
+    float: none;
 }
 
 input[type=submit] {
@@ -1175,7 +1219,7 @@ footer .inner {
     display: none;
 }
 
-footer h3 {
+footer h4 {
     font-size: 25px;
     color: #426DA9;
     position: relative;
@@ -1183,7 +1227,7 @@ footer h3 {
     margin-bottom: 25px;
 }
 
-footer h3:after {
+footer h4:after {
     content: "";
     background-color: #426DA9;
     width: 35px;
@@ -1230,11 +1274,11 @@ footer h3:after {
     margin-bottom: 40px;
 }
 
-.col-instagram .instafeed h3::after {
+.col-instagram .instafeed h4::after {
     content: none;
 }
 
-footer .col-instagram h3 {
+footer .col-instagram h4 {
     margin: 0 0 25px 5px;
 }
 
@@ -1323,7 +1367,7 @@ RESULTADO DA BUSCA
     margin: 0 0 10px;
 }
 
-.item-busca h3 {
+.item-busca h4 {
     width: 100%;
     font-family: 'GloberBold';
     font-size: 21px;
@@ -1331,7 +1375,7 @@ RESULTADO DA BUSCA
     margin: 0 0 10px;
 }
 
-.item-busca h3 a {
+.item-busca h4 a {
     color: #426DA9;
 }
 
@@ -1351,7 +1395,7 @@ RESULTADO DA BUSCA
 }
 
 .item-busca .categoria:hover,
-.item-busca h3 a:hover,
+.item-busca h4 a:hover,
 .btn-resultado:hover {
     color: #7C53CF;
 }
@@ -1503,7 +1547,7 @@ HOME
     vertical-align: top;
 }
 
-.card-home h2 {
+.card-home h3 {
     font-family: 'GloberSemiBold';
     font-size: 20px;
     color: #426DA9;
@@ -1548,7 +1592,7 @@ HOME
     width: 165px;
 }
 
-.card-home:nth-child(1) h2,
+.card-home:nth-child(1) h3,
 .card-home:nth-child(1) a {
     color: #FFF;
 }
@@ -1633,13 +1677,28 @@ HOME
 }
 
 
+/* SLIDER HOME */
+
+.slider-home {
+    margin-top: 50px;
+}
+
+.item-slide-home {
+    background-position: center;
+    background-size: auto 100%, 0 0;
+    width: 100%;
+    height: 500px;
+    display: block;
+}
+
+
 /* PORQUE */
 
 .porque .inner {
     padding: 75px 0 165px;
 }
 
-.porque h1 {
+.porque h2 {
     margin-bottom: 45px;
 }
 
@@ -1705,13 +1764,13 @@ HOME
     padding: 65px 0 0;
 }
 
-.nossos-numeros h1 {
+.nossos-numeros h2 {
     font-size: 45px;
     color: #FFF;
     margin: 0 0 75px 170px;
 }
 
-.nossos-numeros h1:after {
+.nossos-numeros h2:after {
     background-color: #FFF;
 }
 
@@ -1772,14 +1831,14 @@ HOME
     padding: 125px 0 95px;
 }
 
-.blog-home h1 {
+.blog-home h2 {
     width: 470px;
     padding-bottom: 0;
     font-size: 45px;
     float: left;
 }
 
-.blog-home h1:after {
+.blog-home h2:after {
     width: 357px;
     left: unset;
     right: 0;
@@ -1933,7 +1992,7 @@ ul.list-categorias li:nth-child(7n-0) a {
     display: block;
 }
 
-.post-home-content-inner h1 {
+.post-home-content-inner h2 {
     width: auto;
     font-family: 'GloberBold';
     font-size: 18px;
@@ -1942,11 +2001,11 @@ ul.list-categorias li:nth-child(7n-0) a {
     margin: 20px 0 0;
 }
 
-.post-home-content-inner h1:after {
+.post-home-content-inner h2:after {
     content: none;
 }
 
-.post-home-content-inner h1:hover {
+.post-home-content-inner h2:hover {
     color: #7C53CF;
 }
 
@@ -2109,11 +2168,11 @@ a.btn-irblog:hover .rotulo:before {
     float: left;
 }
 
-.minuto-home h1 {
+.minuto-home h2 {
     margin-bottom: 45px;
 }
 
-.minuto-home h1:after {
+.minuto-home h2:after {
     background-color: #FFC72C;
 }
 
@@ -2190,12 +2249,12 @@ a.btn-irblog:hover .rotulo:before {
     padding: 100px 0 55px;
 }
 
-.loja-home h1 {
+.loja-home h2 {
     padding-bottom: 0;
     margin-bottom: 40px;
 }
 
-.loja-home h1:after {
+.loja-home h2:after {
     content: none;
 }
 
@@ -2344,11 +2403,16 @@ ul.products li.product:hover img {
 }
 
 .loja-home-item-info h2 {
+    padding-bottom: 0;
     font-family: 'GloberBold';
     font-size: 18px !important;
     color: #707070;
     margin-top: 17px;
     transition: all 200ms ease-in;
+}
+
+.loja-home-item-info h2::after {
+    content: none;
 }
 
 .loja-home-item-info .star-rating {
@@ -2413,7 +2477,7 @@ ul.products li.product:hover img {
     display: none !important;
 }
 
-.loja-home-slide li.product:hover h2 {
+.loja-home-slide li.product:hover h3 {
     color: #426DA9;
 }
 
@@ -2431,13 +2495,13 @@ ul.products li.product:hover img {
     padding: 80px 0 80px 128px;
 }
 
-.novidades h1 {
+.novidades h2 {
     font-family: 'GloberSemiBold';
     padding: 0;
     margin-bottom: 38px;
 }
 
-.novidades h1:after {
+.novidades h2:after {
     content: none;
 }
 
@@ -2745,14 +2809,14 @@ body.page-template-page-ciranda {
     background-color: #fa8469 !important;
 }
 
-.download-ciranda h1,
-.resultados-ciranda h1 {
+.download-ciranda h2,
+.resultados-ciranda h2 {
     color: #FFF;
     margin-bottom: 30px;
 }
 
-.download-ciranda h1:after,
-.resultados-ciranda h1:after {
+.download-ciranda h2:after,
+.resultados-ciranda h2:after {
     background-color: #fa8469;
 }
 
@@ -2804,7 +2868,7 @@ body.page-template-page-ciranda {
     height: auto;
 }
 
-.resultados-ciranda h1 {
+.resultados-ciranda h2 {
     color: #7C53CF;
 }
 
@@ -2916,12 +2980,12 @@ body.page-template-page-ciranda {
     padding: 80px 0 60px;
 }
 
-.historias-ciranda h1 {
+.historias-ciranda h2 {
     width: 310px;
     color: #FA8469;
 }
 
-.historias-ciranda h1:after {
+.historias-ciranda h2:after {
     background-color: #7C53CF;
 }
 
@@ -3040,11 +3104,11 @@ body.page-template-page-ciranda {
     transform: none;
 }
 
-.historias-ciranda-video h1 {
+.historias-ciranda-video h2 {
     color: #FA8469;
 }
 
-.historias-ciranda-video h1:after {
+.historias-ciranda-video h2:after {
     background-color: #7C53CF;
 }
 
@@ -3066,13 +3130,13 @@ body.page-template-page-ciranda {
     padding: 185px 0 150px;
 }
 
-.parceiros-ciranda h1 {
+.parceiros-ciranda h2 {
     width: 180px;
     color: #FA8469;
     float: left;
 }
 
-.parceiros-ciranda h1:after {
+.parceiros-ciranda h2:after {
     background-color: #7C53CF;
 }
 
@@ -3137,7 +3201,7 @@ body.page-template-page-ciranda {
     padding: 30px 25px 36px;
 }
 
-.quero-ciranda h1 {
+.quero-ciranda h2 {
     background: url(img/check-quero-ciranda.png) no-repeat 8px 1px;
     padding: 0 0 0 55px;
     font-family: 'GloberBold';
@@ -3147,7 +3211,7 @@ body.page-template-page-ciranda {
     margin-bottom: 55px;
 }
 
-.quero-ciranda h1:after {
+.quero-ciranda h2:after {
     content: none;
 }
 
@@ -3202,12 +3266,12 @@ body.page-template-page-ciranda {
     padding: 90px 0 180px;
 }
 
-.relatos-ciranda h1 {
+.relatos-ciranda h2 {
     color: #FA8469;
     margin: 0 0 40px 26px;
 }
 
-.relatos-ciranda h1:after {
+.relatos-ciranda h2:after {
     background-color: #7C53CF;
 }
 
@@ -3308,7 +3372,7 @@ body.page-template-page-ciranda {
     opacity: 0.25;
 }
 
-.relato-ciranda-item h3,
+.relato-ciranda-item h4,
 .relato-ciranda-item .data {
     width: 100%;
     padding: 0 15px;
@@ -3317,14 +3381,14 @@ body.page-template-page-ciranda {
     left: 0;
 }
 
-.relato-ciranda-item h3 {
+.relato-ciranda-item h4 {
     font-family: 'GloberBold';
     font-size: 18px;
     bottom: 35px;
     transition: all 200ms ease-in;
 }
 
-.relato-ciranda-item h3:hover {
+.relato-ciranda-item h4:hover {
     color: #7C53CF;
 }
 
@@ -3333,7 +3397,7 @@ body.page-template-page-ciranda {
     bottom: 15px;
 }
 
-.relato-ciranda-item-img:hover+.relato-ciranda-item-link h3 {
+.relato-ciranda-item-img:hover+.relato-ciranda-item-link h4 {
     color: #7C53CF;
 }
 
@@ -3346,6 +3410,1249 @@ body.page-template-page-ciranda {
 
 .relatos-ciranda .btn-padrao:hover {
     background-color: #7090E8;
+    color: #FFF;
+}
+
+
+/*-------------------------------------------------------
+CIRANDA NOVA
+-------------------------------------------------------*/
+
+.menu-ciranda,
+.menu-ciranda.mcmovel {
+    background: #6844B2;
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 155px;
+    z-index: 10;
+}
+
+.menu-ciranda ul {
+    text-align: center;
+    font-size: 0;
+}
+
+.menu-ciranda ul li {
+    display: inline-block;
+    position: relative;
+}
+
+.menu-ciranda ul li::after,
+.menu-ciranda.mcmovel ul li::after,
+.menu-ciranda ul li:first-child::before,
+.menu-ciranda.mcmovel ul li:first-child::before {
+    content: "";
+    background: #7C53CF;
+    width: 1px;
+    height: 62px;
+    position: absolute;
+    top: 11px;
+    right: 0;
+    transition: all 200ms ease-in;
+}
+
+.menu-ciranda ul li:first-child::before {
+    left: 0;
+    right: unset;
+}
+
+.menu-ciranda ul li a {
+    color: #FFF;
+    width: 220px;
+    height: 84px;
+    font-family: 'GloberSemiBold';
+    font-size: 18px;
+    line-height: 84px;
+    text-align: center;
+    display: block;
+}
+
+.menu-ciranda ul li a:hover {
+    background: #7C53CF;
+}
+
+.menu-ciranda.mcfixo {
+    position: fixed;
+    top: 80px;
+}
+
+.menu-ciranda.mcfixo ul li::after,
+.menu-ciranda.mcfixo ul li:first-child::before {
+    height: 40px;
+    top: 0;
+}
+
+.menu-ciranda.mcfixo ul li a {
+    height: 40px;
+    line-height: 40px;
+}
+
+.btn-menu-ciranda-container {
+    display: none;
+}
+
+.menu-ciranda .btn-fecha {
+    display: none;
+}
+
+
+/* BANNER */
+
+.ciranda-2 {
+    background: #7090E8;
+    overflow: hidden;
+}
+
+.ciranda-2 .inner {
+    height: 100vh;
+    min-height: 650px;
+}
+
+.ciranda-2 .box-primario {
+    background-color: #FEF2E8;
+    min-height: 400px;
+    padding: 0 70px 0 30px;
+    margin: 115px 130px 0 0;
+}
+
+.ciranda-2 .box-primario::after {
+    border-color: transparent transparent transparent #FEF2E8;
+}
+
+.ciranda-2 .box-primario h1::after {
+    background-color: #FA8469;
+}
+
+.ciranda-2 .box-primario p {
+    color: #7090E8;
+}
+
+.ciranda-2 .btn-padrao {
+    border: 2px solid #FA8469;
+    color: #FA8469;
+}
+
+.ciranda-2 .btn-padrao:hover {
+    background: #FA8469;
+    color: #FFF;
+}
+
+.ciranda-2 .btn-rola-tela {
+    bottom: -30px;
+}
+
+.ciranda-2 .elemento-ciranda-1 {
+    top: 250px;
+}
+
+.ciranda-2 .ciranda-flor {
+    top: 270px;
+}
+
+.ciranda-2 .elemento-ciranda-2 {
+    top: 550px;
+}
+
+.ciranda-2 .elemento-ciranda-4 {
+    top: 490px;
+}
+
+.ciranda-2 .elemento-ciranda-3 {
+    top: 730px;
+}
+
+
+/* SOBRE */
+
+.sobre-ciranda {
+    background: url(img/ciranda-sobre.png) no-repeat left top #FFE3A3;
+    height: 696px;
+}
+
+.sobre-ciranda .inner {
+    padding: 80px 0 0 430px;
+}
+
+.sobre-ciranda h3 {
+    width: 340px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: #7C53CF;
+    margin-bottom: 35px;
+}
+
+.sobre-ciranda p {
+    width: 480px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #7C53CF;
+}
+
+.sobre-ciranda-lista {
+    padding: 40px 0 0;
+    font-size: 0;
+}
+
+.sobre-ciranda-item {
+    display: inline-block;
+    position: relative;
+    margin: 0 65px 65px 0;
+}
+
+.btn-sobre-ciranda,
+.btn-material-ciranda {
+    background: #7C53CF;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    z-index: 1;
+}
+
+.btn-sobre-ciranda span,
+.btn-material-ciranda span {
+    background: #FFF;
+    border-radius: 1px;
+    width: 2px;
+    height: 14px;
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-sobre-ciranda span:nth-child(2),
+.btn-material-ciranda span:nth-child(2) {
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.btn-sobre-ciranda:hover,
+.btn-material-ciranda:hover {
+    transform: rotate(180deg) scale(1.3);
+}
+
+.sobre-ciranda-item:nth-child(1) .btn-sobre-ciranda,
+.sobre-ciranda-item:nth-child(2) .btn-sobre-ciranda {
+    top: 20px;
+}
+
+.sobre-ciranda-item:nth-child(3) .btn-sobre-ciranda,
+.sobre-ciranda-item:nth-child(4) .btn-sobre-ciranda {
+    top: -12px;
+}
+
+.sobre-ciranda-item:nth-child(1) .btn-sobre-ciranda,
+.sobre-ciranda-item:nth-child(3) .btn-sobre-ciranda {
+    left: 92px;
+}
+
+.sobre-ciranda-item:nth-child(2) .btn-sobre-ciranda {
+    left: 74px;
+}
+
+.sobre-ciranda-item:nth-child(4) .btn-sobre-ciranda {
+    left: 59px;
+}
+
+.sobre-ciranda-item img,
+.sobre-ciranda-item h5 {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.sobre-ciranda-item img {
+    margin: 0 20px 0 0;
+}
+
+.sobre-ciranda-item h5 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #7C53CF;
+}
+
+.janela-modal-sobre,
+.janela-modal-material,
+.janela-modal-resultado {
+    display: none;
+    background: #7C53CF !important;
+    max-width: 964px !important;
+}
+
+.janela-modal-sobre h5,
+.janela-modal-material h5,
+.janela-modal-resultado h5 {
+    padding: 0 0 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 35px;
+    font-weight: 900;
+    color: #FFF;
+    position: relative;
+    margin: 0 0 20px;
+}
+
+.janela-modal-sobre h5::after,
+.janela-modal-material h5::after,
+.janela-modal-resultado h5::after {
+    content: "";
+    background: #FFF;
+    width: 90px;
+    height: 2px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.popup-sobre-info {
+    width: 440px;
+    float: left;
+}
+
+.popup-sobre-info p,
+.popup-sobre-info li {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #FFF;
+    margin: 0 0 1em;
+}
+
+.popup-sobre-info ul {
+    padding: 0 0 0 20px;
+    margin: 0 0 0.8em;
+}
+
+.popup-sobre-info li {
+    list-style: disc outside;
+    line-height: 1.3em;
+    margin: 0 0 0.2em;
+}
+
+.janela-modal-sobre img {
+    float: right;
+    width: 356px;
+}
+
+.janela-modal-sobre .fancybox-close-small,
+.janela-modal-material .fancybox-close-small,
+.janela-modal-resultado .fancybox-close-small {
+    display: none !important;
+}
+
+.janela-modal-sobre .btn-fecha,
+.janela-modal-material .btn-fecha,
+.janela-modal-resultado .btn-fecha {
+    top: 20px;
+    right: 20px;
+}
+
+.janela-modal-sobre .btn-fecha span,
+.janela-modal-material .btn-fecha span,
+.janela-modal-resultado .btn-fecha span {
+    background-color: #FFF;
+}
+
+.janela-modal-sobre .btn-fecha:hover span,
+.janela-modal-material .btn-fecha:hover span,
+.janela-modal-resultado .btn-fecha:hover span {
+    background-color: #F8E08E;
+}
+
+
+/* VIDEO */
+
+.video-quero-ciranda-2 {
+    background: #4CCDD9;
+}
+
+.video-quero-ciranda-2 .inner {
+    width: 790px;
+    padding: 130px 0 190px;
+}
+
+.elemento-video-ciranda-1,
+.elemento-video-ciranda-2 {
+    position: absolute;
+    right: 50%;
+}
+
+.elemento-video-ciranda-1 {
+    top: 167px;
+    margin-right: 605px;
+}
+
+.elemento-video-ciranda-2 {
+    bottom: 118px;
+    margin-right: 362px;
+}
+
+.elemento-video-ciranda-3,
+.elemento-video-ciranda-4,
+.elemento-video-ciranda-5 {
+    position: absolute;
+    left: 50%;
+}
+
+.elemento-video-ciranda-3 {
+    top: 0;
+    margin-left: 505px;
+}
+
+.elemento-video-ciranda-4 {
+    top: 336px;
+    margin-left: 524px;
+}
+
+.elemento-video-ciranda-5 {
+    bottom: 10px;
+    margin-left: 405px;
+}
+
+.material-ciranda {
+    background: #FFE3A3;
+}
+
+.material-ciranda .inner {
+    padding: 70px 0 50px;
+}
+
+.material-ciranda h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: #1D4F91;
+    float: left;
+    margin: 0 100px 60px 40px;
+}
+
+.material-ciranda p {
+    border-left: 2px solid #DE456B;
+    width: 385px;
+    padding: 15px 0 0 30px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: italic;
+    color: #1D4F91;
+    float: left;
+    margin: 10px 0 0;
+}
+
+.material-ciranda-container {
+    height: 505px;
+    position: relative;
+}
+
+.material-ciranda-filtros {
+    width: 435px;
+    height: auto;
+    padding: 0 75px 0 40px;
+}
+
+.titulo-filtro-idade,
+.titulo-filtro-tipo {
+    border-bottom: 1px solid #D22E59;
+    padding: 0 0 15px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    font-style: italic;
+    color: #D22E59;
+    margin: 0 0 20px;
+}
+
+.titulo-filtro-tipo {
+    border-bottom: 1px solid #1D4F91;
+    color: #1D4F91;
+}
+
+.filtro-idade,
+.filtro-tipo {
+    font-size: 0;
+}
+
+.filtro-idade {
+    margin: 0 0 35px;
+}
+
+.btn-filtro-idade,
+.btn-filtro-tipo {
+    background: transparent;
+    border: 2px solid #D22E59;
+    border-radius: 14px;
+    width: 100px;
+    height: 28px;
+    font-family: 'GloberBold';
+    font-size: 14px;
+    color: #D22E59;
+    line-height: 24px;
+    text-align: center;
+    display: inline-block;
+    margin: 0 10px 0 0;
+    cursor: pointer;
+}
+
+.btn-filtro-tipo {
+    width: 155px;
+    border: 2px solid #1D4F91;
+    color: #1D4F91;
+}
+
+.btn-filtro-idade:last-child,
+.btn-filtro-tipo:last-child {
+    margin: 0;
+}
+
+.btn-filtro-idade.idade-ativo {
+    background: #D22E59;
+    color: #FFF;
+}
+
+.btn-filtro-tipo.tipo-ativo {
+    background: #1D4F91;
+    color: #FFF;
+}
+
+.filtro-idade-item {
+    position: relative;
+}
+
+.filtro-tipo-item {
+    width: 755px;
+    position: absolute;
+    top: -119px;
+    left: 395px;
+}
+
+.filtro-tipo-item img {
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.5);
+}
+
+.elemento-material-ciranda {
+    position: absolute;
+    left: 50%;
+    bottom: 75px;
+    margin-left: -640px;
+}
+
+.material-ciranda-item-inner {
+    position: relative;
+}
+
+.btn-material-ciranda {
+    background: #FFF;
+}
+
+.btn-material-ciranda span {
+    background: #D22E59;
+}
+
+
+/* BOTÕES PROFESSOR */
+
+.btns-prof .btn-material-ciranda-1,
+.btns-prof .btn-material-ciranda-2 {
+    left: 10px;
+}
+
+.btns-prof .btn-material-ciranda-1 {
+    bottom: 226px;
+}
+
+.btns-prof .btn-material-ciranda-2,
+.btns-prof .btn-material-ciranda-3 {
+    bottom: 12px;
+}
+
+.btns-prof .btn-material-ciranda-3 {
+    left: 170px;
+}
+
+.btns-prof .btn-material-ciranda-4,
+.btns-prof .btn-material-ciranda-5 {
+    left: 470px;
+}
+
+.btns-prof .btn-material-ciranda-4 {
+    top: 16px;
+}
+
+.btns-prof .btn-material-ciranda-5 {
+    top: 232px;
+}
+
+
+/* BOTÕES ALUNO 3 */
+
+.btns-aluno3 .btn-material-ciranda-1,
+.btns-aluno3 .btn-material-ciranda-2 {
+    left: 10px;
+}
+
+.btns-aluno3 .btn-material-ciranda-1 {
+    bottom: 226px;
+}
+
+.btns-aluno3 .btn-material-ciranda-2,
+.btns-aluno3 .btn-material-ciranda-4,
+.btns-aluno3 .btn-material-ciranda-5 {
+    bottom: 12px;
+}
+
+.btns-aluno3 .btn-material-ciranda-3,
+.btns-aluno3 .btn-material-ciranda-4 {
+    left: 170px;
+}
+
+.btns-aluno3 .btn-material-ciranda-5 {
+    left: 320px;
+}
+
+.btns-aluno3 .btn-material-ciranda-6,
+.btns-aluno3 .btn-material-ciranda-7 {
+    left: 470px;
+}
+
+.btns-aluno3 .btn-material-ciranda-3,
+.btns-aluno3 .btn-material-ciranda-6 {
+    top: 16px;
+}
+
+.btns-aluno3 .btn-material-ciranda-7 {
+    top: 232px;
+}
+
+
+/* BOTÕES ALUNO 4 e 5 */
+
+.btns-aluno45 .btn-material-ciranda-1,
+.btns-aluno45 .btn-material-ciranda-2 {
+    left: 10px;
+}
+
+.btns-aluno45 .btn-material-ciranda-1,
+.btns-aluno45 .btn-material-ciranda-3 {
+    bottom: 190px;
+}
+
+.btns-aluno45 .btn-material-ciranda-2,
+.btns-aluno45 .btn-material-ciranda-4 {
+    bottom: 12px;
+}
+
+.btns-aluno45 .btn-material-ciranda-3,
+.btns-aluno45 .btn-material-ciranda-4 {
+    left: 140px;
+}
+
+.btns-aluno45 .btn-material-ciranda-5,
+.btns-aluno45 .btn-material-ciranda-6 {
+    left: 265px;
+}
+
+.btns-aluno45 .btn-material-ciranda-7,
+.btns-aluno45 .btn-material-ciranda-8 {
+    left: 515px;
+}
+
+.btns-aluno45 .btn-material-ciranda-5,
+.btns-aluno45 .btn-material-ciranda-7 {
+    top: 16px;
+}
+
+.btns-aluno45 .btn-material-ciranda-6,
+.btns-aluno45 .btn-material-ciranda-8 {
+    top: 190px;
+}
+
+
+/* JANELA MODAL */
+
+.janela-modal-material {
+    background: #FEF2E8 !important;
+}
+
+.janela-modal-material h5 {
+    color: #1D4F91;
+}
+
+.janela-modal-material h5::after {
+    background: #1D4F91;
+}
+
+.janela-modal-material .popup-sobre-info {
+    width: 315px;
+}
+
+.janela-modal-material .popup-sobre-info p,
+.janela-modal-material .popup-sobre-info li {
+    color: #1D4F91;
+}
+
+.popup-sobre-galeria {
+    width: 410px;
+    float: left;
+    margin: 0 60px 0 80px;
+}
+
+.popup-sobre-galeria.owl-emenda .owl-theme .owl-nav {
+    top: 146px;
+}
+
+.popup-sobre-galeria.owl-emenda .owl-theme .owl-nav button.owl-prev,
+.popup-sobre-galeria.owl-emenda .owl-theme .owl-nav button.owl-next {
+    background-image: url(img/sprite-seta-material.png);
+}
+
+.popup-sobre-galeria.owl-emenda .owl-theme .owl-dots {
+    margin-top: 0;
+}
+
+.popup-sobre-galeria.owl-emenda .owl-theme .owl-dots .owl-dot span {
+    background: #B5BCC7;
+}
+
+.popup-sobre-galeria.owl-emenda .owl-theme .owl-dots .owl-dot.active span,
+.popup-sobre-galeria.owl-emenda .owl-theme .owl-dots .owl-dot:hover span {
+    background: #1D4F91;
+}
+
+.janela-modal-material .btn-fecha span {
+    background-color: #1D4F91;
+}
+
+.janela-modal-material .btn-fecha:hover span {
+    background-color: #D22E59;
+}
+
+.material-ciranda-container .btn-padrao {
+    background-color: #1D4F91;
+    border: 2px solid #1D4F91;
+    border-radius: 21px;
+    width: 300px;
+    height: 42px;
+    font-size: 15px;
+    color: #FFF;
+    line-height: 38px;
+    position: absolute;
+    right: 228px;
+    bottom: 0;
+}
+
+.material-ciranda-container .btn-padrao:hover {
+    background: #D22E59;
+    border: 2px solid #D22E59;
+    color: #FFF;
+}
+
+.janela-modal-sobre .tit-form-material-ciranda {
+    padding: 0 0 0 5px;
+    font-weight: 500;
+}
+
+.janela-modal-sobre .tit-form-material-ciranda::after {
+    content: none;
+}
+
+.janela-modal-sobre .txt-form-material-ciranda {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    font-style: italic;
+    color: #FFF;
+    padding: 0 0 0 5px;
+}
+
+.janela-modal-sobre .quero-ciranda-form {
+    background: none;
+    width: 668px;
+    min-height: 300px;
+    padding: 0;
+}
+
+.janela-modal-sobre .quero-ciranda-form::after {
+    content: none;
+}
+
+.janela-modal-sobre .quero-ciranda-form span.numero-alunos {
+    width: calc( 100% - 10px);
+}
+
+.janela-modal-sobre .quero-ciranda-form select.num-alunos {
+    width: 100%;
+}
+
+.janela-modal-sobre .quero-ciranda-form .fase-escolar-container {
+    background: #FFF;
+    border: 2px solid #7090E8;
+    width: calc( 100% - 10px);
+    padding: 10px;
+    display: block;
+    float: left;
+    margin: 0 5px 12px;
+}
+
+.fase-escolar-titulo {
+    font-family: 'GloberRegular';
+    font-size: 15px;
+    color: #426DA9;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.janela-modal-sobre .quero-ciranda-form .fase-escolar-container span.fase-escolar,
+.janela-modal-sobre .quero-ciranda-form .fase-escolar-container span.fase-escolar span {
+    width: 100%;
+    margin: 0;
+}
+
+.janela-modal-sobre .quero-ciranda-form .fase-escolar-container span.fase-escolar span span.wpcf7-list-item {
+    margin: 0 30px 0 0;
+    width: auto;
+}
+
+.janela-modal-sobre .quero-ciranda-form .fase-escolar-container span.fase-escolar span span.wpcf7-list-item input {
+    display: inline-block;
+}
+
+.janela-modal-sobre .quero-ciranda-form .fase-escolar-container span.fase-escolar span span.wpcf7-list-item span {
+    color: #426DA9;
+    display: inline-block;
+    width: auto;
+    float: none;
+}
+
+
+/* FORMULÁRIO */
+
+.quero-ciranda-2 {
+    background: #F6DBD9;
+}
+
+.quero-ciranda-2 .inner {
+    padding: 238px 0 100px;
+}
+
+.quero-ciranda-form {
+    background-image: url(img/bg-formulario-ciranda-top.png), url(img/bg-formulario-ciranda-bottom.png);
+    background-repeat: no-repeat, no-repeat;
+    background-position: left top, left bottom;
+    width: 822px;
+    height: auto;
+    min-height: 448px;
+    padding: 52px 79px 40px 75px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
+
+.quero-ciranda-form::after {
+    content: "";
+    background: #7090E8;
+    width: 816px;
+    height: 83px;
+    position: absolute;
+    top: 209px;
+    left: 0;
+    z-index: -1;
+}
+
+.quero-ciranda-form h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: #FFF;
+    margin: 0 0 20px;
+}
+
+.quero-ciranda-form span {
+    width: 324px;
+    margin: 0 5px 12px;
+    float: left;
+}
+
+.quero-ciranda-form input[type=text],
+.quero-ciranda-form input[type=email],
+.quero-ciranda-form input[type=tel],
+.quero-ciranda-form select {
+    background: #FFF;
+    border: 2px solid #7090E8;
+    width: 324px;
+    float: none;
+    margin: 0;
+}
+
+.quero-ciranda-form input[type="submit"] {
+    background-color: #FFF;
+    border: 2px solid #FA8469;
+    color: #FA8469;
+}
+
+.quero-ciranda-form input[type="submit"]:hover {
+    background-color: #FA8469;
+    color: #FFF;
+}
+
+.quero-ciranda-form span.wpcf7-not-valid-tip {
+    color: #FFF !important;
+    margin: 0 0 -10px;
+}
+
+.quero-ciranda-form div.wpcf7-response-output {
+    clear: both;
+    width: calc(100% - 170px);
+    position: relative;
+    transform: translateY(-20px);
+    padding: 0 0 0 5px !important;
+}
+
+.quero-ciranda-form div.wpcf7-validation-errors,
+.quero-ciranda-form div.wpcf7-mail-sent-ok {
+    color: #FFF !important;
+}
+
+.formulario-ciranda-elemento-1 {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.formulario-ciranda-elemento-2 {
+    position: absolute;
+    left: 50%;
+    bottom: 12px;
+    z-index: 3;
+    margin-left: -659px;
+    pointer-events: none;
+}
+
+.formulario-ciranda-elemento-3 {
+    position: absolute;
+    top: 320px;
+    right: 50%;
+    margin-right: -560px;
+    z-index: 0;
+}
+
+
+/* DEPOIMENTOS */
+
+.historias-ciranda-2 {
+    background: #F6DBD9;
+}
+
+.historias-ciranda-2 .inner {
+    width: 800px;
+    padding: 50px 0 100px;
+}
+
+.historias-ciranda-2 h3 {
+    width: 246px;
+    border-bottom: 2px solid #FA8469;
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    color: #7C53CF;
+    margin: 0 auto 70px;
+}
+
+.historias-ciranda-2 .historias-ciranda-item {
+    height: auto;
+}
+
+.historias-ciranda-2 .historias-ciranda-item-autor {
+    border-right: 2px solid #FEF2E8;
+    width: 205px;
+    height: auto;
+    padding: 0 45px 0 0;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    margin: 0 45px 0 0;
+}
+
+.historias-ciranda-2 .historias-ciranda-item-autor::after {
+    content: none;
+}
+
+.historias-ciranda-2 .historias-ciranda-item-img {
+    border-radius: 50%;
+    width: 160px !important;
+    margin: 0;
+}
+
+.historias-ciranda-2 .historias-ciranda-item-info {
+    width: 550px;
+    height: auto;
+    padding: 0;
+    font-size: 18px;
+    color: #7C53CF;
+}
+
+.historias-ciranda-2 .historias-ciranda-item-info p {
+    top: 0;
+    transform: none;
+}
+
+.historias-ciranda-2 .historias-ciranda-item-info h6 {
+    font-family: 'GloberSemiBold';
+}
+
+.historias-ciranda-2 .owl-emenda .owl-theme .owl-nav {
+    top: 80px;
+}
+
+.elemento-depoimentos-ciranda-1 {
+    position: absolute;
+    right: 50%;
+    bottom: -65px;
+    margin-right: 360px;
+}
+
+.elemento-depoimentos-ciranda-2 {
+    position: absolute;
+    bottom: -125px;
+    left: 50%;
+    margin-left: 290px;
+}
+
+
+/* PARCEIROS */
+
+.parceiros-ciranda-2 {
+    overflow: hidden;
+}
+
+.parceiros-ciranda-2 .inner {
+    padding: 110px 0 120px;
+    width: 780px;
+}
+
+.parceiros-ciranda-2 h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 40px;
+    font-weight: 800;
+    color: #7C53CF;
+    text-align: center;
+    margin: 0 auto 60px;
+}
+
+
+/* RESULTADOS */
+
+.resultados-ciranda-2 {
+    background: #FFE3A3;
+}
+
+.resultados-ciranda-2 .inner {
+    padding: 165px 0 115px;
+}
+
+.resultados-ciranda-2 .resultados-ciranda-txt {
+    width: 280px;
+    height: auto;
+    padding: 0;
+    margin: 0 40px 0 0;
+}
+
+.resultados-ciranda-2 .resultados-ciranda-txt h3 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 30px;
+    font-weight: 800;
+    color: #7C53CF;
+}
+
+.resultados-ciranda-2 .resultados-ciranda-txt p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #7C53CF;
+}
+
+.resultados-ciranda-2 .resultados-ciranda-slide-2 {
+    width: 840px;
+    float: left;
+}
+
+.resultados-ciranda-2 .resultados-ciranda-item {
+    background: #FEF2E8;
+    height: 375px;
+    padding: 30px 25px;
+    margin: 10px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+}
+
+.resultados-ciranda-2 .resultados-ciranda-item .resultados-ciranda-item-titulo {
+    border-right: none;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 65px;
+    padding: 0;
+    display: block;
+}
+
+.resultados-ciranda-2 .resultados-ciranda-item .resultados-ciranda-item-titulo h6 {
+    font-family: 'GloberBold';
+    font-size: 29px;
+    color: #7C53CF;
+    margin-bottom: 5px;
+}
+
+.resultados-ciranda-2 .resultados-ciranda-item .resultados-ciranda-item-titulo span.subtitulo {
+    font-size: 19px;
+    color: #7C53CF;
+    line-height: 1.3em;
+}
+
+.resultados-ciranda-2 .resultados-ciranda-item .resultados-ciranda-item-img {
+    width: auto !important;
+    max-height: 325px;
+    margin: 20px auto 0;
+    max-width: 100%;
+}
+
+.resultados-ciranda-2 .resultados-ciranda-item .btn-resultado-ciranda {
+    border: 2px solid #49428F;
+    border-radius: 16px;
+    width: 132px;
+    height: 32px;
+    font-family: 'GloberSemiBoldItalic';
+    font-size: 14px;
+    color: #49428F;
+    line-height: 26px;
+    text-align: center;
+    display: block;
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.resultados-ciranda-2 .resultados-ciranda-item .btn-resultado-ciranda:hover {
+    background: #49428F;
+    color: #FFF;
+}
+
+.resultados-ciranda-2 .owl-emenda .owl-theme .owl-nav {
+    top: 193px;
+}
+
+.resultados-ciranda-2 .owl-emenda .owl-theme .owl-nav button.owl-prev {
+    margin-left: -32px;
+}
+
+.resultados-ciranda-2 .owl-emenda .owl-theme .owl-nav button.owl-next {
+    margin-right: -32px;
+}
+
+.janela-modal-resultado {
+    background: #FFFFFF !important;
+    max-width: 820px !important;
+}
+
+.popup-resultado-titulo {
+    width: 280px;
+    float: left;
+    margin: 0 20px 20px 0;
+}
+
+.janela-modal-resultado h5 {
+    padding: 0 0 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: #FA8469;
+    position: relative;
+}
+
+.janela-modal-resultado h5 span {
+    font-size: 16px;
+    font-weight: 400;
+    font-style: italic;
+    display: block;
+}
+
+.janela-modal-resultado h5::after {
+    background: #FA8469;
+}
+
+.popup-resultado-info {
+    width: 410px;
+    margin: 0 20px 20px 0;
+    float: left;
+}
+
+.popup-resultado-info p,
+.popup-resultado-info li {
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    color: #707070;
+    margin: 0 0 1em;
+}
+
+.popup-resultado-img {
+    clear: both;
+    width: auto;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.janela-modal-resultado .btn-fecha span {
+    background-color: #FA8469;
+}
+
+.janela-modal-resultado .btn-fecha:hover span {
+    background-color: #7C53CF;
+}
+
+.elemento-resultados-ciranda-1 {
+    position: absolute;
+    top: -170px;
+    left: 50%;
+    margin-left: 425px;
+}
+
+.elemento-resultados-ciranda-2 {
+    position: absolute;
+    right: 50%;
+    bottom: -50px;
+    margin-right: 400px;
+}
+
+
+/* RELATOS */
+
+.relatos-ciranda-2 .inner {
+    padding: 130px 0 100px;
+}
+
+.relatos-ciranda-2 h3 {
+    width: 302px;
+    border-bottom: 2px solid #FA8469;
+    font-family: 'Nunito', sans-serif;
+    font-size: 35px;
+    font-weight: 600;
+    color: #FA8469;
+    margin: 0 auto 60px;
+}
+
+.relatos-ciranda-2 .btn-padrao {
+    border: 2px solid #7090E8;
+    width: 314px;
+    color: #7090E8;
+    margin: 60px auto 0;
+}
+
+.relatos-ciranda-2 .btn-padrao:hover {
+    background: #7090E8;
     color: #FFF;
 }
 
@@ -3387,15 +4694,15 @@ FORMAÇÃO ONLINE PARA ESCOLA
     padding: 75px 0 180px;
 }
 
-.page-template-page-fo-escola .download-ciranda h1,
-.page-template-page-fp-escola .download-ciranda h1,
-.single-projeto-especial .download-ciranda h1 {
+.page-template-page-fo-escola .download-ciranda h2,
+.page-template-page-fp-escola .download-ciranda h2,
+.single-projeto-especial .download-ciranda h2 {
     color: #426DA9;
 }
 
-.page-template-page-fo-escola .download-ciranda h1:after,
-.page-template-page-fp-escola .download-ciranda h1:after,
-.single-projeto-especial .download-ciranda h1:after {
+.page-template-page-fo-escola .download-ciranda h2:after,
+.page-template-page-fp-escola .download-ciranda h2:after,
+.single-projeto-especial .download-ciranda h2:after {
     background-color: #DF4661;
 }
 
@@ -3479,14 +4786,14 @@ FORMAÇÃO ONLINE PARA ESCOLA
     border-bottom-color: #426DA9;
     border-left-color: #FFC72C;
     width: 800px;
-    height: 465px;
+    height: auto;
     padding: 50px 85px 66px;
     margin: 0 auto;
 }
 
-.page-template-page-fo-escola .quero-ciranda h1,
-.page-template-page-fp-escola .quero-ciranda h1,
-.page-template-page-projetos-especiais .quero-ciranda h1 {
+.page-template-page-fo-escola .quero-ciranda h2,
+.page-template-page-fp-escola .quero-ciranda h2,
+.page-template-page-projetos-especiais .quero-ciranda h2 {
     margin-bottom: 10px;
 }
 
@@ -3510,15 +4817,15 @@ FORMAÇÃO ONLINE PARA ESCOLA
     background-color: #FFF;
 }
 
-.page-template-page-fo-escola .historias-ciranda h1,
-.page-template-page-fp-escola .historias-ciranda h1 {
+.page-template-page-fo-escola .historias-ciranda h2,
+.page-template-page-fp-escola .historias-ciranda h2 {
     width: 360px;
     color: #426DA9;
     margin-bottom: 50px;
 }
 
-.page-template-page-fo-escola .historias-ciranda h1::after,
-.page-template-page-fp-escola .historias-ciranda h1::after {
+.page-template-page-fo-escola .historias-ciranda h2::after,
+.page-template-page-fp-escola .historias-ciranda h2::after {
     background-color: #DF4661;
 }
 
@@ -3532,20 +4839,20 @@ FORMAÇÃO ONLINE PARA ESCOLA
     padding: 60px 0 150px;
 }
 
-.page-template-page-fo-escola .parceiros-ciranda h1,
-.page-template-page-fp-escola .parceiros-ciranda h1,
-.page-template-page-projetos-especiais .parceiros-ciranda h1,
-.single-projeto-especial .parceiros-ciranda h1 {
+.page-template-page-fo-escola .parceiros-ciranda h2,
+.page-template-page-fp-escola .parceiros-ciranda h2,
+.page-template-page-projetos-especiais .parceiros-ciranda h2,
+.single-projeto-especial .parceiros-ciranda h2 {
     width: 315px;
     color: #426DA9;
     float: none;
     margin-bottom: 20px;
 }
 
-.page-template-page-fo-escola .parceiros-ciranda h1::after,
-.page-template-page-fp-escola .parceiros-ciranda h1::after,
-.page-template-page-projetos-especiais .parceiros-ciranda h1::after,
-.single-projeto-especial .parceiros-ciranda h1::after {
+.page-template-page-fo-escola .parceiros-ciranda h2::after,
+.page-template-page-fp-escola .parceiros-ciranda h2::after,
+.page-template-page-projetos-especiais .parceiros-ciranda h2::after,
+.single-projeto-especial .parceiros-ciranda h2::after {
     background-color: #DF4661;
 }
 
@@ -3593,7 +4900,7 @@ FORMAÇÃO PRESENCIAL PARA ESCOLA
     border-left-color: #FFC72C;
 }
 
-.page-template-page-fp-escola .quero-ciranda h1 {
+.page-template-page-fp-escola .quero-ciranda h2 {
     color: #426DA9;
 }
 
@@ -3633,26 +4940,26 @@ FORMAÇÃO PRESENCIAL PARA ESCOLA
     padding: 80px 0;
 }
 
-.page-template-page-fp-escola .historias-ciranda-video h1,
-.page-template-page-projetos-especiais .historias-ciranda-video h1 {
+.page-template-page-fp-escola .historias-ciranda-video h2,
+.page-template-page-projetos-especiais .historias-ciranda-video h2 {
     color: #426DA9;
 }
 
-.page-template-page-fp-escola .historias-ciranda-video h1:after,
-.page-template-page-projetos-especiais .historias-ciranda-video h1:after {
+.page-template-page-fp-escola .historias-ciranda-video h2:after,
+.page-template-page-projetos-especiais .historias-ciranda-video h2:after {
     background-color: #DF4661;
 }
 
 
 /* TEMAS - ACCORDION */
 
-.temas h1.temas-titulo {
+.temas h2.temas-titulo {
     font-family: 'GloberRegular';
     padding-bottom: 0;
     margin-bottom: 25px;
 }
 
-.temas h1.temas-titulo:after {
+.temas h2.temas-titulo:after {
     content: none;
 }
 
@@ -3773,7 +5080,7 @@ FORMAÇÃO PRESENCIAL PARA ESCOLA
     margin-right: 0
 }
 
-.aba-accordion-conteudo-txt h3 {
+.aba-accordion-conteudo-txt h4 {
     font-family: 'GloberSemiBold';
     font-size: 15px;
     color: #426DA9;
@@ -3929,7 +5236,7 @@ PROJETOS ESPECIAIS
 
 /* restante da formatação esta junto com os depoimentos do trabalhe conosco */
 
-.page-template-page-projetos-especiais .historias-ciranda h1 {
+.page-template-page-projetos-especiais .historias-ciranda h2 {
     width: 345px !important;
 }
 
@@ -4040,11 +5347,11 @@ O GRUPO
     right: -20px;
 }
 
-.historia-titulo h1 {
+.historia-titulo h2 {
     color: #FFF;
 }
 
-.historia-titulo h1:after {
+.historia-titulo h2:after {
     background-color: #DF4661;
 }
 
@@ -4086,12 +5393,12 @@ O GRUPO
     padding: 50px 0 20px;
 }
 
-.aba-missao h1 {
+.aba-missao h2 {
     font-family: 'GloberBookItalic';
     padding-bottom: 48px;
 }
 
-.aba-missao h1:after {
+.aba-missao h2:after {
     content: none;
 }
 
@@ -4100,7 +5407,7 @@ O GRUPO
     margin-bottom: 30px;
 }
 
-.aba-missao h3 {
+.aba-missao h4 {
     font-family: 'GloberBold';
     font-size: 18px;
     margin-bottom: 30px;
@@ -4149,7 +5456,7 @@ O GRUPO
     padding: 60px 0 20px;
 }
 
-.linha-tempo h1 {
+.linha-tempo h2 {
     margin-bottom: 40px;
 }
 
@@ -4518,7 +5825,7 @@ EQUIPE
     z-index: 0;
 }
 
-.lista-membros h2 {
+.lista-membros h3 {
     background-color: #FFF;
     padding: 0 12px 0 6px;
     font-size: 28px;
@@ -4561,7 +5868,7 @@ EQUIPE
     opacity: 0.3;
 }
 
-.membro h5 {
+.membro h6 {
     font-family: 'GloberBold';
     font-size: 14px;
     color: #426DA9;
@@ -4632,13 +5939,13 @@ EQUIPE
     content: none;
 }
 
-.membro-equipe-info h5 {
+.membro-equipe-info h6 {
     font-family: 'GloberBold';
     font-size: 16px;
     color: #FFF;
 }
 
-.membro-equipe-info h5 span {
+.membro-equipe-info h6 span {
     font-family: 'GloberRegular';
     font-size: 16px;
     display: inline;
@@ -4653,11 +5960,11 @@ EQUIPE
     margin-bottom: 50px;
 }
 
-.list-itens-membro h1 {
+.list-itens-membro h2 {
     margin: 0 0 50px 50px;
 }
 
-.list-itens-membro h1:after {
+.list-itens-membro h2:after {
     background: #DF4661;
 }
 
@@ -4692,11 +5999,11 @@ NA MÍDIA
     margin-bottom: 60px;
 }
 
-.namidia h1 {
+.namidia h2 {
     margin-bottom: 30px;
 }
 
-.namidia h1:after {
+.namidia h2:after {
     background: #DF4661;
 }
 
@@ -4714,7 +6021,7 @@ NA MÍDIA
     margin: 0 0 50px 0;
 }
 
-.namidia .relato-ciranda-item h3 {
+.namidia .relato-ciranda-item h4 {
     bottom: 50px;
 }
 
@@ -4853,12 +6160,12 @@ TRABALHE CONOSCO
     float: left;
 }
 
-.conteudo-trabalhe h1 {
+.conteudo-trabalhe h2 {
     padding-bottom: 0;
     margin-bottom: 30px;
 }
 
-.conteudo-trabalhe h1:after {
+.conteudo-trabalhe h2:after {
     content: none;
 }
 
@@ -4941,15 +6248,15 @@ TRABALHE CONOSCO
     padding: 100px 0 100px;
 }
 
-.page-template-page-trabalhe .historias-ciranda h1,
-.page-template-page-projetos-especiais .historias-ciranda h1 {
+.page-template-page-trabalhe .historias-ciranda h2,
+.page-template-page-projetos-especiais .historias-ciranda h2 {
     width: 298px;
     color: #426DA9;
     margin-bottom: 50px;
 }
 
-.page-template-page-trabalhe .historias-ciranda h1:after,
-.page-template-page-projetos-especiais .historias-ciranda h1:after {
+.page-template-page-trabalhe .historias-ciranda h2:after,
+.page-template-page-projetos-especiais .historias-ciranda h2:after {
     background-color: #DF4661;
 }
 
@@ -4986,7 +6293,7 @@ TRABALHE CONOSCO
     margin: 0 auto;
 }
 
-.page-template-page-trabalhe .quero-ciranda h1 {
+.page-template-page-trabalhe .quero-ciranda h2 {
     margin-bottom: 10px;
 }
 
@@ -5052,17 +6359,17 @@ BLOG
     color: #426DA9;
 }
 
-.box-slide-blog .box-cat-produto-item h1 {
+.box-slide-blog .box-cat-produto-item h2 {
     font-size: 20px;
     padding-bottom: 20px;
     margin-bottom: 17px
 }
 
-.box-slide-blog .box-cat-produto-item h1:hover {
+.box-slide-blog .box-cat-produto-item h2:hover {
     color: #DF4661;
 }
 
-.box-slide-blog .box-cat-produto-item h1:after {
+.box-slide-blog .box-cat-produto-item h2:after {
     background: #DF4661;
     width: 30px;
 }
@@ -5290,20 +6597,20 @@ BLOG
     display: none;
 }
 
-.post-blog-inner h3,
+.post-blog-inner h4,
 .post-blog-inner .data {
     width: 100%;
     color: #426DA9;
 }
 
-.post-blog-inner h3 {
+.post-blog-inner h4 {
     font-family: 'GloberBold';
     font-size: 18px;
     margin-bottom: 5px;
     transition: all 200ms ease-in;
 }
 
-.post-blog-inner h3:hover {
+.post-blog-inner h4:hover {
     color: #7C53CF;
 }
 
@@ -5353,12 +6660,12 @@ BLOG
     margin-top: 0;
 }
 
-.author .box-slide-blog h1 {
+.author .box-slide-blog h2 {
     font-family: 'GloberSemiBold';
     font-size: 28px;
 }
 
-.author .box-slide-blog h1:after {
+.author .box-slide-blog h2:after {
     content: none;
 }
 
@@ -5453,11 +6760,11 @@ BLOG
 CONTEÚDO PADRÃO
 -------------------------------------------------------*/
 
-.conteudo-padrao h1,
 .conteudo-padrao h2,
 .conteudo-padrao h3,
 .conteudo-padrao h4,
 .conteudo-padrao h5,
+.conteudo-padrao h6,
 .conteudo-padrao h6 {
     color: #426DA9;
     padding-bottom: 0.8em;
@@ -5465,23 +6772,23 @@ CONTEÚDO PADRÃO
     margin-bottom: 1.3rem;
 }
 
-.conteudo-padrao h1 {
+.conteudo-padrao h2 {
     font-size: 28px;
 }
 
-.conteudo-padrao h2 {
+.conteudo-padrao h3 {
     font-size: 24px;
 }
 
-.conteudo-padrao h3 {
+.conteudo-padrao h4 {
     font-size: 22px;
 }
 
-.conteudo-padrao h4 {
+.conteudo-padrao h5 {
     font-size: 20px;
 }
 
-.conteudo-padrao h5 {
+.conteudo-padrao h6 {
     font-size: 18px;
 }
 
@@ -5489,11 +6796,11 @@ CONTEÚDO PADRÃO
     font-size: 16px;
 }
 
-.conteudo-padrao h1:after,
 .conteudo-padrao h2:after,
 .conteudo-padrao h3:after,
 .conteudo-padrao h4:after,
 .conteudo-padrao h5:after,
+.conteudo-padrao h6:after,
 .conteudo-padrao h6:after {
     content: "";
     background: #DF4661;
@@ -5688,7 +6995,7 @@ COMENTÁRIOS
     float: left;
 }
 
-.comentarios h2 {
+.comentarios h3 {
     font-size: 24px;
     color: #426DA9;
     position: relative;
@@ -5696,7 +7003,7 @@ COMENTÁRIOS
     margin-bottom: 20px;
 }
 
-.comentarios h2:after {
+.comentarios h3:after {
     content: "";
     background: #DF4661;
     width: 25px;
@@ -5724,7 +7031,7 @@ COMENTÁRIOS
     float: right;
 }
 
-h2.comments-title {
+h3.comments-title {
     width: 100%;
     font-size: 20px;
     color: #426DA9;
@@ -5834,7 +7141,7 @@ CONTATO
     position: relative;
 }
 
-.box-contato h3 {
+.box-contato h4 {
     font-family: 'GloberBold';
     font-size: 15px;
     color: #426DA9;
@@ -6157,11 +7464,8 @@ LOJA
 
 .topo-cat-produto {
     background-repeat: no-repeat;
-    /* background-position: center center; */
-    background-position: left center;
-    background-size: cover;
-    background-size: 100% 100%;
-    /* background-size: auto 100%; */
+    background-position: center center;
+    background-size: auto 100%, 0;
     width: 100%;
     height: 420px;
     position: relative;
@@ -6185,7 +7489,7 @@ LOJA
     position: relative;
 }
 
-.box-cat-produto h1 {
+.box-cat-produto h2 {
     font-size: 40px;
     color: #FFF;
     margin-bottom: 0;
@@ -6193,7 +7497,7 @@ LOJA
     bottom: 230px;
 }
 
-.box-cat-produto h1:after {
+.box-cat-produto h2:after {
     background: #FFC72C;
 }
 
@@ -6254,7 +7558,7 @@ LOJA
     height: auto;
     min-height: 82px;
     padding: 0 37px;
-    margin: -100px auto 0;
+    margin: 85px auto 0;
     overflow: hidden;
 }
 
@@ -6373,7 +7677,7 @@ FORMAÇÃO ONLINE
     color: #FFF;
 }
 
-.term-formacao-online .quero-ciranda h1 {
+.term-formacao-online .quero-ciranda h2 {
     margin-bottom: 10px;
 }
 
@@ -6403,13 +7707,13 @@ FORMAÇÃO ONLINE
     margin: 0 270px 0 0;
 }
 
-.experimente-info h1 {
+.experimente-info h2 {
     color: #FFF;
     padding-bottom: 0;
     margin-bottom: 25px;
 }
 
-.experimente-info h1:after {
+.experimente-info h2:after {
     content: none;
 }
 
@@ -6463,13 +7767,13 @@ FORMAÇÃO ONLINE
     transform: translateY(-50%);
 }
 
-.conheca-planos-info h1 {
+.conheca-planos-info h2 {
     color: #FFF;
     padding-bottom: 0;
     margin-bottom: 60px;
 }
 
-.conheca-planos-info h1:after {
+.conheca-planos-info h2:after {
     content: none;
 }
 
@@ -6496,11 +7800,11 @@ FORMAÇÃO PRESENCIAL
     padding: 90px 0 95px;
 }
 
-.galeria-imagens h1 {
+.galeria-imagens h2 {
     width: 300px;
 }
 
-.galeria-imagens h1:after {
+.galeria-imagens h2:after {
     background: #FFC72C;
 }
 
@@ -6599,12 +7903,12 @@ SEM PRODUTOS
     display: inline;
 }
 
-.box-cat-produto-planos h1 {
+.box-cat-produto-planos h2 {
     color: #FFF;
     margin-bottom: 15px;
 }
 
-.box-cat-produto-planos h1:after {
+.box-cat-produto-planos h2:after {
     background: #F8E08E;
 }
 
@@ -6639,7 +7943,7 @@ img.plano-item-img {
     top: -72px;
 }
 
-.plano-item h1 {
+.plano-item h2 {
     padding-bottom: 0;
     font-family: 'GloberBold';
     font-size: 30px;
@@ -6647,7 +7951,7 @@ img.plano-item-img {
     margin-bottom: 25px;
 }
 
-.plano-item h1:after {
+.plano-item h2:after {
     content: none;
 }
 
@@ -6727,7 +8031,7 @@ img.plano-item-img {
     border-left: 2px solid #426DA9;
 }
 
-.produto-plano-item h2 {
+.produto-plano-item h3 {
     font-family: 'GloberBold';
     font-size: 16px;
     color: #426DA9;
@@ -6752,6 +8056,72 @@ img.plano-item-img {
 .produto-plano-item button:after {
     content: "Contrate";
     font-size: 19px;
+}
+
+
+/* lista os planos 3 */
+
+.lista-planos {
+    background: #F8F8F8;
+    padding: 50px 0;
+}
+
+.lista-planos h2 {
+    padding: 0;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.lista-planos h2::after {
+    content: none;
+}
+
+.list-planos.list-planos-3 {
+    padding: 50px 0 0 0;
+    margin: 0 auto;
+}
+
+.list-planos.list-planos-3 .plano-item {
+    background: #FFF;
+    width: 376px;
+    padding: 40px 20px 20px 90px;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 31px 0 0;
+}
+
+.list-planos.list-planos-3 .plano-item:last-child {
+    margin: 0;
+}
+
+.list-planos.list-planos-3 .plano-item img.plano-item-img {
+    position: absolute;
+    left: 10px;
+    top: -50px;
+    width: 80px;
+}
+
+.list-planos.list-planos-3 .plano-item h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+.list-planos.list-planos-3 .plano-item .txt-plano {
+    margin-bottom: 15px;
+}
+
+.list-planos.list-planos-3 .carac-plano {
+    margin-bottom: 20px;
+}
+
+.list-planos.list-planos-3 .valor-plano {
+    margin-bottom: 20px;
+}
+
+.list-planos.list-planos-3 .produto-plano-item {
+    width: 100%;
+    padding: 0;
+    margin-bottom: 20px;
 }
 
 
@@ -6789,10 +8159,10 @@ SINGLE DO PRODUTO
     padding: 50px 0;
 }
 
-.product-single-description h2,
 .product-single-description h3,
 .product-single-description h4,
 .product-single-description h5,
+.product-single-description h6,
 .product-single-description h6 {
     margin: 0 0 1.3em;
 }
@@ -6811,9 +8181,9 @@ SINGLE DO PRODUTO
 }
 
 .product-add-to-cart .preco {
-	display: inline-block;
-	vertical-align: top;
-	margin: 0 20px 0 0;
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 20px 0 0;
 }
 
 .product-add-to-cart .preco .price {
@@ -6943,11 +8313,17 @@ SINGLE DO PRODUTO
 .percurso-formativo h2,
 .sobre-autores h2,
 .autor-item-info h3 {
+    padding-bottom: 0;
     font-family: 'GloberSemiBold';
     font-size: 28px;
     color: #426DA9;
     position: relative;
     margin-bottom: 35px;
+}
+
+.percurso-formativo h2::after,
+.autor-item-info h3::after {
+    content: none;
 }
 
 .titulo-aula-produto {
@@ -7017,7 +8393,7 @@ span.numero-aula-produto {
     float: left;
 }
 
-.autor-item-info h3 {
+.autor-item-info h4 {
     margin-bottom: 10px;
 }
 
@@ -7055,12 +8431,12 @@ span.numero-aula-produto {
     padding: 100px 0;
 }
 
-.single-product .historias-ciranda h1 {
+.single-product .historias-ciranda h2 {
     width: 315px;
     color: #426DA9;
 }
 
-.single-product .historias-ciranda h1:after {
+.single-product .historias-ciranda h2:after {
     background: #FFC72C;
 }
 
@@ -7094,9 +8470,9 @@ span.numero-aula-produto {
     clear: both;
 }
 
-.single-product .related>h2:first-child,
-.single-product .upsells>h2:first-child,
-.woocommerce-cart .cross-sells>h2:first-child {
+.single-product .related>h3:first-child,
+.single-product .upsells>h3:first-child,
+.woocommerce-cart .cross-sells>h3:first-child {
     font-size: 35px;
     color: #426DA9;
     margin-bottom: 40px;
@@ -7116,6 +8492,11 @@ span.numero-aula-produto {
 
 
 /* produtos aleatórios */
+
+.img-add-produto {
+    width: 370px !important;
+    margin-top: 115px !important;
+}
 
 .produtos-aletorios {
     border: 2px solid #426DA9;
@@ -7457,7 +8838,7 @@ MINHA CONTA
     width: 596px;
 }
 
-.woocommerce-MyAccount-content .wc-social-login-profile h2 {
+.woocommerce-MyAccount-content .wc-social-login-profile h3 {
     font-family: 'GloberSemiBold';
     color: #426DA9;
     font-size: 35px;
@@ -7466,7 +8847,7 @@ MINHA CONTA
     margin-bottom: 20px;
 }
 
-.woocommerce-MyAccount-content .wc-social-login-profile h2::after {
+.woocommerce-MyAccount-content .wc-social-login-profile h3::after {
     content: "";
     background-color: #426DA9;
     width: 60px;
@@ -7485,7 +8866,7 @@ INTERNAS CIRANDA
     margin-bottom: 40px;
 }
 
-.ciranda-interna-content h2 {
+.ciranda-interna-content h3 {
     color: #426DA9;
     margin-bottom: 20px;
 }
@@ -7789,14 +9170,14 @@ PÁGINAS AUXILIARES DA LOJA (CARRINHO, IDENTIFICAÇÃO, PAGAMENTO, OBRIGADO)
     width: 1070px;
 }
 
-.woocommerce-cart h1.titulo-pagina {
+.woocommerce-cart h2.titulo-pagina {
     font-size: 35px;
     color: #426DA9;
     padding-bottom: 0;
     margin-bottom: 25px;
 }
 
-.woocommerce-cart h1.titulo-pagina:after {
+.woocommerce-cart h2.titulo-pagina:after {
     content: none;
 }
 
@@ -8067,431 +9448,740 @@ form.woocommerce-form-login {
     display: none !important;
 }
 
+
 /*-------------------------------------------------------------------------
 LANDING PAGE MATHEMA ONLINE
 --------------------------------------------------------------------------*/
-.lpmo .busca, .lpmo header, .lpmo footer{
+
+.lpmo .busca,
+.lpmo header,
+.lpmo footer {
     display: none;
 }
+
+
 /* topo */
+
 .topo-lp,
-.topo-lp-e{
+.topo-lp-e {
     background: #426DA9;
     position: fixed;
     top: -95px;
     z-index: 10;
     transition: all 300ms ease-in;
 }
-.topo-lp-v{
+
+.topo-lp-v {
     top: 0;
 }
-.topo-lp .inner{
+
+.topo-lp .inner {
     padding: 20px 0;
 }
-.logo-lp-topo{
+
+.logo-lp-topo {
     height: 55px;
     float: left;
 }
+
 .lpmo .btn-menu,
-.lpmo .btn-fecha{
+.lpmo .btn-fecha {
     display: none;
 }
-ul.menu-topo-lp{
+
+ul.menu-topo-lp {
     float: right;
     margin-top: 20px;
 }
-ul.menu-topo-lp li{
+
+ul.menu-topo-lp li {
     float: left;
     margin: 0 0 0 40px;
 }
-ul.menu-topo-lp li a{
+
+ul.menu-topo-lp li a {
     font-family: 'GloberBold';
-	font-size: 19px;
+    font-size: 19px;
     color: #FFF;
 }
-ul.menu-topo-lp li:last-child a{
+
+ul.menu-topo-lp li:last-child a {
     color: #FFC72C;
 }
-ul.menu-topo-lp li a:hover{    
+
+ul.menu-topo-lp li a:hover {
     color: #8BC6EE;
 }
+
+
 /* banner */
-.banner-lp{
+
+.banner-lp {
     width: 100%;
     height: 100vh;
     position: relative;
 }
-.logo-lp{
+
+.logo-lp {
     position: absolute;
     top: 60px;
     left: 50%;
     margin: 0 0 0 -595px;
     z-index: 1;
 }
+
 .banner-lp-img,
-.banner-lp-info{
+.banner-lp-info {
     float: left;
     height: 100vh;
 }
-.banner-lp-img{
+
+.banner-lp-img {
     background: url(img/bg-lp-mo.jpg) no-repeat right center;
     background-size: cover;
-    width: 57%;   
+    width: 57%;
 }
-.banner-lp-info{
+
+.banner-lp-info {
     background: #DF4661;
     width: 43%;
     padding: 0 0 0 100px;
-    position: relative;    
+    position: relative;
 }
+
 .banner-lp-info::after {
-	content: "";
-	width: 0;
-	height: 0;
-	border-style: solid;
-	border-width: 30px 30px 30px 0;
-	border-color: transparent #DF4661 transparent transparent;
-	position: absolute;
-	top: 50%;
-	transform: translateY(-50%);
-	left: -30px;
-	margin-top: -10px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 30px 30px 30px 0;
+    border-color: transparent #DF4661 transparent transparent;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: -30px;
+    margin-top: -10px;
 }
-.banner-lp-info-inner{
+
+.banner-lp-info-inner {
     width: 365px;
     height: auto;
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
 }
-.banner-lp-info-inner h1{
+
+.banner-lp-info-inner h2 {
     padding: 0 50px 25px 0;
     font-family: 'GloberBold';
     color: #FFF;
 }
-.banner-lp-info-inner h1::after{
+
+.banner-lp-info-inner h2::after {
     content: none;
 }
-.banner-lp-info-inner p{
+
+.banner-lp-info-inner p {
     font-size: 18px;
     color: #FFF;
     margin-bottom: 35px;
 }
-.banner-lp-info-inner .btn-padrao {	
-	border: 2px solid #FFF;
-	border-radius: 31px;
-	width: 330px;
-	height: 62px;	
-	font-size: 20px;
-	color: #FFF;
-	line-height: 60px;	
+
+.banner-lp-info-inner .btn-padrao {
+    border: 2px solid #FFF;
+    border-radius: 31px;
+    width: 330px;
+    height: 62px;
+    font-size: 20px;
+    color: #FFF;
+    line-height: 60px;
 }
-.banner-lp-info-inner .btn-padrao:hover{
+
+.banner-lp-info-inner .btn-padrao:hover {
     background: #FFF;
     color: #DF4661;
 }
+
+
 /* beneficios */
+
 .beneficios-lp {
-	background: url(img/bg-icones-porque.png) no-repeat center top;
-    padding: 0;    
+    background: url(img/bg-icones-porque.png) no-repeat center top;
+    padding: 0;
 }
-.beneficios-lp .inner{
+
+.beneficios-lp .inner {
     padding: 100px 0 65px;
 }
-.beneficios-lp h2{
+
+.beneficios-lp h3 {
     font-family: 'GloberBold';
-    color: #426DA9; 
+    color: #426DA9;
     font-size: 55px;
     width: 100%;
     padding: 0;
     margin-bottom: 45px;
 }
+
+
 /* como funciona */
-.como-funciona-lp .inner{
+
+.como-funciona-lp .inner {
     padding: 100px 0 35px;
 }
-.como-funciona-lp-txt{
+
+.como-funciona-lp-txt {
     width: 400px;
     height: auto;
     float: left;
 }
-.como-funciona-lp-txt h2,
-.formato-lp-txt h2{
+
+.como-funciona-lp-txt h3,
+.formato-lp-txt h3 {
     background: url(img/traco-titulo-lp.png) no-repeat right bottom;
     font-family: 'GloberBold';
-    color: #426DA9; 
+    color: #426DA9;
     font-size: 55px;
     width: 100%;
     padding: 0 0 25px;
     margin-bottom: 45px;
 }
+
 .como-funciona-lp-txt p,
-.formato-lp-txt p{
+.formato-lp-txt p {
     font-size: 20px;
     color: #426DA9;
 }
-.img-como-funciona-lp{
+
+.img-como-funciona-lp {
     float: right;
 }
+
+
 /* formato */
+
 .formato-lp {
     margin-top: -100px;
 }
-.formato-lp .inner{
+
+.formato-lp .inner {
     padding: 0;
 }
+
 .formato-lp-container {
-	width: 100%;
-	height: 1000px;
-	position: relative;
-	margin-top: -30px;
-	z-index: 1;
+    width: 100%;
+    height: 1000px;
+    position: relative;
+    margin-top: -30px;
+    z-index: 1;
 }
-.formato-lp-txt{
-    width: 450px;	
-	position: absolute;
-	top: 170px;
-	left: 90px;
+
+.formato-lp-txt {
+    width: 450px;
+    position: absolute;
+    top: 170px;
+    left: 90px;
 }
-.bg-formato-lp{
+
+.bg-formato-lp {
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
     z-index: -1;
 }
+
 .formato-lp-icones {
-	width: 100%;
-	height: auto;
-	font-size: 0;
-	position: absolute;
+    width: 100%;
+    height: auto;
+    font-size: 0;
+    position: absolute;
     top: 500px;
     text-align: center;
 }
-.formato-lp-item{
+
+.formato-lp-item {
     width: 140px;
     height: auto;
     display: inline-block;
     vertical-align: top;
     margin: 0 62px 0 0;
 }
-.formato-lp-item:last-child{
+
+.formato-lp-item:last-child {
     margin: 0;
 }
-.formato-lp-item h4{
+
+.formato-lp-item h5 {
     padding: 20px 0 0;
     font-family: 'GloberBold';
-	font-size: 20px;
+    font-size: 20px;
     color: #426DA9;
     text-align: center;
 }
+
+
 /* loja */
+
 .loja-lp {
     margin-top: -80px;
 }
+
 .loja-lp .inner {
-	padding: 100px 0 17px;
+    padding: 100px 0 17px;
 }
-h2.titulo-loja-lp {
+
+h3.titulo-loja-lp {
     width: 365px;
     padding: 0 0 0 50px;
-	font-family: 'GloberBold';
-	font-size: 35px;
-	color: #426DA9;
-	float: left;	
+    font-family: 'GloberBold';
+    font-size: 35px;
+    color: #426DA9;
+    float: left;
 }
-.lp-txt{
+
+.lp-txt {
     background: url(img/traco-lp.png) no-repeat left top;
     width: 440px;
     padding: 20px 50px 0 0;
     font-family: 'GloberRegularItalic';
     font-size: 16px;
     color: #426DA9;
-    line-height: 1.9em;   
+    line-height: 1.9em;
     float: right;
     margin-bottom: 40px;
 }
-.lpmo ul.products {	
-	margin: 0 auto;
+
+.lpmo ul.products {
+    margin: 0 auto;
 }
-.lpmo ul.products li.product {	
-	margin: 0 12px 38px;
+
+.lpmo ul.products li.product {
+    margin: 0 12px 38px;
 }
-.lpmo .loja-home-item-info {	
-	position: relative;
+
+.lpmo .loja-home-item-info {
+    position: relative;
 }
+
+
 /* depoimentos */
+
 .lpmo .historias-ciranda {
-    background-color: #FFF !important;   
+    background-color: #FFF !important;
 }
+
 .lpmo .historias-ciranda .inner {
-	padding: 100px 0 80px;
+    padding: 100px 0 80px;
 }
-.lpmo .historias-ciranda h2{
+
+.lpmo .historias-ciranda h3 {
     background: url(img/traco-lp.png) no-repeat right bottom;
     font-family: 'GloberBold';
-    color: #426DA9; 
+    color: #426DA9;
     font-size: 55px;
     width: auto;
     padding: 0 30px 25px 0;
     margin-bottom: 60px;
     display: inline-block;
 }
+
 .lpmo .historias-ciranda-slide {
-    border: none;	
-	width: 974px;
-	height: 304px;
-	padding: 0;
+    border: none;
+    width: 974px;
+    height: 304px;
+    padding: 0;
     float: right;
     margin: 0 108px 0 0;
     position: relative;
 }
+
 .lpmo .historias-ciranda-slide::after {
     content: "";
-	border: 2px solid;
-	border-top-color: #DF4661;
-	border-left-color: #426DA9;
-	border-bottom-color: #FFC72C;
-	border-right-color: #426DA9;
-	background-color: #FFF;
-	width: 880px;
+    border: 2px solid;
+    border-top-color: #DF4661;
+    border-left-color: #426DA9;
+    border-bottom-color: #FFC72C;
+    border-right-color: #426DA9;
+    background-color: #FFF;
+    width: 880px;
     height: 304px;
     position: absolute;
     top: 0;
     right: 0;
 }
+
 .lpmo .historias-ciranda-item {
-	width: 100%;
-	height: 304px;
-	font-size: 0;
-	padding: 58px 0 0;
+    width: 100%;
+    height: 304px;
+    font-size: 0;
+    padding: 58px 0 0;
 }
+
 .lpmo .historias-ciranda-item-img {
-	border-radius: 50%;
-	width: 188px !important;
+    border-radius: 50%;
+    width: 188px !important;
     margin: 0 40px 0 0;
     display: inline-block !important;
-    vertical-align: top;	
+    vertical-align: top;
 }
+
 .lpmo .historias-ciranda-item-info {
-	width: 746px;
-	height: auto;
-	padding: 20px 45px 0 0;		
-	display: inline-block;
-	vertical-align: top;
-	position: relative;
+    width: 746px;
+    height: auto;
+    padding: 20px 45px 0 0;
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
 }
+
 .lpmo .historias-ciranda-item-info p {
     font-family: 'GloberSemiBold';
     font-size: 22px;
     color: #426DA9;
     line-height: 1.2em;
-	position: relative;
-	top: 0;
-	transform: none;
+    position: relative;
+    top: 0;
+    transform: none;
 }
-.lpmo .historias-ciranda-item-info h6{
+
+.lpmo .historias-ciranda-item-info h6 {
     font-family: 'GloberRegularItalic';
     font-size: 20px;
     color: #426DA9;
 }
+
 .lpmo .historias-ciranda-slide.owl-emenda .owl-theme .owl-nav button.owl-prev,
 .lpmo .historias-ciranda-slide.owl-emenda .owl-theme .owl-nav button.owl-next {
     background-image: url(img/sprite-seta-lp.png);
 }
-.lpmo .historias-ciranda-slide.owl-emenda .owl-theme .owl-nav button.owl-prev{
+
+.lpmo .historias-ciranda-slide.owl-emenda .owl-theme .owl-nav button.owl-prev {
     margin-left: -75px;
 }
-.lpmo .historias-ciranda-slide.owl-emenda .owl-theme .owl-nav button.owl-next{
+
+.lpmo .historias-ciranda-slide.owl-emenda .owl-theme .owl-nav button.owl-next {
     margin-right: -75px;
 }
+
+
 /* experimente */
-.experimente-lp{
+
+.experimente-lp {
     background-color: #FFEEBF;
     background-repeat: no-repeat;
     background-image: url(img/bg-experimente-lp-1.png), url(img/bg-experimente-lp-2.png);
-    background-position: calc( 50% - 400px ) 50%, calc( 50% + 400px ) 50%;
+    background-position: calc( 50% - 400px) 50%, calc( 50% + 400px) 50%;
 }
-.experimente-lp .inner{
+
+.experimente-lp .inner {
     padding: 70px 0;
 }
-.experimente-lp .btn-padrao {	
-	border-radius: 31px;
-	width: 330px;
-	height: 62px;	
-	font-size: 20px;	
+
+.experimente-lp .btn-padrao {
+    border-radius: 31px;
+    width: 330px;
+    height: 62px;
+    font-size: 20px;
     line-height: 60px;
     margin: 0 auto;
 }
+
+
 /* rodape */
-.rodape{
+
+.rodape {
     background: #426DA9;
 }
-.rodape .inner{
+
+.rodape .inner {
     padding: 55px 0;
 }
-.col-rodape-lp{
+
+.col-rodape-lp {
     float: left;
 }
-.col-rodape-lp-1{
+
+.col-rodape-lp-1 {
     width: 400px;
 }
-.logo-lp-rodape{
+
+.logo-lp-rodape {
     margin-top: 15px;
 }
-.col-rodape-lp-2{
+
+.col-rodape-lp-2 {
     width: 300px;
 }
-ul.menu-rodape-lp li{
+
+ul.menu-rodape-lp li {
     margin-bottom: 20px;
 }
-ul.menu-rodape-lp li:last-child{
+
+ul.menu-rodape-lp li:last-child {
     margin-bottom: 0;
 }
-ul.menu-rodape-lp li a{
+
+ul.menu-rodape-lp li a {
     font-family: 'GloberBold';
-	font-size: 19px;
+    font-size: 19px;
     color: #FFF;
 }
-ul.menu-rodape-lp li a:hover{    
+
+ul.menu-rodape-lp li a:hover {
     color: #FFC72C;
 }
-.col-rodape-lp-3{
+
+.col-rodape-lp-3 {
     width: 490px;
 }
-.social-rodape-lp{
+
+.social-rodape-lp {
     font-size: 0;
     margin-bottom: 40px;
 }
-.icone-social-lp{
+
+.icone-social-lp {
     background: #FFF;
     border-radius: 50%;
     width: 40px;
     height: 40px;
     display: inline-block;
     vertical-align: top;
-    position: relative;  
-    margin-right: 10px;  
+    position: relative;
+    margin-right: 10px;
 }
-.icone-social-lp:hover{
+
+.icone-social-lp:hover {
     background: #FFC72C;
 }
-.icone-social-lp img{
+
+.icone-social-lp img {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%, -50%);
 }
-.contato-rodape-lp{
+
+.contato-rodape-lp {
     font-size: 19px;
     color: #FFF;
 }
-.contato-rodape-lp a{
+
+.contato-rodape-lp a {
     color: #FFF;
 }
-.contato-rodape-lp a:hover{
+
+.contato-rodape-lp a:hover {
     color: #FFC72C;
 }
+
+
+/*-------------------------------------------------------------------------
+LANDING PAGE CIRANDA
+--------------------------------------------------------------------------*/
+
+.lpc .busca,
+.lpc header,
+.lpc footer {
+    display: none;
+}
+
+
+/* topo */
+
+.topo-lp-ciranda,
+.topo-lp-e-c {
+    background: #6844B2;
+    position: fixed;
+    top: -79px;
+    z-index: 10;
+    transition: all 300ms ease-in;
+}
+
+.topo-lp-v-c {
+    top: 0;
+}
+
+.topo-lp .inner {
+    padding: 20px 0;
+}
+
+.logo-lpc-topo {
+    height: 77px;
+    float: none;
+    position: absolute;
+}
+
+.lpc .btn-menu,
+.lpc .btn-fecha {
+    display: none;
+}
+
+ul.menu-topo-lp-ciranda {
+    float: right;
+}
+
+ul.menu-topo-lp-ciranda li {
+    float: left;
+    margin: 0 0 0 40px;
+}
+
+ul.menu-topo-lp-ciranda li a {
+    font-family: 'GloberBold';
+    font-size: 18px;
+    color: #FFF;
+    height: 69px;
+    line-height: 69px;
+}
+
+ul.menu-topo-lp-ciranda li a:hover {
+    color: #4ccdd9;
+}
+
+.banner-lp-ciranda {
+    background: #7C53CF;
+    height: 100vh;
+}
+
+.banner-lp-ciranda .inner {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.banner-lp-ciranda .box-primario {
+    background-color: rgba(0, 0, 0, 0);
+    width: auto;
+    height: auto;
+    min-height: auto;
+    max-height: auto;
+    padding: 0 40px 0 0;
+    right: 0;
+    margin: 0;
+}
+
+.banner-lp-ciranda .box-primario::after {
+    content: none;
+}
+
+.banner-lp-ciranda .box-primario h1 {
+    padding-bottom: 0;
+    margin-bottom: 50px;
+}
+
+.banner-lp-ciranda .box-primario h1::after {
+    content: none;
+}
+
+.banner-lp-ciranda .box-primario h2 {
+    font-family: 'Nunito', sans-serif;
+    font-size: 25px;
+    font-weight: 500;
+    color: #FFF;
+    margin-bottom: 20px;
+    padding: 0 35px 22px 0;
+}
+
+.banner-lp-ciranda .box-primario h2::after {
+    content: "";
+    background-color: #F8E08E;
+    width: 30px;
+    height: 3px;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
+.banner-lp-ciranda .box-primario p {
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #FFF;
+    padding: 0 80px 0 0;
+}
+
+.banner-lp-ciranda .box-primario .btn-padrao {
+    background-color: #4CCDD9;
+    border: 2px solid #4CCDD9;
+    border-radius: 25px;
+    width: 100%;
+    height: 50px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #7C53CF;
+    line-height: 48px;
+    text-align: center;
+    display: block;
+    transition: all 200ms ease-in;
+}
+
+.banner-lp-ciranda .box-primario .btn-padrao:hover {
+    background-color: #FFF;
+    border: 2px solid #FFF;
+}
+
+.img-lp-ciranda {
+    position: absolute;
+    top: 130px;
+    left: -20px;
+}
+
+.lpc .rodape {
+    background: #7C53CF;
+}
+
+.lpc .rodape .inner {
+    padding: 50px 0 35px;
+    font-size: 0;
+    text-align: center;
+}
+
+.logo-mathema-lp-ciranda {
+    display: inline-block;
+    vertical-align: top;
+    margin: 5px 105px 0 0;
+}
+
+.endereco-lp-ciranda {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.endereco-lp-ciranda p {
+    background: url(img/sprite-lp-ciranda.png) no-repeat;
+    font-family: 'Nunito', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #FFF;
+    padding: 0 0 0 22px;
+    text-align: left;
+    margin: 0 0 0.3em;
+}
+
+.endereco-lp-ciranda p:nth-child(1) {
+    background-position: 0 3px;
+}
+
+.endereco-lp-ciranda p:nth-child(2) {
+    background-position: 0 -67px;
+}
+
+.endereco-lp-ciranda p:nth-child(3) {
+    background-position: 0 -137px;
+}
+
+.direitos-lp-ciranda {
+    font-family: 'Nunito', sans-serif;
+    font-size: 11px;
+    font-weight: 400;
+    color: #FFF;
+    text-align: center;
+    display: block;
+    margin-top: 35px;
+}
+
+
 /*-------------------------------------------------------------------------
 RESPONSIVO - SMARTPHONES ATÉ 768
 --------------------------------------------------------------------------*/
@@ -8500,10 +10190,10 @@ RESPONSIVO - SMARTPHONES ATÉ 768
     /*-------------------------------------------------------
 GERAIS
 -------------------------------------------------------*/
-    h1 {
+    h2 {
         padding-bottom: 0;
     }
-    h1:after {
+    h2:after {
         content: none;
     }
     .inner {
@@ -8560,6 +10250,40 @@ FORMULÁRIO
     .inputfile+label span {
         width: calc( 100% - 40px);
         line-height: 36px;
+    }
+    .fase-escolar-container {
+        background: #FFF;
+        border: 2px solid #7090E8;
+        width: 100%;
+        padding: 10px;
+        display: block;
+        float: left;
+        margin: 0 0 12px;
+    }
+    .fase-escolar-titulo {
+        font-family: 'GloberRegular';
+        font-size: 15px;
+        color: #426DA9;
+        display: block;
+        margin-bottom: 10px;
+    }
+    .fase-escolar-container span.fase-escolar,
+    .fase-escolar-container span.fase-escolar span {
+        width: 100%;
+        margin: 0;
+    }
+    .fase-escolar-container span.fase-escolar span span.wpcf7-list-item {
+        margin: 0 30px 0 0;
+        width: auto;
+    }
+    .fase-escolar-container span.fase-escolar span span.wpcf7-list-item input {
+        display: inline-block;
+    }
+    .fase-escolar-container span.fase-escolar span span.wpcf7-list-item span {
+        color: #426DA9;
+        display: inline-block;
+        width: auto;
+        float: none;
     }
     input[type=submit] {
         height: 40px;
@@ -8955,13 +10679,13 @@ FOOTER
     .icone-social-footer:hover {
         background: #F8E08E;
     }
-    footer h3 {
+    footer h4 {
         padding-bottom: 0;
         margin-bottom: 20px;
         text-align: center;
         padding-top: 20px;
     }
-    footer h3:after {
+    footer h4:after {
         width: 98px;
         height: 2px;
         top: 0;
@@ -8993,10 +10717,10 @@ FOOTER
         height: auto;
         margin-bottom: 30px;
     }
-    .col-instagram .instafeed h3::after {
+    .col-instagram .instafeed h4::after {
         content: none;
     }
-    footer .col-instagram h3 {
+    footer .col-instagram h4 {
         margin: 0 0 20px 5px;
     }
     .col-pagamento {
@@ -9091,12 +10815,12 @@ HOME
         width: 100%;
         right: 0;
     }
-    .box-primario h1 {
+    .box-primario h2 {
         font-size: 30px;
         padding: 0 15px;
         margin-bottom: 30px;
     }
-    .box-primario h1:after {
+    .box-primario h2:after {
         content: none;
     }
     .box-primario p {
@@ -9177,7 +10901,7 @@ HOME
         background: #DF4661;
         right: 0;
     }
-    .card-home h2 {
+    .card-home h3 {
         font-size: 30px;
         color: #426DA9;
         margin-bottom: 40px;
@@ -9232,13 +10956,13 @@ HOME
         width: 100%;
         padding: 0 0 40px 60px;
     }
-    .card-home:nth-child(1) h2,
+    .card-home:nth-child(1) h3,
     .card-home:nth-child(1) a,
-    .card-home:nth-child(2) h2,
+    .card-home:nth-child(2) h3,
     .card-home:nth-child(2) a,
-    .card-home:nth-child(3) h2,
+    .card-home:nth-child(3) h3,
     .card-home:nth-child(3) a,
-    .card-home:nth-child(4) h2,
+    .card-home:nth-child(4) h3,
     .card-home:nth-child(4) a {
         color: #426DA9;
     }
@@ -9259,11 +10983,19 @@ HOME
         z-index: 5;
         box-shadow: none;
     }
+    /* SLIDER HOME */
+    .slider-home {
+        margin-top: 50px;
+    }
+    .item-slide-home {
+        background-size: 0 0, auto 100%;
+        height: 64vw;
+    }
     /* PORQUE */
     .porque .inner {
         padding: 65px 15px;
     }
-    .porque h1 {
+    .porque h2 {
         margin-bottom: 45px;
     }
     .list-porque {
@@ -9291,7 +11023,7 @@ HOME
     .nossos-numeros .inner {
         padding: 65px 15px;
     }
-    .nossos-numeros h1 {
+    .nossos-numeros h2 {
         font-size: 35px;
         margin: 0 0 45px;
     }
@@ -9339,13 +11071,13 @@ HOME
     .blog-home .inner {
         padding: 65px 15px;
     }
-    .blog-home h1 {
+    .blog-home h2 {
         width: 100%;
         font-size: 35px;
         float: none;
         margin-bottom: 30px;
     }
-    .blog-home h1:after {
+    .blog-home h2:after {
         content: "";
         background: #426DA9;
         width: calc( 100% - 90px);
@@ -9420,7 +11152,7 @@ HOME
         color: #707070;
         display: block;
     }
-    .post-home-content-inner h1 {
+    .post-home-content-inner h2 {
         width: auto;
         font-family: 'GloberBold';
         font-size: 18px;
@@ -9428,13 +11160,13 @@ HOME
         padding: 0;
         margin: 16px 0 0;
     }
-    .post-home-content-inner h1:after {
+    .post-home-content-inner h2:after {
         content: none;
     }
-    .post-home-content-inner h1:hover {
+    .post-home-content-inner h2:hover {
         color: #7C53CF;
     }
-    .post-home-img-link:hover+.post-home-content .post-home-content-inner h1 {
+    .post-home-img-link:hover+.post-home-content .post-home-content-inner h2 {
         color: #7C53CF;
     }
     /* post 1 */
@@ -9499,7 +11231,7 @@ HOME
         float: none;
         margin-bottom: 30px;
     }
-    .minuto-home h1 {
+    .minuto-home h2 {
         margin-bottom: 30px;
     }
     .minuto-home-txt {
@@ -9534,12 +11266,12 @@ HOME
     .loja-home .inner {
         padding: 65px 15px;
     }
-    .loja-home h1 {
+    .loja-home h2 {
         width: 100%;
         margin-bottom: 30px;
         padding-right: calc( 100% - 245px);
     }
-    .loja-home h1:after {
+    .loja-home h2:after {
         content: "";
         width: calc( 100% - 115px);
         left: 115px;
@@ -9578,7 +11310,7 @@ HOME
         width: calc( 100% - 30px);
         padding: 50px 30px;
     }
-    .novidades h1 {
+    .novidades h2 {
         padding-right: 45px;
         font-size: 30px;
         margin-bottom: 30px;
@@ -9667,10 +11399,10 @@ CIRANDA
         top: unset;
         transform: none;
     }
-    .ciranda .box-primario h1 {
+    .ciranda .box-primario h2 {
         padding-bottom: 0;
     }
-    .ciranda .box-primario h1 img {
+    .ciranda .box-primario h2 img {
         width: 70%;
         max-width: 286px;
         margin: 0 auto;
@@ -9755,7 +11487,7 @@ CIRANDA
     .download-ciranda img {
         width: 100%;
     }
-    .download-ciranda h1 {
+    .download-ciranda h2 {
         display: none;
     }
     .img-tab-ciranda {
@@ -9773,7 +11505,7 @@ CIRANDA
     .resultados-ciranda .inner {
         padding: 65px 15px 0;
     }
-    .resultados-ciranda h1 {
+    .resultados-ciranda h2 {
         margin-bottom: 30px;
     }
     .resultados-ciranda-txt {
@@ -9815,7 +11547,7 @@ CIRANDA
     .historias-ciranda .inner {
         padding: 65px 15px;
     }
-    .historias-ciranda h1 {
+    .historias-ciranda h2 {
         width: 100%;
         color: #FA8469;
         margin-bottom: 30px;
@@ -9930,7 +11662,7 @@ CIRANDA
     .parceiros-ciranda .inner {
         padding: 45px 15px 100px;
     }
-    .parceiros-ciranda h1 {
+    .parceiros-ciranda h2 {
         margin-bottom: 30px;
         float: none;
     }
@@ -9973,7 +11705,7 @@ CIRANDA
         width: 100%;
         padding: 15px;
     }
-    .quero-ciranda h1 {
+    .quero-ciranda h2 {
         background: url(img/check-quero-ciranda.png) no-repeat 0px 1px;
         padding: 0 0 0 30px;
         margin-bottom: 25px;
@@ -10000,15 +11732,16 @@ CIRANDA
     .relatos-ciranda .inner {
         padding: 65px 15px;
     }
-    .relatos-ciranda h1 {
+    .relatos-ciranda h2 {
         margin: 0 0 30px;
     }
     .relato-ciranda-item {
-        width: calc( 100% - 8px);
+        width: calc( 100% - 30px);
         max-width: 344px;
         display: block;
         vertical-align: unset;
-        margin: 0 0 65px 8px;
+        margin: 0 auto 35px;
+        height: 300px;
     }
     .relato-ciranda-item-img {
         width: 100%;
@@ -10027,6 +11760,590 @@ CIRANDA
         width: 100%;
         max-width: 314px;
         margin: 0 auto;
+    }
+    /*-------------------------------------------------------
+CIRANDA NOVA
+-------------------------------------------------------*/
+    .menu-ciranda,
+    .menu-ciranda.mcmovel {
+        height: calc( 100vh - 58px);
+        top: 58px;
+        left: 100vw;
+        position: fixed;
+        padding: 60px 0 0;
+        transition: all 400ms ease-in-out;
+    }
+    .menu-ciranda ul li {
+        display: block;
+    }
+    .menu-ciranda ul li::after,
+    .menu-ciranda.mcmovel ul li::after,
+    .menu-ciranda ul li:first-child::before,
+    .menu-ciranda.mcmovel ul li:first-child::before {
+        content: none;
+    }
+    .menu-ciranda ul li a {
+        width: 100%;
+        height: 60px;
+        font-size: 22px;
+        line-height: 60px;
+    }
+    .menu-ciranda.mcfixo {
+        top: 58px;
+    }
+    .menu-ciranda.mcfixo ul li::after,
+    .menu-ciranda.mcfixo ul li:first-child::before {
+        content: none;
+    }
+    .menu-ciranda.mcfixo ul li a {
+        height: 60px;
+        line-height: 60px;
+    }
+    .btn-menu-ciranda-container {
+        background: #6844B2;
+        width: 100%;
+        height: 40px;
+        display: block;
+        position: fixed;
+        top: 58px;
+        left: 0;
+        z-index: 9;
+    }
+    .btn-menu-ciranda-container label {
+        color: #FFF;
+        height: 26px;
+        font-family: 'GloberSemiBold';
+        font-size: 14px;
+        line-height: 26px;
+        display: inline-block;
+        position: absolute;
+        top: 7px;
+        right: 50px;
+    }
+    .btn-menu-ciranda-container .btn-menu {
+        top: 7px;
+        left: unset;
+        right: 15px;
+    }
+    .menu-ciranda .btn-fecha {
+        display: block;
+    }
+    .menu-ciranda .btn-fecha span {
+        background-color: #FFF;
+    }
+    /* BANNER */
+    .ciranda-2 .inner {
+        height: 100vh;
+        min-height: 100vh;
+    }
+    .ciranda-2 .box-primario {
+        height: auto;
+        padding: 30px 15px 15px;
+        position: absolute;
+        bottom: 0;
+        top: unset;
+        z-index: 2;
+    }
+    .ciranda-2 .box-primario::after {
+        border-color: transparent transparent #FEF2E8 transparent;
+        margin-top: 0;
+    }
+    .ciranda-2 .box-primario h1 {
+        margin-bottom: 30px;
+    }
+    .ciranda-2 .box-primario h1 img {
+        width: 220px;
+        margin: 0 auto;
+    }
+    .ciranda-2 .box-primario p {
+        background-color: #FEF2E8;
+        padding: 0 15px;
+        color: #7090E8;
+    }
+    .ciranda-2 .btn-padrao {
+        width: calc( 100% - 30px);
+        max-width: 360px;
+        margin: 0 auto;
+    }
+    .ciranda-2 .elemento-ciranda-1 {
+        top: 100px;
+        margin-left: -173px;
+        z-index: 0;
+    }
+    .ciranda-2 .ciranda-flor {
+        top: 120px;
+        margin-left: -165px;
+        z-index: 1;
+    }
+    .ciranda-2 .elemento-ciranda-2 {
+        display: none;
+    }
+    .ciranda-2 .elemento-ciranda-4 {
+        display: none;
+    }
+    .ciranda-2 .elemento-ciranda-3 {
+        display: none;
+    }
+    /* SOBRE */
+    .sobre-ciranda {
+        background: url(img/ciranda-sobre.png) no-repeat left top #FFE3A3;
+        height: auto;
+        background-image: none;
+    }
+    .sobre-ciranda .inner {
+        padding: 40px 15px;
+    }
+    .sobre-ciranda h3 {
+        width: 100%;
+        margin-bottom: 25px;
+    }
+    .sobre-ciranda p {
+        width: 100%;
+    }
+    .sobre-ciranda-lista {
+        padding: 20px 0 0;
+    }
+    .sobre-ciranda-item {
+        display: block;
+        margin: 0 0 40px 0;
+    }
+    .sobre-ciranda-item:last-child {
+        margin: 0;
+    }
+    .janela-modal-sobre,
+    .janela-modal-material,
+    .janela-modal-resultado {
+        max-width: 96% !important;
+        padding: 15px !important;
+    }
+    .janela-modal-sobre h5,
+    .janela-modal-material h5,
+    .janela-modal-resultado h5 {
+        padding: 0 0 10px 0;
+        font-size: 26px;
+        margin: 0 0 10px;
+        width: calc( 100% - 40px);
+    }
+    .popup-sobre-info {
+        width: 100%;
+        float: none;
+    }
+    .janela-modal-sobre img {
+        float: none;
+        max-width: 356px;
+        width: 100%;
+    }
+    /* VIDEO */
+    .video-quero-ciranda-2 .inner {
+        width: calc( 100% - 30px);
+        padding: 50px 0 100px;
+    }
+    .elemento-video-ciranda-1,
+    .elemento-video-ciranda-2,
+    .elemento-video-ciranda-3,
+    .elemento-video-ciranda-4 {
+        display: none !important;
+    }
+    .elemento-video-ciranda-5 {
+        bottom: 0;
+        margin-left: 0;
+        width: 250px;
+        left: unset;
+        right: 15px;
+    }
+    .material-ciranda .inner {
+        padding: 50px 15px 220px;
+        width: 360px;
+    }
+    .material-ciranda h3 {
+        font-size: 30px;
+        float: none;
+        margin: 0;
+    }
+    .material-ciranda p {
+        border-left: none;
+        width: 100%;
+        padding: 0;
+        float: none;
+        margin: 10px 0 30px;
+    }
+    .material-ciranda-container {
+        width: 100%;
+        height: auto;
+        padding: 0 0 80px;
+    }
+    .material-ciranda-filtros {
+        width: 100%;
+        padding: 0;
+    }
+    .titulo-filtro-idade,
+    .titulo-filtro-tipo {
+        padding: 0 0 10px;
+        margin: 0 0 12px;
+    }
+    .filtro-idade {
+        margin: 0 0 20px;
+    }
+    .filtro-idade-item {
+        position: relative;
+    }
+    .filtro-tipo-item {
+        width: 100%;
+        position: relative;
+        top: 0;
+        left: 0;
+    }
+    .filtro-tipo-item img {
+        transform: rotate(-90deg);
+        position: relative;
+        height: auto;
+        width: 586px;
+        left: -128px;
+        top: 128px;
+        z-index: 0;
+    }
+    .filtro-tipo-item.btns-aluno45 img {
+        top: 157px;
+    }
+    .elemento-material-ciranda {
+        bottom: 0;
+        margin-left: -165px;
+        width: 330px;
+    }
+    .material-ciranda-item-inner {
+        margin-top: 30px;
+        height: 587px;
+    }
+    .btn-material-ciranda {
+        background: #FFF;
+    }
+    .btn-material-ciranda span {
+        background: #D22E59;
+    }
+    /* BOTÕES PROFESSOR */
+    .btns-prof .btn-material-ciranda-1,
+    .btns-prof .btn-material-ciranda-3,
+    .btns-prof .btn-material-ciranda-4 {
+        left: 10px;
+    }
+    .btns-prof .btn-material-ciranda-2,
+    .btns-prof .btn-material-ciranda-5 {
+        left: 170px;
+    }
+    .btns-prof .btn-material-ciranda-1,
+    .btns-prof .btn-material-ciranda-2 {
+        bottom: 12px;
+    }
+    .btns-prof .btn-material-ciranda-3 {
+        bottom: 135px;
+    }
+    .btns-prof .btn-material-ciranda-4,
+    .btns-prof .btn-material-ciranda-5 {
+        top: 10px;
+    }
+    /* BOTÕES ALUNO 3 */
+    .btns-aluno3 .btn-material-ciranda-1,
+    .btns-aluno3 .btn-material-ciranda-3,
+    .btns-aluno3 .btn-material-ciranda-6 {
+        left: 10px;
+    }
+    .btns-aluno3 .btn-material-ciranda-1,
+    .btns-aluno3 .btn-material-ciranda-2 {
+        bottom: 15px;
+    }
+    .btns-aluno3 .btn-material-ciranda-4 {
+        bottom: 130px;
+    }
+    .btns-aluno3 .btn-material-ciranda-5 {
+        bottom: 250px;
+    }
+    .btns-aluno3 .btn-material-ciranda-2,
+    .btns-aluno3 .btn-material-ciranda-4,
+    .btns-aluno3 .btn-material-ciranda-5,
+    .btns-aluno3 .btn-material-ciranda-7 {
+        left: 175px;
+    }
+    .btns-aluno3 .btn-material-ciranda-3 {
+        top: 245px;
+    }
+    .btns-aluno3 .btn-material-ciranda-6,
+    .btns-aluno3 .btn-material-ciranda-7 {
+        top: 10px;
+    }
+    /* BOTÕES ALUNO 4 e 5 */
+    .btns-aluno45 .btn-material-ciranda-1,
+    .btns-aluno45 .btn-material-ciranda-3 {
+        left: 36px;
+    }
+    .btns-aluno45 .btn-material-ciranda-1,
+    .btns-aluno45 .btn-material-ciranda-2 {
+        bottom: 10px;
+    }
+    .btns-aluno45 .btn-material-ciranda-3,
+    .btns-aluno45 .btn-material-ciranda-4 {
+        bottom: 110px;
+    }
+    .btns-aluno45 .btn-material-ciranda-2,
+    .btns-aluno45 .btn-material-ciranda-4 {
+        left: 178px;
+    }
+    .btns-aluno45 .btn-material-ciranda-5,
+    .btns-aluno45 .btn-material-ciranda-7 {
+        left: 36px;
+    }
+    .btns-aluno45 .btn-material-ciranda-6,
+    .btns-aluno45 .btn-material-ciranda-8 {
+        left: 178px;
+    }
+    .btns-aluno45 .btn-material-ciranda-5,
+    .btns-aluno45 .btn-material-ciranda-6 {
+        top: 205px;
+    }
+    .btns-aluno45 .btn-material-ciranda-7,
+    .btns-aluno45 .btn-material-ciranda-8 {
+        top: 10px;
+    }
+    /* JANELA MODAL */
+    .janela-modal-material .popup-sobre-info {
+        width: 100%;
+    }
+    .popup-sobre-galeria {
+        width: 100%;
+        float: none;
+        margin: 30px 0 0;
+    }
+    .popup-sobre-galeria.owl-emenda .owl-theme .owl-nav {
+        display: none;
+    }
+    .material-ciranda-container .btn-padrao {
+        width: 330px;
+        right: unset;
+    }
+    .janela-modal-sobre .tit-form-material-ciranda {
+        padding: 0 0 0 5px;
+        font-weight: 500;
+    }
+    .janela-modal-sobre .tit-form-material-ciranda::after {
+        content: none;
+    }
+    .janela-modal-sobre .txt-form-material-ciranda {
+        font-family: 'Nunito', sans-serif;
+        font-size: 15px;
+        font-weight: 400;
+        font-style: italic;
+        color: #FFF;
+        padding: 0 0 0 5px;
+    }
+    .janela-modal-sobre .quero-ciranda-form {
+        background: none;
+        width: 100%;
+        min-height: 300px;
+        padding: 0;
+    }
+    .janela-modal-sobre .quero-ciranda-form::after {
+        content: none;
+    }
+    .janela-modal-sobre .quero-ciranda-form span.numero-alunos {
+        width: 100%;
+    }
+    .janela-modal-sobre .quero-ciranda-form select.num-alunos {
+        width: 100%;
+    }
+    .janela-modal-sobre .quero-ciranda-form .fase-escolar-container {
+        background: #FFF;
+        border: 2px solid #7090E8;
+        width: 100%;
+        padding: 10px;
+        display: block;
+        float: left;
+        margin: 0 0 12px;
+    }
+    .fase-escolar-titulo {
+        font-family: 'GloberRegular';
+        font-size: 15px;
+        color: #426DA9;
+        display: block;
+        margin-bottom: 10px;
+    }
+    .janela-modal-sobre .quero-ciranda-form .fase-escolar-container span.fase-escolar,
+    .janela-modal-sobre .quero-ciranda-form .fase-escolar-container span.fase-escolar span {
+        width: 100%;
+        margin: 0;
+    }
+    .janela-modal-sobre .quero-ciranda-form .fase-escolar-container span.fase-escolar span span.wpcf7-list-item {
+        margin: 0 30px 0 0;
+        width: auto;
+    }
+    .janela-modal-sobre .quero-ciranda-form .fase-escolar-container span.fase-escolar span span.wpcf7-list-item input {
+        display: inline-block;
+    }
+    .janela-modal-sobre .quero-ciranda-form .fase-escolar-container span.fase-escolar span span.wpcf7-list-item span {
+        color: #426DA9;
+        display: inline-block;
+        width: auto;
+        float: none;
+    }
+    /* FORMULÁRIO */
+    .quero-ciranda-2 .inner {
+        padding: 108px 0 110px;
+    }
+    .quero-ciranda-form {
+        background: #7090E8;
+        background-image: none;
+        width: calc( 100% - 30px);
+        min-height: 50px;
+        padding: 10px;
+        overflow: hidden;
+    }
+    .quero-ciranda-form::after {
+        content: none;
+    }
+    .quero-ciranda-form span {
+        width: 100%;
+        margin: 0 0 12px;
+        float: none;
+        display: block;
+    }
+    .quero-ciranda-form input[type=text],
+    .quero-ciranda-form input[type=email],
+    .quero-ciranda-form input[type=tel],
+    .quero-ciranda-form select {
+        width: 100%;
+    }
+    .formulario-ciranda-elemento-1 {
+        width: 300px;
+    }
+    .formulario-ciranda-elemento-2 {
+        display: none;
+    }
+    .formulario-ciranda-elemento-3 {
+        top: unset;
+        right: 0;
+        margin-right: 0;
+        bottom: 0;
+    }
+    /* DEPOIMENTOS */
+    .historias-ciranda-2 .inner {
+        width: 100%;
+        padding: 50px 15px;
+    }
+    .historias-ciranda-2 h3 {
+        width: 210px;
+        font-size: 30px;
+        margin: 0 auto 30px;
+        text-align: center;
+    }
+    .historias-ciranda-2 .historias-ciranda-item-autor {
+        border-right: none;
+        width: 150px;
+        height: auto;
+        padding: 0;
+        display: block;
+        position: relative;
+        margin: 0 auto 20px;
+    }
+    .historias-ciranda-2 .historias-ciranda-item-autor::before,
+    .historias-ciranda-2 .historias-ciranda-item-autor::after {
+        content: none;
+    }
+    .historias-ciranda-2 .historias-ciranda-item-img {
+        width: 150px !important;
+    }
+    .historias-ciranda-2 .historias-ciranda-item-info {
+        width: 100%;
+        font-size: 16px;
+        text-align: center;
+    }
+    .historias-ciranda-2 .historias-ciranda-item-info h6 {
+        font-family: 'GloberSemiBold';
+    }
+    .elemento-depoimentos-ciranda-1 {
+        right: unset;
+        bottom: -39px;
+        margin-right: 0;
+        left: 15px;
+        width: 180px;
+    }
+    .elemento-depoimentos-ciranda-2 {
+        display: none;
+    }
+    /* PARCEIROS */
+    .parceiros-ciranda-2 .inner {
+        padding: 65px 15px 80px;
+        width: 100%;
+    }
+    .parceiros-ciranda-2 h3 {
+        font-size: 30px;
+        text-align: center;
+        margin: 0 auto 30px;
+    }
+    /* RESULTADOS */
+    .resultados-ciranda-2 .inner {
+        padding: 80px 15px 40px;
+    }
+    .resultados-ciranda-2 .resultados-ciranda-txt {
+        width: 100%;
+        margin: 0 0 30px 0;
+    }
+    .resultados-ciranda-2 .resultados-ciranda-txt p {
+        font-size: 16px;
+    }
+    .resultados-ciranda-2 .resultados-ciranda-slide-2 {
+        width: 100%;
+        float: none;
+    }
+    .resultados-ciranda-2 .resultados-ciranda-item {
+        height: auto;
+        padding: 20px 15px 60px;
+    }
+    .resultados-ciranda-2 .resultados-ciranda-item .resultados-ciranda-item-titulo h6 {
+        font-size: 25px;
+    }
+    .resultados-ciranda-2 .resultados-ciranda-item .resultados-ciranda-item-titulo span.subtitulo {
+        font-size: 16px;
+    }
+    .janela-modal-resultado {
+        max-width: 96% !important;
+        padding: 15px !important;
+    }
+    .popup-resultado-titulo {
+        width: 100%;
+        float: none;
+        margin: 0 0 10px 0;
+    }
+    .janela-modal-resultado h5 {
+        padding: 0 0 10px;
+        font-size: 20px;
+    }
+    .popup-resultado-info {
+        width: 100%;
+        margin: 0 0 10px 0;
+        float: none;
+    }
+    .elemento-resultados-ciranda-1 {
+        top: -70px;
+        left: unset;
+        margin-left: 0;
+        right: 0;
+        width: 220px;
+    }
+    .elemento-resultados-ciranda-2 {
+        right: unset;
+        bottom: -32px;
+        margin-right: 0;
+        left: 15px;
+        width: 170px;
+    }
+    /* RELATOS */
+    .relatos-ciranda-2 .inner {
+        padding: 60px 0 40px;
+    }
+    .relatos-ciranda-2 h3 {
+        font-size: 30px;
+        margin: 0 auto 30px;
+    }
+    .relatos-ciranda-2 .btn-padrao {
+        margin: 35px auto 0;
     }
     /*-------------------------------------------------------
 FORMAÇÃO ONLINE PARA ESCOLA
@@ -10057,7 +12374,7 @@ FORMAÇÃO ONLINE PARA ESCOLA
         top: unset;
         transform: unset;
     }
-    .page-template-page-fo-escola .box-primario h1 {
+    .page-template-page-fo-escola .box-primario h2 {
         font-size: 30px;
         padding: 0;
         margin-bottom: 30px;
@@ -10106,10 +12423,10 @@ FORMAÇÃO ONLINE PARA ESCOLA
         right: unset;
         left: 30px;
     }
-    .page-template-page-fo-escola .historia-titulo h1 {
+    .page-template-page-fo-escola .historia-titulo h2 {
         color: #FFF;
     }
-    .page-template-page-fo-escola .historia-titulo h1:after {
+    .page-template-page-fo-escola .historia-titulo h2:after {
         background-color: #DF4661;
     }
     .page-template-page-fo-escola .historia-txt {
@@ -10134,9 +12451,9 @@ FORMAÇÃO ONLINE PARA ESCOLA
         height: auto;
         padding: 15px;
     }
-    .page-template-page-fo-escola .quero-ciranda h1,
-    .page-template-page-fp-escola .quero-ciranda h1,
-    .page-template-page-projetos-especiais .quero-ciranda h1 {
+    .page-template-page-fo-escola .quero-ciranda h2,
+    .page-template-page-fp-escola .quero-ciranda h2,
+    .page-template-page-projetos-especiais .quero-ciranda h2 {
         margin-bottom: 10px;
     }
     .page-template-page-fo-escola .quero-ciranda p.quero-ciranda-txt,
@@ -10154,8 +12471,8 @@ FORMAÇÃO ONLINE PARA ESCOLA
         background-color: #FFF;
         overflow: hidden;
     }
-    .page-template-page-fo-escola .historias-ciranda h1,
-    .page-template-page-fp-escola .historias-ciranda h1 {
+    .page-template-page-fo-escola .historias-ciranda h2,
+    .page-template-page-fp-escola .historias-ciranda h2 {
         width: 100%;
         margin-bottom: 30px;
     }
@@ -10170,10 +12487,10 @@ FORMAÇÃO ONLINE PARA ESCOLA
     .page-template-page-fo-escola .parceiros-ciranda .inner {
         padding: 0 15px 100px;
     }
-    .page-template-page-fo-escola .parceiros-ciranda h1,
-    .page-template-page-fp-escola .parceiros-ciranda h1,
-    .page-template-page-projetos-especiais .parceiros-ciranda h1,
-    .single-projeto-especial .parceiros-ciranda h1 {
+    .page-template-page-fo-escola .parceiros-ciranda h2,
+    .page-template-page-fp-escola .parceiros-ciranda h2,
+    .page-template-page-projetos-especiais .parceiros-ciranda h2,
+    .single-projeto-especial .parceiros-ciranda h2 {
         width: 100%;
     }
     /*-------------------------------------------------------
@@ -10205,7 +12522,7 @@ FORMAÇÃO PRESENCIAL PARA ESCOLA
         top: unset;
         transform: unset;
     }
-    .page-template-page-fp-escola .box-primario h1 {
+    .page-template-page-fp-escola .box-primario h2 {
         font-size: 30px;
         padding: 0;
         margin-bottom: 30px;
@@ -10252,12 +12569,12 @@ FORMAÇÃO PRESENCIAL PARA ESCOLA
     .page-template-page-projetos-especiais .historias-ciranda-video .inner {
         padding: 65px 0;
     }
-    .page-template-page-fp-escola .historias-ciranda-video h1,
-    .page-template-page-projetos-especiais .historias-ciranda-video h1 {
+    .page-template-page-fp-escola .historias-ciranda-video h2,
+    .page-template-page-projetos-especiais .historias-ciranda-video h2 {
         color: #426DA9;
     }
-    .page-template-page-fp-escola .historias-ciranda-video h1:after,
-    .page-template-page-projetos-especiais .historias-ciranda-video h1:after {
+    .page-template-page-fp-escola .historias-ciranda-video h2:after,
+    .page-template-page-projetos-especiais .historias-ciranda-video h2:after {
         background-color: #DF4661;
     }
     /* TEMAS - ACCORDION */
@@ -10311,7 +12628,7 @@ FORMAÇÃO PRESENCIAL PARA ESCOLA
         line-height: 1.3em;
         background-position: 0 3px;
     }
-    .aba-accordion-conteudo-txt h3 {
+    .aba-accordion-conteudo-txt h4 {
         font-family: 'GloberSemiBold';
         font-size: 15px;
         color: #426DA9;
@@ -10361,7 +12678,7 @@ PROJETOS ESPECIAIS
         top: unset;
         transform: unset;
     }
-    .page-template-page-projetos-especiais .box-primario h1 {
+    .page-template-page-projetos-especiais .box-primario h2 {
         font-size: 30px;
         padding: 0;
         margin-bottom: 30px;
@@ -10390,7 +12707,7 @@ PROJETOS ESPECIAIS
         content: none;
     }
     /* restante da formatação esta junto com os depoimentos do trabalhe conosco */
-    .page-template-page-projetos-especiais .historias-ciranda h1 {
+    .page-template-page-projetos-especiais .historias-ciranda h2 {
         width: 345px !important;
     }
     .page-template-page-projetos-especiais .parceiros-ciranda .inner {
@@ -10457,7 +12774,7 @@ O GRUPO
         top: unset;
         transform: unset;
     }
-    .page-template-page-sobre .box-primario h1 {
+    .page-template-page-sobre .box-primario h2 {
         font-size: 30px;
         padding: 0;
         margin-bottom: 30px;
@@ -10499,7 +12816,7 @@ O GRUPO
     .historia-titulo::after {
         content: none;
     }
-    .historia-titulo h1 {
+    .historia-titulo h2 {
         color: #426DA9;
     }
     .historia-txt {
@@ -10514,14 +12831,14 @@ O GRUPO
     .aba-missao {
         padding: 0 0 20px;
     }
-    .aba-missao h1 {
+    .aba-missao h2 {
         padding-bottom: 20px;
     }
     .aba-missao-txt {
         width: 100%;
         margin-bottom: 20px;
     }
-    .aba-missao h3 {
+    .aba-missao h4 {
         font-family: 'GloberBold';
         font-size: 18px;
         margin-bottom: 30px;
@@ -10554,7 +12871,7 @@ O GRUPO
     .linha-tempo .inner {
         padding: 60px 15px 20px;
     }
-    .linha-tempo h1 {
+    .linha-tempo h2 {
         margin-bottom: 30px;
     }
     .linha-tempo-anos {
@@ -10595,10 +12912,10 @@ O GRUPO
     .page-template-page-sobre .loja-home .inner {
         padding: 65px 15px;
     }
-    .page-template-page-sobre .loja-home .inner h1 {
+    .page-template-page-sobre .loja-home .inner h2 {
         padding-right: 0;
     }
-    .page-template-page-sobre .loja-home .inner h1:after {
+    .page-template-page-sobre .loja-home .inner h2:after {
         content: none;
     }
     /*-------------------------------------------------------
@@ -10697,7 +13014,7 @@ EQUIPE
         height: auto;
         float: none;
     }
-    .membro-equipe-info h1 {
+    .membro-equipe-info h2 {
         margin-bottom: 30px;
     }
     .membro-equipe-txt {
@@ -10708,11 +13025,11 @@ EQUIPE
     .list-itens-membro {
         margin-bottom: 50px;
     }
-    .list-itens-membro h1 {
+    .list-itens-membro h2 {
         margin: 0 0 30px;
         padding: 0 15px;
     }
-    .list-itens-membro h1:after {
+    .list-itens-membro h2:after {
         background: #DF4661;
     }
     .list-itens-membro .loja-home-slide {
@@ -10739,7 +13056,7 @@ NA MÍDIA
         background-size: auto 100%;
         height: 75vh;
     }
-    .page-template-page-na-midia .box-secundario-inner.no-breadcrumb h1 {
+    .page-template-page-na-midia .box-secundario-inner.no-breadcrumb h2 {
         padding-bottom: 0;
         top: 0;
         transform: none;
@@ -10754,10 +13071,10 @@ NA MÍDIA
     .namidia-txt p:last-child {
         margin-bottom: 60px;
     }
-    .namidia h1 {
+    .namidia h2 {
         margin-bottom: 30px;
     }
-    .namidia h1:after {
+    .namidia h2:after {
         background: #DF4661;
     }
     .namidia .relatos-ciranda-list {
@@ -10820,7 +13137,7 @@ TRABALHE CONOSCO
         top: unset;
         transform: unset;
     }
-    .page-template-page-trabalhe .box-primario h1 {
+    .page-template-page-trabalhe .box-primario h2 {
         font-size: 30px;
         padding: 0;
         margin-bottom: 30px;
@@ -10889,14 +13206,14 @@ TRABALHE CONOSCO
     .page-template-page-projetos-especiais .historias-ciranda .inner {
         padding: 65px 15px
     }
-    .page-template-page-trabalhe .historias-ciranda h1,
-    .page-template-page-projetos-especiais .historias-ciranda h1 {
+    .page-template-page-trabalhe .historias-ciranda h2,
+    .page-template-page-projetos-especiais .historias-ciranda h2 {
         width: 298px;
         color: #426DA9;
         margin-bottom: 50px;
     }
-    .page-template-page-trabalhe .historias-ciranda h1:after,
-    .page-template-page-projetos-especiais .historias-ciranda h1:after {
+    .page-template-page-trabalhe .historias-ciranda h2:after,
+    .page-template-page-projetos-especiais .historias-ciranda h2:after {
         background-color: #DF4661;
     }
     .page-template-page-trabalhe .historias-ciranda-casa,
@@ -10915,7 +13232,7 @@ TRABALHE CONOSCO
     .page-template-page-trabalhe .quero-ciranda-box {
         margin: 0 auto;
     }
-    .page-template-page-trabalhe .quero-ciranda h1 {
+    .page-template-page-trabalhe .quero-ciranda h2 {
         margin-bottom: 10px;
     }
     /*-------------------------------------------------------
@@ -10965,15 +13282,15 @@ BLOG
     .box-slide-blog .box-cat-produto-item a.categoria:hover {
         color: #426DA9;
     }
-    .box-slide-blog .box-cat-produto-item h1 {
+    .box-slide-blog .box-cat-produto-item h2 {
         font-size: 22px;
         padding-bottom: 0;
         margin-bottom: 0;
     }
-    .box-slide-blog .box-cat-produto-item h1:hover {
+    .box-slide-blog .box-cat-produto-item h2:hover {
         color: #DF4661;
     }
-    .box-slide-blog .box-cat-produto-item h1:after {
+    .box-slide-blog .box-cat-produto-item h2:after {
         background: #DF4661;
         width: 30px;
     }
@@ -11065,18 +13382,18 @@ BLOG
     .post-blog:nth-child(5n-0) .post-blog-inner p {
         display: block;
     }
-    .post-blog-inner h3,
+    .post-blog-inner h4,
     .post-blog-inner .data {
         width: 100%;
         color: #426DA9;
     }
-    .post-blog-inner h3 {
+    .post-blog-inner h4 {
         font-family: 'GloberBold';
         font-size: 18px;
         margin-bottom: 5px;
         transition: all 200ms ease-in;
     }
-    .post-blog-inner h3:hover {
+    .post-blog-inner h4:hover {
         color: #7C53CF;
     }
     .post-blog-inner .data {
@@ -11086,7 +13403,7 @@ BLOG
     .post-blog-inner p {
         font-size: 15px;
     }
-    .post-blog-img-container:hover+.post-blog-inner .post-blog-link h3 {
+    .post-blog-img-container:hover+.post-blog-inner .post-blog-link h4 {
         color: #7C53CF;
     }
     /* category */
@@ -11105,11 +13422,11 @@ BLOG
     .author .box-slide-blog::after {
         border-width: 20px 20px 0 20px;
     }
-    .author .box-slide-blog h1 {
+    .author .box-slide-blog h2 {
         font-family: 'GloberSemiBold';
         font-size: 28px;
     }
-    .author .box-slide-blog h1:after {
+    .author .box-slide-blog h2:after {
         content: none;
     }
     .author .box-slide-blog .autor-item-txt {
@@ -11150,12 +13467,12 @@ BLOG
     .single-post .box-slide-blog .breadcrumbs a:hover {
         color: #DF4661;
     }
-    .single-post .box-slide-blog h1 {
+    .single-post .box-slide-blog h2 {
         font-size: 24px;
         padding-bottom: 25px;
         margin-bottom: 10px;
     }
-    .single-post .box-slide-blog h1:after {
+    .single-post .box-slide-blog h2:after {
         content: "";
         background: #DF4661;
         width: 25px;
@@ -11187,19 +13504,19 @@ BLOG
     /*-------------------------------------------------------
 CONTEÚDO PADRÃO
 -------------------------------------------------------*/
-    .conteudo-padrao h1,
     .conteudo-padrao h2,
     .conteudo-padrao h3,
     .conteudo-padrao h4,
     .conteudo-padrao h5,
+    .conteudo-padrao h6,
     .conteudo-padrao h6 {
         padding-bottom: 0;
     }
-    .conteudo-padrao h1:after,
     .conteudo-padrao h2:after,
     .conteudo-padrao h3:after,
     .conteudo-padrao h4:after,
     .conteudo-padrao h5:after,
+    .conteudo-padrao h6:after,
     .conteudo-padrao h6:after {
         content: none;
     }
@@ -11280,10 +13597,10 @@ COMENTÁRIOS
         float: none;
         margin-bottom: 20px;
     }
-    .comentarios h2 {
+    .comentarios h3 {
         padding-bottom: 0;
     }
-    .comentarios h2:after {
+    .comentarios h3:after {
         content: none;
     }
     .comentarios-col-2 {
@@ -11298,7 +13615,7 @@ COMENTÁRIOS
         width: 100%;
         float: none;
     }
-    h2.comments-title {
+    h3.comments-title {
         width: 100%;
         font-size: 20px;
         color: #426DA9;
@@ -11376,7 +13693,7 @@ CONTATO
         background-size: auto 100%;
         height: 75vh;
     }
-    .page-template-page-contato .box-secundario-inner.no-breadcrumb h1 {
+    .page-template-page-contato .box-secundario-inner.no-breadcrumb h2 {
         padding-bottom: 0;
         top: 0;
         transform: none;
@@ -11468,10 +13785,9 @@ LOJA
     }
     /* topo da categoria */
     .topo-cat-produto {
-        background-position: left top;
-        /* background-size: auto calc( 100% - 200px); */
-        background-size: 170% calc( 100% - 200px);
-        /* height: calc( 100vh - 183px); */
+        background-position: center top;
+        background-size: 0, auto calc( 120vw - 200px);
+        height: 120vw;
     }
     .topo-cat-produto .inner {
         height: 100%;
@@ -11489,13 +13805,13 @@ LOJA
         height: 200px;
         padding-top: 15px;
     }
-    .box-cat-produto h1 {
+    .box-cat-produto h2 {
         font-size: 28px;
         bottom: unset;
         position: relative;
         margin-bottom: 10px;
     }
-    .box-cat-produto h1:after {
+    .box-cat-produto h2:after {
         background: #FFC72C;
     }
     .box-cat-produto p {
@@ -11588,7 +13904,7 @@ FORMAÇÃO ONLINE
         border-top-color: #FFC72C;
         color: #FFF;
     }
-    .term-formacao-online .quero-ciranda h1 {
+    .term-formacao-online .quero-ciranda h2 {
         margin-bottom: 10px;
     }
     .term-formacao-online .quero-ciranda p.quero-ciranda-txt {
@@ -11607,7 +13923,7 @@ FORMAÇÃO ONLINE
         width: 100%;
         margin: 0 0 30px 0;
     }
-    .experimente-info h1 {
+    .experimente-info h2 {
         font-size: 29px;
     }
     .experimente-txt {
@@ -11648,7 +13964,7 @@ FORMAÇÃO ONLINE
         top: 0;
         transform: none;
     }
-    .conheca-planos-info h1 {
+    .conheca-planos-info h2 {
         width: 200px;
         font-size: 29px;
         margin-bottom: 30px;
@@ -11670,7 +13986,7 @@ FORMAÇÃO PRESENCIAL
     .galeria-imagens .inner {
         padding: 65px 15px;
     }
-    .galeria-imagens h1 {
+    .galeria-imagens h2 {
         width: 300px;
         font-size: 29px;
         margin-bottom: 30px;
@@ -11757,6 +14073,24 @@ SEM PRODUTOS
         display: block;
         float: none;
     }
+    /* lista os planos 3 */
+    .lista-planos {
+        padding: 30px 0;
+    }
+    .lista-planos h2 {
+        margin-bottom: 20px;
+        font-size: 29px;
+    }
+    .list-planos.list-planos-3 {
+        padding: 50px 15px 0;
+        margin: 0 auto;
+        width: 100%;
+    }
+    .list-planos.list-planos-3 .plano-item {
+        width: 100%;
+        padding: 40px 10px 10px 90px;
+        margin: 0 0 80px;
+    }
     /* esconde a mensagem que não tem produtos */
     .term-planos .woocommerce-info {
         display: none !important;
@@ -11809,9 +14143,15 @@ SINGLE DO PRODUTO
         text-align: left;
     }
     .product-add-to-cart .preco {
-        width: calc( 100% - 170px);
+        /* width: calc( 100% - 170px); */
+        width: calc( 100% - 140px);
         text-align: left;
     }
+    /* 13/01 - correção do botão de compra dos produtos - Fernando*/
+    .single-product div.product form.cart {
+        width: 100px !important;
+    }
+    /* 13/01 */
     .product-add-to-cart .preco .price {
         display: inline-block;
     }
@@ -11870,7 +14210,7 @@ SINGLE DO PRODUTO
         top: 0;
         z-index: -1;
     }
-    .sobre-autores h2 {
+    .sobre-autores h3 {
         padding-bottom: 18px;
         margin-bottom: 20px;
     }
@@ -11895,7 +14235,7 @@ SINGLE DO PRODUTO
         padding-top: 0;
         width: calc( 100% - 120px);
     }
-    .autor-item-info h3 {
+    .autor-item-info h4 {
         margin-bottom: 10px !important;
         line-height: 1.1em;
     }
@@ -11917,7 +14257,7 @@ SINGLE DO PRODUTO
     .single-product .historias-ciranda .inner {
         padding: 65px 15px;
     }
-    .single-product .historias-ciranda h1 {
+    .single-product .historias-ciranda h2 {
         width: 100%;
     }
     .single-product .historias-ciranda-item-autor {
@@ -11935,9 +14275,9 @@ SINGLE DO PRODUTO
         padding: 0 15px 65px;
         clear: both;
     }
-    .single-product .related>h2:first-child,
-    .single-product .upsells>h2:first-child,
-    .woocommerce-cart .cross-sells>h2:first-child {
+    .single-product .related>h3:first-child,
+    .single-product .upsells>h3:first-child,
+    .woocommerce-cart .cross-sells>h3:first-child {
         margin-bottom: 30px;
     }
     .single-product .related ul.products,
@@ -11952,6 +14292,11 @@ SINGLE DO PRODUTO
         width: 100%;
     }
     /* produtos aleatórios */
+    .img-add-produto {
+        width: calc( 100% - 30px) !important;
+        margin-top: 60px !important;
+        margin-left: 15px !important;
+    }
     .produtos-aletorios {
         display: none;
     }
@@ -12022,20 +14367,20 @@ MINHA CONTA
     }
     .btn-menu-mc span.bar1 {
         top: 5px;
-        left: 5px;    
+        left: 5px;
     }
     .btn-menu-mc span.bar2 {
         top: 12px;
-        left: 5px;   
-    }   
+        left: 5px;
+    }
     .btn-menu-mc span.bar3 {
         top: 19px;
         width: 16px;
-        left: 5px;   
+        left: 5px;
     }
     .woocommerce-MyAccount-menu {
         width: 190px;
-        height: calc( 100vh - 108px );
+        height: calc( 100vh - 108px);
         float: none;
         left: -190px;
         position: fixed;
@@ -12101,7 +14446,7 @@ MINHA CONTA
         margin-top: 40px;
         width: 596px;
     }
-    .woocommerce-MyAccount-content .wc-social-login-profile h2 {
+    .woocommerce-MyAccount-content .wc-social-login-profile h3 {
         font-family: 'GloberSemiBold';
         color: #426DA9;
         font-size: 35px;
@@ -12109,7 +14454,7 @@ MINHA CONTA
         padding-bottom: 26px;
         margin-bottom: 20px;
     }
-    .woocommerce-MyAccount-content .wc-social-login-profile h2::after {
+    .woocommerce-MyAccount-content .wc-social-login-profile h3::after {
         content: "";
         background-color: #426DA9;
         width: 60px;
@@ -12126,15 +14471,15 @@ INTERNAS CIRANDA
         height: auto;
         margin: 0 0 30px 0;
         font-size: 0;
-    }    
+    }
     .item-atividade-icone,
     .img-atividade {
         width: 150px;
         height: 165px;
         display: inline-block;
-        vertical-align: bottom;        
+        vertical-align: bottom;
     }
-    .item-atividade h6{
+    .item-atividade h6 {
         font-size: 18px;
         width: calc( 100% - 150px);
         padding: 0 0 0 10px;
@@ -12247,7 +14592,7 @@ PÁGINAS AUXILIARES DA LOJA (CARRINHO, IDENTIFICAÇÃO, PAGAMENTO, OBRIGADO)
     .woocommerce-cart .woocommerce {
         width: 100%;
     }
-    .woocommerce-cart h1.titulo-pagina {
+    .woocommerce-cart h2.titulo-pagina {
         display: none;
     }
     .woocommerce-cart-form {
@@ -12418,24 +14763,24 @@ PÁGINAS AUXILIARES DA LOJA (CARRINHO, IDENTIFICAÇÃO, PAGAMENTO, OBRIGADO)
         display: none !important;
     }
     /*-------------------------------------------------------------------------
-    LANDING PAGE MATHEMA ONLINE
-    --------------------------------------------------------------------------*/   
+LANDING PAGE MATHEMA ONLINE
+--------------------------------------------------------------------------*/
     /* topo */
     .topo-lp,
-    .topo-lp-e{
+    .topo-lp-e {
         background: #426DA9;
         position: fixed;
         top: -75px;
         z-index: 10;
-        transition: all 300ms ease-in;       
+        transition: all 300ms ease-in;
     }
-    .topo-lp-v{
+    .topo-lp-v {
         top: 0;
     }
-    .topo-lp .inner{
+    .topo-lp .inner {
         padding: 10px 0;
     }
-    .logo-lp-topo{
+    .logo-lp-topo {
         height: 55px;
         float: left;
         margin-left: 20px;
@@ -12460,24 +14805,24 @@ PÁGINAS AUXILIARES DA LOJA (CARRINHO, IDENTIFICAÇÃO, PAGAMENTO, OBRIGADO)
     }
     .lpmo .btn-fecha {
         top: 20px;
-        right: 20px;    
-        display: block;    
+        right: 20px;
+        display: block;
     }
     .lpmo .btn-fecha span {
-       background-color: #FFF;
+        background-color: #FFF;
     }
     .lpmo .btn-fecha:hover span {
-        background-color: #8BC6EE;        
+        background-color: #8BC6EE;
     }
-    ul.menu-topo-lp li{
+    ul.menu-topo-lp li {
         float: none;
         margin: 0 0 20px;
     }
-    ul.menu-topo-lp li a{
-        padding: 10px 0;       
+    ul.menu-topo-lp li a {
+        padding: 10px 0;
         font-size: 24px;
-        display: block; 
-        text-align: center;      
+        display: block;
+        text-align: center;
     }
     /* banner */
     .logo-lp {
@@ -12487,16 +14832,16 @@ PÁGINAS AUXILIARES DA LOJA (CARRINHO, IDENTIFICAÇÃO, PAGAMENTO, OBRIGADO)
         height: 60px;
     }
     .banner-lp-img,
-    .banner-lp-info{
+    .banner-lp-info {
         float: none;
         height: auto;
     }
-    .banner-lp-img{      
-        width: 100%;   
-    }
-    .banner-lp-info{       
+    .banner-lp-img {
         width: 100%;
-        padding: 20px;       
+    }
+    .banner-lp-info {
+        width: 100%;
+        padding: 20px;
     }
     .banner-lp-info::after {
         border-width: 0 20px 20px 20px;
@@ -12506,49 +14851,50 @@ PÁGINAS AUXILIARES DA LOJA (CARRINHO, IDENTIFICAÇÃO, PAGAMENTO, OBRIGADO)
         left: 50%;
         margin-top: 0;
     }
-    .banner-lp-info-inner{
-        width: 100%;      
+    .banner-lp-info-inner {
+        width: 100%;
         position: relative;
         top: 0;
         transform: none;
     }
-    .banner-lp-info-inner h1{
+    .banner-lp-info-inner h2 {
         padding: 0;
-        font-size: 28px;      
+        font-size: 28px;
     }
-    .banner-lp-info-inner p{
-        font-size: 15px;       
+    .banner-lp-info-inner p {
+        font-size: 15px;
         margin-bottom: 15px;
     }
-    .banner-lp-info-inner .btn-padrao {	       
+    .banner-lp-info-inner .btn-padrao {
         border-radius: 25px;
         width: 100%;
-        height: 50px;	
-        font-size: 20px;        
-        line-height: 48px;	
+        height: 50px;
+        font-size: 20px;
+        line-height: 48px;
     }
     /* beneficios */
-    .beneficios-lp .inner{
+    .beneficios-lp .inner {
         padding: 30px 20px;
     }
-    .beneficios-lp h2{        
-        font-size: 35px;    
-        text-align: center;    
+    .beneficios-lp h3 {
+        font-size: 35px;
+        text-align: center;
         margin-bottom: 20px;
     }
     .beneficios-lp .porque-item span {
-        font-size: 18px; 
+        font-size: 18px;
     }
     /* como funciona */
-    .como-funciona-lp .inner{
+    .como-funciona-lp .inner {
         padding: 30px 20px;
     }
-    .como-funciona-lp-txt{
-        width: 100%;       
+    .como-funciona-lp-txt {
+        width: 100%;
         float: none;
         margin-bottom: 20px;
     }
-    .como-funciona-lp-txt h2, .formato-lp-txt h2 {
+    .como-funciona-lp-txt h3,
+    .formato-lp-txt h3 {
         background: url(img/traco-titulo-lp.png) no-repeat right bottom;
         font-size: 35px;
         width: auto;
@@ -12557,10 +14903,10 @@ PÁGINAS AUXILIARES DA LOJA (CARRINHO, IDENTIFICAÇÃO, PAGAMENTO, OBRIGADO)
         display: inline-block;
     }
     .como-funciona-lp-txt p,
-    .formato-lp-txt p{
-        font-size: 17px;        
+    .formato-lp-txt p {
+        font-size: 17px;
     }
-    .img-como-funciona-lp{
+    .img-como-funciona-lp {
         width: 100%;
         max-width: 572px;
         float: none;
@@ -12569,34 +14915,34 @@ PÁGINAS AUXILIARES DA LOJA (CARRINHO, IDENTIFICAÇÃO, PAGAMENTO, OBRIGADO)
     .formato-lp {
         margin-top: 0;
     }
-    .formato-lp .inner{
+    .formato-lp .inner {
         padding: 0 20px;
     }
-    .formato-lp-container {       
-        height: auto;       
-        margin-top: 0;       
+    .formato-lp-container {
+        height: auto;
+        margin-top: 0;
     }
-    .formato-lp-txt{
-        width: 100%;	
+    .formato-lp-txt {
+        width: 100%;
         position: relative;
         top: 0;
         left: 0;
         margin-bottom: 30px;
     }
-    .bg-formato-lp{
-       display: none;
+    .bg-formato-lp {
+        display: none;
     }
-    .formato-lp-icones {       
+    .formato-lp-icones {
         position: relative;
-        top: 0;       
+        top: 0;
     }
     .formato-lp-item {
         margin: 0 10px 30px;
     }
-    .formato-lp-item:last-child{
+    .formato-lp-item:last-child {
         margin: 0 10px 30px;
     }
-    .formato-lp-item h4{
+    .formato-lp-item h5 {
         padding: 20px 0 0;
         font-family: 'GloberBold';
         font-size: 20px;
@@ -12610,24 +14956,24 @@ PÁGINAS AUXILIARES DA LOJA (CARRINHO, IDENTIFICAÇÃO, PAGAMENTO, OBRIGADO)
     .loja-lp .inner {
         padding: 30px 20px;
     }
-    h2.titulo-loja-lp {
+    h3.titulo-loja-lp {
         width: 100%;
         padding: 0;
         font-size: 35px;
         float: none;
         margin-bottom: 30px;
     }
-    .lp-txt{       
+    .lp-txt {
         width: 100%;
-        padding: 20px 0 0 0;      
-        line-height: 1.5em;   
+        padding: 20px 0 0 0;
+        line-height: 1.5em;
         float: none;
         margin-bottom: 30px;
     }
     .lpmo ul.products {
-        padding: 0;	       
+        padding: 0;
     }
-    .lpmo ul.products li.product {	
+    .lpmo ul.products li.product {
         margin: 0 0 38px;
     }
     .lpmo .loja-home-item-info {
@@ -12638,91 +14984,223 @@ PÁGINAS AUXILIARES DA LOJA (CARRINHO, IDENTIFICAÇÃO, PAGAMENTO, OBRIGADO)
     .lpmo .historias-ciranda .inner {
         padding: 30px 20px;
     }
-    .lpmo .historias-ciranda h2{     
+    .lpmo .historias-ciranda h3 {
         font-size: 35px;
         width: auto;
         padding: 0 0 15px;
-        margin-bottom: 30px;       
+        margin-bottom: 30px;
     }
-    .lpmo .historias-ciranda-slide {       
+    .lpmo .historias-ciranda-slide {
         width: 100%;
         height: auto;
         padding: 0;
         float: none;
-        margin: 0;        
+        margin: 0;
     }
     .lpmo .historias-ciranda-slide::after {
         width: 100%;
-        height: calc( 100% - 85px );
+        height: calc( 100% - 85px);
         position: absolute;
-        top: 60px;        
+        top: 60px;
     }
     .lpmo .historias-ciranda-item {
         height: auto;
         padding: 0;
         text-align: center;
     }
-    .lpmo .historias-ciranda-item-img {        
+    .lpmo .historias-ciranda-item-img {
         width: 120px !important;
         margin: 0 0 10px 0;
-        float: none;       
+        float: none;
     }
     .lpmo .historias-ciranda-item-info {
-        width: 100%;       
+        width: 100%;
         padding: 10px;
-        text-align: left;		       
+        text-align: left;
     }
-    .lpmo .historias-ciranda-item-info p {       
-        font-size: 17px;       
+    .lpmo .historias-ciranda-item-info p {
+        font-size: 17px;
     }
-    .lpmo .historias-ciranda-item-info h6{       
-        font-size: 15px;        
+    .lpmo .historias-ciranda-item-info h6 {
+        font-size: 15px;
     }
     /* experimente */
-    .experimente-lp{
+    .experimente-lp {
         background-color: #FFEEBF;
         background-repeat: no-repeat;
         background-image: url(img/bg-experimente-lp-1.png), url(img/bg-experimente-lp-2.png);
         background-position: 10px 10px, right 10px bottom 10px;
         background-size: auto 100px;
     }
-    .experimente-lp .inner{
+    .experimente-lp .inner {
         padding: 120px 0;
     }
-    .experimente-lp .btn-padrao {	      
-        width: 100%;       
+    .experimente-lp .btn-padrao {
+        width: 100%;
     }
     /* rodape */
-    .rodape .inner{
+    .rodape .inner {
         padding: 20px;
     }
-    .col-rodape-lp{
+    .col-rodape-lp {
         float: none;
     }
-    .col-rodape-lp-1{
+    .col-rodape-lp-1 {
         display: none;
-    }   
-    .col-rodape-lp-2,
-    .col-rodape-lp-3{
-        width: 100%;       
     }
-    .col-rodape-lp-2{
+    .col-rodape-lp-2,
+    .col-rodape-lp-3 {
+        width: 100%;
+    }
+    .col-rodape-lp-2 {
         margin-bottom: 40px;
-    }    
-    ul.menu-rodape-lp li{
+    }
+    ul.menu-rodape-lp li {
         margin-bottom: 15px;
-    }   
-    ul.menu-rodape-lp li a{        
-        font-size: 18px;        
-    }   
-    .social-rodape-lp{       
+    }
+    ul.menu-rodape-lp li a {
+        font-size: 18px;
+    }
+    .social-rodape-lp {
         margin-bottom: 20px;
     }
-    .contato-rodape-lp{
+    .contato-rodape-lp {
         font-size: 18px;
         color: #FFF;
-    }    
-/*-------------------------------------------------------------------------
+    }
+    /*-------------------------------------------------------------------------
+LANDING PAGE CIRANDA
+--------------------------------------------------------------------------*/
+    .lpc .busca,
+    .lpc header,
+    .lpc footer {
+        display: none;
+    }
+    /* topo */
+    .topo-lp-ciranda,
+    .topo-lp-e-c {
+        background: #7C53CF;
+        height: 58px;
+        position: fixed;
+        top: -75px;
+        z-index: 11;
+        transition: all 300ms ease-in;
+    }
+    .topo-lp-v-c {
+        top: 0;
+    }
+    .topo-lp-ciranda .inner {
+        padding: 10px 0;
+    }
+    .logo-lpc-topo {
+        height: 63px;
+        float: none;
+        margin-left: 15px;
+        top: 0;
+    }
+    .lpc .btn-menu {
+        left: unset;
+        top: 12px;
+        right: 20px;
+        display: block;
+    }
+    .btn-menu-lp-ciranda {
+        z-index: 10;
+    }
+    ul.menu-topo-lp-ciranda {
+        background: #7C53CF;
+        float: none;
+        margin-top: 0;
+        position: fixed;
+        top: 0;
+        left: 100vw;
+        width: 100%;
+        height: 100vh;
+        padding: 75px 20px 0;
+        transition: all 300ms ease-in;
+    }
+    .lpc .btn-fecha {
+        top: 20px;
+        right: 20px;
+        display: block;
+    }
+    .lpc .btn-fecha span {
+        background-color: #FFF;
+    }
+    .lpc .btn-fecha:hover span {
+        background-color: #8BC6EE;
+    }
+    ul.menu-topo-lp-ciranda li {
+        float: none;
+        margin: 0 0 20px;
+    }
+    ul.menu-topo-lp-ciranda li a {
+        padding: 10px 0;
+        font-size: 24px;
+        display: block;
+        text-align: center;
+    }
+    .banner-lp-ciranda .inner {
+        padding: 0 15px;
+    }
+    .banner-lp-ciranda .box-primario {
+        height: auto;
+        padding: 0;
+        z-index: 1;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+    .banner-lp-ciranda .box-primario-inner {
+        width: 100%;
+        position: absolute;
+        top: unset;
+        transform: none;
+        right: 0;
+        padding: 15px;
+        bottom: 0;
+        background: #7C53CF;
+    }
+    .banner-lp-ciranda .box-primario h1 {
+        padding-bottom: 0;
+        margin-bottom: 20px;
+    }
+    .box-primario h1 img {
+        margin: 0 auto;
+        width: 65%;
+        max-width: 318px;
+    }
+    .banner-lp-ciranda .box-primario h2 {
+        padding: 0 0 20px 0;
+        font-size: 20px;
+    }
+    .banner-lp-ciranda .box-primario p {
+        background: none;
+        padding: 0;
+        margin-bottom: 20px;
+    }
+    .img-lp-ciranda {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 693px;
+    }
+    .lpc .rodape .inner {
+        padding: 25px 15px;
+    }
+    .logo-mathema-lp-ciranda {
+        margin: 0 0 25px;
+    }
+    .endereco-lp-ciranda {
+        width: 300px;
+    }
+    .direitos-lp-ciranda {
+        line-height: 1.3em;
+        margin-top: 25px;
+    }
+    /*-------------------------------------------------------------------------
 FIM RESPONSIVO - SMARTPHONES ATÉ 768
 --------------------------------------------------------------------------*/
 }

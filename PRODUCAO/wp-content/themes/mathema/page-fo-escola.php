@@ -21,7 +21,7 @@
 <section id="porque" class="porque">
     <div class="inner">
         <?php if (get_field('titulo_por_que_o_mathema')) : ?>
-        <h1><?php the_field('titulo_por_que_o_mathema'); ?></h1>
+        <h2><?php the_field('titulo_por_que_o_mathema'); ?></h2>
         <?php endif; ?>
         <div class="list-porque">
             <?php
@@ -43,7 +43,7 @@
 <section class="download-ciranda">
     <div class="inner">
         <?php if (get_field('titulo_aba_vertical')) : ?>
-        <h1><?php the_field('titulo_aba_vertical'); ?></h1>
+        <h2><?php the_field('titulo_aba_vertical'); ?></h2>
         <?php endif; ?>
         <!-- ABAS -->
         <div id="abas-vertical">
@@ -51,10 +51,10 @@
             <!-- link do botÃ£o -->
             <?php if (get_field('rotulo_do_botao_aba_vertical')) : ?>
             <?php
-                    $linkBotaoAbaVertical = get_field('link_do_botao_aba_vertical');
-                    $linkBotaoAbaVertical_url = $linkBotaoAbaVertical['url'];
-                    $linkBotaoAbaVertical_target = $linkBotaoAbaVertical['target'] ? $linkBotaoAbaVertical['target'] : '_self';
-                    ?>
+                $linkBotaoAbaVertical = get_field('link_do_botao_aba_vertical');
+                $linkBotaoAbaVertical_url = $linkBotaoAbaVertical['url'];
+                $linkBotaoAbaVertical_target = $linkBotaoAbaVertical['target'] ? $linkBotaoAbaVertical['target'] : '_self';
+                ?>
             <?php endif; ?>
             <!-- loop que carrega os paineis -->
             <?php
@@ -66,7 +66,7 @@
                     the_row(); ?>
             <div id="tab-<?php echo $a; ?>">
                 <div class="download-ciranda-txt">
-                    <h1><?php the_sub_field('titulo_aba_vertical'); ?></h1>
+                    <h2><?php the_sub_field('titulo_aba_vertical'); ?></h2>
                     <?php the_sub_field('texto_aba_vertical'); ?>
                     <?php if (get_field('rotulo_do_botao_aba_vertical')) : ?>
                     <a class="btn-padrao" href="<?php echo esc_url($linkBotaoAbaVertical_url); ?>"
@@ -81,8 +81,8 @@
             <ul>
                 <!-- loop que carrega os paineis -->
                 <?php while (have_rows('abas_vertical')) :
-                            $b++;
-                            the_row(); ?>
+                        $b++;
+                        the_row(); ?>
                 <li><a href="#tab-<?php echo $b; ?>"><?php the_sub_field('titulo_aba_vertical'); ?></a></li>
                 <?php endwhile; ?>
             </ul>
@@ -96,7 +96,7 @@
 <section class="historia">
     <div class="inner">
         <div class="historia-titulo" style="background-image: url(<?php the_field('imagem_background_historia'); ?>);">
-            <h1><?php the_field('titulo_historia'); ?></h1>
+            <h2><?php the_field('titulo_historia'); ?></h2>
         </div>
         <div class="historia-txt">
             <?php the_field('texto_historia'); ?>
@@ -107,7 +107,7 @@
 <section id="quero-ciranda" class="quero-ciranda">
     <div class="inner">
         <div class="quero-ciranda-box">
-            <h1><?php the_field('titulo_formulario_solicitacao'); ?></h1>
+            <h2><?php the_field('titulo_formulario_solicitacao'); ?></h2>
             <?php if (get_field('texto_formulario_solicitacao')) : ?>
             <p class="quero-ciranda-txt"><?php the_field('texto_formulario_solicitacao'); ?></p>
             <?php endif; ?>
@@ -119,7 +119,7 @@
 <!-- DEPOIMENTOS -->
 <section class="historias-ciranda">
     <div class="inner">
-        <h1><?php the_field('titulo_depoimentos'); ?></h1>
+        <h2><?php the_field('titulo_depoimentos'); ?></h2>
         <!-- SLIDE -->
         <div class="historias-ciranda-slide owl-emenda">
             <div id="owl-historias-ciranda" class="owl-carousel owl-theme">
@@ -147,7 +147,7 @@
 <!-- PARCEIROS -->
 <section class="parceiros-ciranda">
     <div class="inner">
-        <h1><?php the_field('titulo_parceiros'); ?></h1>
+        <h2><?php the_field('titulo_parceiros'); ?></h2>
         <div class="parceiros-ciranda-slide owl-emenda">
             <div id="owl-parceiros-ciranda" class="owl-carousel owl-theme">
                 <!-- loop que carrega os logos dos parceiros -->
@@ -218,7 +218,7 @@ $(document).ready(function() {
 })
 
 $(".wpcf7-submit").click(function() {
-    const basepathAPI = "https://mathema.com.br/api/v1";
+    const basepathAPI = "https://mathema.com.br/api/v2";
 
     // console.log("Nome: " + $("#name").val());
     // console.log("Email: " + $("#email").val());
@@ -236,7 +236,7 @@ $(".wpcf7-submit").click(function() {
     form.append("merge_fields[CARGO]", $("select[name=cargo]").val());
     form.append("merge_fields[INSTITUICA]", $("input[name=instituicao]").val());
     form.append("merge_fields[ATUACAO]", $("select[name=perfil]").val());
-    form.append("tags[]", ["Formação Online B2B"]);
+    form.append("tags[]", ["Formacao Online B2B"]);
 
     var settings = {
         async: true,

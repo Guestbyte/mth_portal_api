@@ -45,8 +45,9 @@ add_image_size('blog-relacionada', 344, 200, true);
 add_image_size('capa-video', 173, 97, true);
 //ícone menu
 add_image_size('icone-menu', 89, 75, true);
-
-
+//material ciranda
+add_image_size('material', 755, 426, true);
+add_image_size('galeria-material', 410, 340, true);
 
 //Uso: the_post_thumbnail();
 
@@ -270,19 +271,19 @@ remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add
 
 /* PÁGINAS DAS CATEGORIAS DE PRODUTOS */
 
-/* remove os produtos da categoria "planos" */
-/* add_action( 'woocommerce_product_query', 'bbloomer_hide_products_category_shop' );   
+/* remove os produtos da categoria "curso gratis" */
+add_action( 'woocommerce_product_query', 'bbloomer_hide_products_category_shop' );   
 function bbloomer_hide_products_category_shop( $q ) {  
     $tax_query = (array) $q->get( 'tax_query' );  
     $tax_query[] = array(
            'taxonomy' => 'product_cat',
            'field' => 'slug',
-           'terms' => array( 'planos' ), // Category slug here
+           'terms' => array( 'curso-gratis' ), // Category slug here
            'operator' => 'NOT IN'
     );  
     $q->set( 'tax_query', $tax_query );  
 }
- */
+
 // personaliza as categorias, se for "planos" usa um layout diferente
 add_action('woocommerce_archive_description', 'woocommerce_category_image', 2);
 function woocommerce_category_image()
@@ -328,7 +329,7 @@ function woocommerce_category_image()
 			<?php if (have_rows('planos_cursos', 'product_cat_' . $catID)) : while (have_rows('planos_cursos', 'product_cat_' . $catID)) : the_row(); ?>
 					<div class="plano-item">
 						<img class="plano-item-img" src="<?php the_sub_field('icone_plano'); ?>" alt="<?php the_sub_field('titulo_plano'); ?>">
-						<h1><?php the_sub_field('titulo_plano'); ?></h1>
+						<h2><?php the_sub_field('titulo_plano'); ?></h2>
 						<div class="txt-plano">
 							<p><?php the_sub_field('texto_plano'); ?></p>
 						</div>
@@ -346,7 +347,7 @@ function woocommerce_category_image()
 									<?php $product = wc_get_product(get_sub_field('produto_plano_item')); ?>
 									<div class="produto-plano-item">
 										<!-- retira da string (título do produto as palavras "Plano anual ") -->
-										<h2><?php the_sub_field('nome_de_exibicao_produto_plano_item'); ?></h2>
+										<h3><?php the_sub_field('nome_de_exibicao_produto_plano_item'); ?></h3>
 										<form class="cart" action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>" method="post" enctype='multipart/form-data'>
 											<button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" class="single_add_to_cart_button button alt"><?php echo esc_html($product->single_add_to_cart_text()); ?></button>
 										</form>
@@ -375,18 +376,21 @@ function woocommerce_category_image()
 			/**carrega a imagem da categoria */
 			$thumbnail_id = get_woocommerce_term_meta($isChild, 'thumbnail_id', true);
 			$image = wp_get_attachment_url($thumbnail_id);
+			$imagemMobile = get_field('miniatura_mobile', 'product_cat_' . $isChild);
 			/** carrega os campos personalizados da categoria do produto */
 			$rows = get_field('slide_categoria_de_produto', 'product_cat_' . $isChild);
 			/**coloca a imagem de background e monta o slider */
-			if ($image) {
-				echo '<div id="topo-cat-produto" class="topo-cat-produto" style="background-image:url(' . $image . ')">
+			if ($image) {				
+
+				echo '<div id="topo-cat-produto" class="topo-cat-produto" style="background-image:url(' . $image . '), url(' . $imagemMobile . ')">
+
 				<div class="inner">
 					<div class="box-cat-produto owl-emenda">
 						<div id="owl-box-cat" class="owl-carousel owl-theme">';
 				if ($rows) {
 					foreach ($rows as $row) {
 						echo '<div class="box-cat-produto-item">
-											<h1>' . $row['titulo_slide_categoria_de_produto'] . '</h1>
+											<h2>' . $row['titulo_slide_categoria_de_produto'] . '</h2>
 											<p>' . $row['texto_slide_categoria_de_produto'] . '</p>	
 										</div>';
 					}
@@ -401,8 +405,8 @@ function woocommerce_category_image()
 
 	//exibe os ícones porque mathema
 	add_action('woocommerce_before_shop_loop', 'woocommerce_icones_mathema', 10);
-	function woocommerce_icones_mathema()
-	{
+	function woocommerce_icones_mathema()	{
+
 		/**SE FOR A CATEGORIA PLANOS NÃO EXIBE OS ÍCONES */
 		if (is_product_category('planos')) { } else {
 			global $wp_query;
@@ -419,14 +423,63 @@ function woocommerce_category_image()
 			if ($rows) {
 				echo '<div class="icones-porque">       
 						<div class="list-porque inner">';
-				if ($rows) {
+				
 					foreach ($rows as $row) {
 						echo '<div class="porque-item"><img src="' . $row['icone_por_que_o_mathema'] . '" alt="' . $row['texto_por_que_o_mathema'] . '"><span>' . $row['texto_por_que_o_mathema'] . '</span></div>';
 					}
-				}
+			
 				echo '</div>        
 						</div>';
 			}
+
+		
+
+			/* LISTA OS 2 BOXES COM OS PLANOS ANUAIS */
+			$rows1 = get_field('planos_cursos', 'product_cat_' . $isChild);				
+			if ($rows1) {
+			echo '<section class="lista-planos"><h2>Conheça nossos planos</h2><div class="list-planos list-planos-3">';
+				/* carrega os campos personalizados da categoria do produto */				
+				foreach ($rows1 as $row1) {
+					echo '<div class="plano-item plano-item-3">
+							<img class="plano-item-img" src="' . $row1['icone_plano'] . '" alt="' . $row1['titulo_plano'] . '">
+							<h2>' . $row1['titulo_plano'] . '</h2>
+							<div class="txt-plano">
+								<p>' . $row1['texto_plano'] . '</p>
+							</div>							
+							<div class="carac-plano">' . $row1['caracteristicas_plano'] . '</div>
+							<div class="valor-plano">
+								<div class="periodo-plano">' . $row1['periodo_plano'] . '</div>
+								<div class="parcelas-plano">' . $row1['valor_parcelado_plano'] . '</div>
+								<div class="avista-plano">' . $row1['valor_a_vista_plano'] . '</div>
+							</div>
+
+							<div class="list-produtos-plano">';
+
+							$rows2 = $row1['produtos_plano'];
+							
+							if ($rows2) {
+								foreach ($rows2 as $row2) {
+									$product = wc_get_product( $row2['produto_plano_item'] );
+
+									echo '<div class="produto-plano-item">
+
+										<h3>' . $row2['nome_de_exibicao_produto_plano_item'] . '</h3>
+										<form class="cart" action="' . esc_url(apply_filters("woocommerce_add_to_cart_form_action", $product->get_permalink())) . '" method="post" enctype="multipart/form-data">
+											<button type="submit" name="add-to-cart" value="' . esc_attr($product->get_id()) . '" class="single_add_to_cart_button button alt">' . esc_html($product->single_add_to_cart_text()) . '</button>
+										</form>
+
+									</div>';
+
+								}
+							};											
+							
+							echo '</div>
+						
+					</div>';
+				}				
+				echo '</div></section>';  
+			}
+			
 		}
 	}
 
@@ -516,7 +569,7 @@ function woocommerce_category_image()
 			<section class="experimente">
 				<div class="inner">
 					<div class="experimente-info">
-						<h1><?php echo get_field('titulo_experimente', 'product_cat_' . $isChild); ?></h1>
+						<h2><?php echo get_field('titulo_experimente', 'product_cat_' . $isChild); ?></h2>
 						<p class="experimente-txt"><?php echo get_field('texto_experimente', 'product_cat_' . $isChild); ?></p>
 					</div>
 					<?php
@@ -534,7 +587,7 @@ function woocommerce_category_image()
 			<section class="conheca-planos" style="background-image:url(<?php echo get_field('imagem_background_conheca_planos', 'product_cat_' . $isChild); ?>)">
 				<div class="inner">
 					<div class="conheca-planos-info">
-						<h1><?php echo get_field('titulo_conheca_planos', 'product_cat_' . $isChild); ?></h1>
+						<h2><?php echo get_field('titulo_conheca_planos', 'product_cat_' . $isChild); ?></h2>
 						<a class="btn-vagas" href="<?php echo get_field('link_do_botao_conheca_planos', 'product_cat_' . $isChild); ?>"><span><?php echo get_field('rotulo_do_botao_conheca_planos', 'product_cat_' . $isChild); ?></span></a>
 					</div>
 				</div>
@@ -584,7 +637,7 @@ function woocommerce_category_image()
 		<?php if (get_field('titulo_galeria_imagens', 'product_cat_' . $isChild)) : ?>
 			<section class="galeria-imagens">
 				<div class="inner">
-					<h1><?php echo get_field('titulo_galeria_imagens', 'product_cat_' . $isChild); ?></h1>
+					<h2><?php echo get_field('titulo_galeria_imagens', 'product_cat_' . $isChild); ?></h2>
 					<!-- SLIDE -->
 					<div class="galeria-imagens-slide owl-emenda">
 						<div id="owl-galeria-imagens" class="owl-carousel owl-theme">
@@ -684,8 +737,19 @@ add_theme_support( 'wc-product-gallery-slider' );*/
 
 //adiciona lista de 3 produtos aleatórios
 add_action('woocommerce_product_thumbnails', 'list_3_produtos_aletorios', 50);
-function list_3_produtos_aletorios()
-{
+function list_3_produtos_aletorios(){
+
+
+	$pageQuery = new WP_Query( 'page_id=2' ); $pageQuery->the_post();
+		$image_add = wp_get_attachment_image_src(get_field('imagem_anuncio_produto'), 'full');
+		$link_add = get_field('link_anuncio_produto');
+	wp_reset_postdata();
+
+	/**carrega a imagem usando o ID */
+	if ($image_add) {
+		echo '<a href="' . $link_add . '"><img class="img-add-produto" src="' . $image_add[0] . '" alt=""></a>';
+	}
+
 	echo '<div id="produtos-aletorios" class="produtos-aletorios">';
 	//se preencher o título exibe, senão exibe o padrão
 	if (get_field('titulo_carrossel_produtos')) {
@@ -729,6 +793,8 @@ function list_3_produtos_aletorios()
 						</div>';
 	wp_reset_postdata();
 	echo '</div>';
+
+	
 }
 
 //abre top product e adiciona breadcrumb
@@ -821,11 +887,44 @@ function fecha_add_to_cart()
 }
 
 //altera o rotulo do botão add to cart
-add_filter('woocommerce_product_single_add_to_cart_text', 'woo_custom_single_add_to_cart_text');
-function woo_custom_single_add_to_cart_text()
-{
-	return __('Compre!', 'woocommerce');
+/* add_filter('woocommerce_product_single_add_to_cart_text', 'woo_custom_single_add_to_cart_text');
+function woo_custom_single_add_to_cart_text(){	
+		return __('Compre!', 'woocommerce');
+} */
+
+add_filter( 'woocommerce_product_single_add_to_cart_text', 'bbloomer_archive_custom_cart_button_text' );
+ 
+function bbloomer_archive_custom_cart_button_text() {
+	global $product;       
+	if ( has_term( 'curso-gratis', 'product_cat', $product->ID ) ) {           
+		return 'Experimente!';
+	} else {
+		return 'Compre!';
+	}
 }
+
+
+
+/* add_filter( 'woocommerce_product_add_to_cart_text', 'bbloomer_archive_custom_cart_button_text' );
+  
+function bbloomer_archive_custom_cart_button_text() {
+global $product;
+ 
+	$terms = get_the_terms( $product->ID, 'product_cat' );
+	foreach ($terms as $term) {
+				$product_cat = $term->name;
+				break;
+	}
+	
+	switch($product_cat){
+		case 'Curso Grátis';
+			return 'Experimente!'; break;   
+	
+		default;
+			return 'Compre!'; break;
+	}
+} */
+
 
 //percurso formativo
 
@@ -1714,7 +1813,7 @@ function criar_equipe_post_type()
 		'show_in_nav_menus'     => true,
 		'can_export'            => false,
 		'has_archive'           => true,
-		'exclude_from_search'   => false,
+		'exclude_from_search'   => true,
 		'publicly_queryable'    => true,
 		'capability_type'       => 'post',
 	);
@@ -1862,7 +1961,7 @@ function criar_na_midia_post_type()
 		'show_in_nav_menus'     => true,
 		'can_export'            => false,
 		'has_archive'           => true,
-		'exclude_from_search'   => false,
+		'exclude_from_search'   => true,
 		'publicly_queryable'    => true,
 		'capability_type'       => 'post',
 	);
@@ -1870,18 +1969,21 @@ function criar_na_midia_post_type()
 }
 add_action('init', 'criar_na_midia_post_type', 0);
 
-function add_cpf_no_moodle($userdetails, $upgrade = false)
+function add_cpf_no_moodle($userdetails, $upgrade = 0)
 {
-	$cart = WC()->cart;
-	if ($upgrade == false && $cart !== null) {
-		$userdetails['customfields'] = [
+	$user = wp_get_current_user();
+
+    if(isset($user->ID)) {
+        $userdetails['customfields'] = [
 			[
 				'type' => 'cpf',
-				'value' => $cart->get_customer()->get_meta('billing_cpf')
+				'value' => get_user_meta($user->ID, 'billing_cpf', true)
 			]
 		];
+        return $userdetails;
 	}
-	return $userdetails;
+
+    return $userdetails;
 }
 
 add_action('eb_moodle_user_profile_details', 'add_cpf_no_moodle', 99);

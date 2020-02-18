@@ -1,7 +1,17 @@
 <?php
 include('./MailChimp.php');
+require '../vendor/autoload.php';
 
+use Monolog\Logger;
+use Monolog\Handler\StreamHandler;
 use \DrewM\MailChimp\MailChimp;
+
+// create a log channel 
+$log = new Logger('name');
+$log->pushHandler(new StreamHandler('api.log', Logger::WARNING));
+
+// $log->warning('Foo');
+// $log->error('Bar');
 
 $MailChimp = new MailChimp('6b64f119d239790236c85be24171200e-us16');
 // $mailchimp_list_id = '2da8383add'; // Lista MATHEMA ONLINE : https://us16.admin.mailchimp.com/lists/members?id=131005
@@ -65,21 +75,18 @@ switch (true) {
     //   break;
   case ($no_route):
     $data = array(
-      "name" => "Dashboard Formar - API Personalizada",
-      "description" => "WebService para dashboards do Mathema. [Fernando - 03/07/2019]",
+      "name" => "MTH API",
+      "description" => "RestAPI WebService destinado às integrações do Mathema.",
       "home" => "https://mathema.com.br",
-      "url" => "https://mathema.com.br/api/v1/",
-      "version" => "v1.0.1 alpha - 09/2019",
-      "status" => "Em desenvolvimento",
+      "url" => "https://mathema.com.br/api/v2/",
+      "version" => "v2 - 28/01/2020",
+      "status" => "production",
       "author" => "Fernando Ortiz de Mello - fernando.ortiz@mathema.com.br",
       "routes" => [
         "/" => [
           "methods" => ["GET"],
         ],
-        "/users" => [
-          "methods" => ["GET"]
-        ],
-        "/users/{id}" => [
+        "/mailchimp/subscribe" => [
           "methods" => ["GET"],
           "args" => [
             "id" => [
@@ -414,8 +421,6 @@ function route_woocommerce_webhooks($order_id = false)
     return json_encode($return, JSON_UNESCAPED_UNICODE);
   }
 
-  wh_log("dump order: \n" . print_r($order, true));
-
   $is_client = ($order->total > '0' || isset($order->coupon_lines[0]->code));
   if ($is_client) {
     $mc_array['merge_fields']['CLIENTE'] = 'SIM';
@@ -515,7 +520,7 @@ function route_woocommerce_webhooks($order_id = false)
   $mc_array['merge_fields']['CNPJ'] = $order->billing->cnpj;
   $mc_array['merge_fields']['TIPOCLIENT'] = $order->billing->persontype;
 
-  wh_log("dump array: \n" . print_r($mc_array, true));
+
 
   $mc_list_id = '803e6a1581'; // Lista CLIENTES MATHEMA ONLINE II : https://us16.admin.mailchimp.com/lists/members?id=165933
   $mc_result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
@@ -526,24 +531,44 @@ function route_woocommerce_webhooks($order_id = false)
   } elseif ($mc_result['title'] == 'Member Exists') {
     wh_log("Member Exists on list, tryng to update...");
     $subscriber_hash = md5($order->billing->email);
-    wh_log("dump array on update: \n" . print_r($mc_array, true));
 
     $put_result = $MailChimp->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
 
     if ($put_result['status'] !== 'subscribed') {
       wh_log("Mailchimp Error: \n" . print_r($put_result, true));
+      wh_log("dump array posted on update: \n" . print_r($mc_array, true));
       $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
       $return['return'] = $put_result;
       header('HTTP/1.1 500 Internal Server Error');
       return json_encode($return, JSON_UNESCAPED_UNICODE);
     }
 
+    $mc_result_get = $MailChimp->get("lists/$mc_list_id/segments");
+    // wh_log("mc_result_get: \n" . print_r($mc_result_get['segments'], true));
+
+    foreach ($mc_array['tags'] as $member_tag) {
+      foreach ($mc_result_get['segments'] as $list_tag) {
+        if ($list_tag['type'] == 'static' and $list_tag['name'] == $member_tag) {
+          $data['members_to_add'] = [$order->billing->email];
+          $mc_result_add_member_to_tag = $MailChimp->post("lists/$mc_list_id/segments/" . $list_tag['id'], $data);
+          if ($mc_result_add_member_to_tag['members_added'][0]['status'] == 'subscribed') {
+            wh_log("Success on update TAG: $member_tag");
+          } else {
+            // wh_log("Error on update tag - DUMP: \n" . print_r($mc_result_add_member_to_tag, true));
+            wh_log("Error on update tag: $member_tag. Fail or email already exist on tag.");
+          }
+        }
+      }
+    }
+
     $return['status'] = '200';
-    wh_log("Success updated to Mailchimp!\n" . print_r($put_result, true));
+    // wh_log("Success updated to Mailchimp!\n" . print_r($put_result, true));
+    wh_log("Success updated to Mailchimp!");
+    wh_log('------------------[ route_woocommerce_webhooks ]------------------ END');
     return json_encode($put_result, JSON_UNESCAPED_UNICODE);
   } else {
-
     wh_log("Mailchimp Error: \n" . print_r($mc_result, true));
+    wh_log("dump array posted: \n" . print_r($mc_array, true));
     $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
     header('HTTP/1.1 500 Internal Server Error');
     return json_encode($return, JSON_UNESCAPED_UNICODE);

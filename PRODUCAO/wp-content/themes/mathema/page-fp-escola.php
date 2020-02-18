@@ -21,7 +21,7 @@
 <section id="porque" class="porque">
     <div class="inner">
         <?php if (get_field('titulo_por_que_o_mathema')) : ?>
-        <h1><?php the_field('titulo_por_que_o_mathema'); ?></h1>
+        <h2><?php the_field('titulo_por_que_o_mathema'); ?></h2>
         <?php endif; ?>
         <div class="list-porque">
             <?php
@@ -55,7 +55,7 @@
                     the_row(); ?>
             <div id="tab-<?php echo $a; ?>">
                 <div class="download-ciranda-txt">
-                    <h1><?php the_sub_field('titulo_formacao_presencial_b2b'); ?></h1>
+                    <h2><?php the_sub_field('titulo_formacao_presencial_b2b'); ?></h2>
                     <?php the_sub_field('texto_formacao_presencial_b2b'); ?>
                 </div>
                 <?php echo wp_get_attachment_image(get_sub_field('imagem_formacao_presencial_b2b'), 'img-tab-ciranda'); ?>
@@ -64,13 +64,13 @@
                 <!-- ABAS ACCORDEON -->
                 <?php if (have_rows('abas_temas')) :  ?>
                 <div class="abas-accordion">
-                    <h1 class="temas-titulo">Conheça alguns temas disponíveis:</h1>
+                    <h2 class="temas-titulo">Conheça alguns temas disponíveis:</h2>
                     <!-- loop que carrega os accordeons -->
                     <?php
-                                            $c = 0;
-                                            while (have_rows('abas_temas')) :
-                                                $c++;
-                                                the_row(); ?>
+                                $c = 0;
+                                while (have_rows('abas_temas')) :
+                                    $c++;
+                                    the_row(); ?>
                     <div class="aba-accordion-item">
                         <input type="radio" id="rd-<?php echo $a; ?>-<?php echo $c; ?>" name="rd">
                         <label class="aba-accordion-item-label"
@@ -86,7 +86,7 @@
                                     <?php the_sub_field('local_aba_tema'); ?></div>
                             </div>
                             <div class="aba-accordion-conteudo-txt">
-                                <h3><?php the_sub_field('subtitulo_aba_tema'); ?></h3>
+                                <h4><?php the_sub_field('subtitulo_aba_tema'); ?></h4>
                                 <?php the_sub_field('texto_aba_tema'); ?>
                             </div>
                             <?php echo wp_get_attachment_image(get_sub_field('imagem_aba_tema'), 'aba-accordion'); ?>
@@ -110,8 +110,8 @@
             <ul>
                 <!-- loop que carrega as abas -->
                 <?php while (have_rows('abas_vertical_formacao_presencial_b2b')) :
-                            $b++;
-                            the_row(); ?>
+                        $b++;
+                        the_row(); ?>
                 <li><a href="#tab-<?php echo $b; ?>"><?php the_sub_field('titulo_formacao_presencial_b2b'); ?></a></li>
                 <?php endwhile; ?>
             </ul>
@@ -125,7 +125,7 @@
         <?php /** <button id="btn-form-modalidade" class="btn-vagas"><span><?php the_field('rotulo_do_botao_formulario_modalidade'); ?></span></button>
         */ ?>
         <div id="form-modalidade" class="quero-ciranda-box">
-            <h1><?php the_field('titulo_formulario_modalidade'); ?></h1>
+            <h2><?php the_field('titulo_formulario_modalidade'); ?></h2>
             <?php if (get_field('texto_formulario_modalidade')) : ?>
             <p class="quero-ciranda-txt"><?php the_field('texto_formulario_modalidade'); ?></p>
             <?php endif; ?>
@@ -136,7 +136,7 @@
 <!-- DEPOIMENTOS -->
 <section class="historias-ciranda">
     <div class="inner">
-        <h1><?php the_field('titulo_depoimentos'); ?></h1>
+        <h2><?php the_field('titulo_depoimentos'); ?></h2>
         <!-- SLIDE -->
         <div class="historias-ciranda-slide owl-emenda">
             <div id="owl-historias-ciranda" class="owl-carousel owl-theme">
@@ -165,17 +165,17 @@
 <section class="minuto-home historias-ciranda-video">
     <div class="inner">
         <div class="minuto-home-conteudo">
-            <h1><?php the_field('titulo_galeria_video'); ?></h1>
+            <h2><?php the_field('titulo_galeria_video'); ?></h2>
             <div class="minuto-home-txt">
                 <p><?php the_field('texto_galeria_video'); ?></p>
             </div>
             <!-- ACF Link -->
             <?php if (get_field('rotulo_botao_galeria_video')) : ?>
             <?php
-                    $linkGaleria = get_field('destino_do_botao_galeria_video');
-                    $linkGaleria_url = $linkGaleria['url'];
-                    $linkGaleria_target = $linkGaleria['target'] ? $linkGaleria['target'] : '_self';
-                    ?>
+                $linkGaleria = get_field('destino_do_botao_galeria_video');
+                $linkGaleria_url = $linkGaleria['url'];
+                $linkGaleria_target = $linkGaleria['target'] ? $linkGaleria['target'] : '_self';
+                ?>
             <a class="btn-padrao" href="<?php echo esc_url($linkGaleria_url); ?>"
                 target="<?php echo esc_attr($linkGaleria_target); ?>"><?php the_field('rotulo_botao_galeria_video'); ?></a>
             <?php endif; ?>
@@ -209,7 +209,7 @@
 <section class="quero-ciranda">
     <div class="inner">
         <div class="quero-ciranda-box">
-            <h1><?php the_field('titulo_formulario_solicitacao'); ?></h1>
+            <h2><?php the_field('titulo_formulario_solicitacao'); ?></h2>
             <?php if (get_field('texto_formulario_solicitacao')) : ?>
             <p class="quero-ciranda-txt"><?php the_field('texto_formulario_solicitacao'); ?></p>
             <?php endif; ?>
@@ -221,7 +221,7 @@
 <!-- PARCEIROS -->
 <section class="parceiros-ciranda">
     <div class="inner">
-        <h1><?php the_field('titulo_parceiros'); ?></h1>
+        <h2><?php the_field('titulo_parceiros'); ?></h2>
         <div class="parceiros-ciranda-slide owl-emenda">
             <div id="owl-parceiros-ciranda" class="owl-carousel owl-theme">
                 <!-- loop que carrega os logos dos parceiros -->
@@ -322,7 +322,7 @@ $(document).ready(function() {
 })
 
 $(".wpcf7-submit").click(function() {
-    const basepathAPI = "https://mathema.com.br/api/v1";
+    const basepathAPI = "https://mathema.com.br/api/v2";
 
     // console.log("Nome: " + $("#name").val());
     // console.log("Email: " + $("#email").val());

@@ -252,7 +252,7 @@ function WP_API($method, $route, $data = false)
   $base_url = "https://mathema.com.br/wp-json";
   $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbWF0aGVtYS5jb20uYnIiLCJpYXQiOjE1NzEwNTYyODAsIm5iZiI6MTU3MTA1NjI4MCwiZXhwIjoxNTcxNjYxMDgwLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIxNTcifX19.dp_MYkgSq-zA8trhBvVakzlA77T66FPgoyw94HqdRXw";
 
-  // TODO: Validate and renew token: https://mathema.com.br/wp-json/jwt-auth/v1/token/validate
+  // TO DO: Validate and renew token: https://mathema.com.br/wp-json/jwt-auth/v1/token/validate
   //   {
   //     "code": "jwt_auth_invalid_token",
   //     "message": "Expired token",

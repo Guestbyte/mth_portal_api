@@ -31,7 +31,7 @@
             if ($the_query->have_posts()) {
                 while ($the_query->have_posts()) {
                     $the_query->the_post();
-                    ?>
+            ?>
             <div class="projeto-especial-item">
                 <a href="<?php the_permalink(); ?>">
                     <div class="projeto-especial-item-titulo">
@@ -54,17 +54,17 @@
 <section class="minuto-home historias-ciranda-video">
     <div class="inner">
         <div class="minuto-home-conteudo">
-            <h1><?php the_field('titulo_galeria_video'); ?></h1>
+            <h2><?php the_field('titulo_galeria_video'); ?></h2>
             <div class="minuto-home-txt">
                 <p><?php the_field('texto_galeria_video'); ?></p>
             </div>
             <!-- ACF Link -->
             <?php if (get_field('rotulo_botao_galeria_video')) : ?>
             <?php
-                            $linkGaleria = get_field('destino_do_botao_galeria_video');
-                            $linkGaleria_url = $linkGaleria['url'];
-                            $linkGaleria_target = $linkGaleria['target'] ? $linkGaleria['target'] : '_self';
-                            ?>
+                    $linkGaleria = get_field('destino_do_botao_galeria_video');
+                    $linkGaleria_url = $linkGaleria['url'];
+                    $linkGaleria_target = $linkGaleria['target'] ? $linkGaleria['target'] : '_self';
+                    ?>
             <a class="btn-padrao" href="<?php echo esc_url($linkGaleria_url); ?>"
                 target="<?php echo esc_attr($linkGaleria_target); ?>"><?php the_field('rotulo_botao_galeria_video'); ?></a>
             <?php endif; ?>
@@ -101,7 +101,7 @@
         <?php /** <button id="btn-form-modalidade" class="btn-vagas"><span><?php the_field('rotulo_do_botao_formulario_modalidade'); ?></span></button>
         */ ?>
         <div id="form-modalidade" class="quero-ciranda-box">
-            <h1><?php the_field('titulo_formulario_modalidade'); ?></h1>
+            <h2><?php the_field('titulo_formulario_modalidade'); ?></h2>
             <?php if (get_field('texto_formulario_modalidade')) : ?>
             <p class="quero-ciranda-txt"><?php the_field('texto_formulario_modalidade'); ?></p>
             <?php endif; ?>
@@ -112,7 +112,7 @@
 <!-- DEPOIMENTOS -->
 <section class="historias-ciranda">
     <div class="inner">
-        <h1><?php the_field('titulo_depoimentos'); ?></h1>
+        <h2><?php the_field('titulo_depoimentos'); ?></h2>
         <!-- SLIDE -->
         <div class="historias-ciranda-slide owl-emenda">
             <div id="owl-historias-ciranda" class="owl-carousel owl-theme">
@@ -141,7 +141,7 @@
 <!-- PARCEIROS -->
 <section class="parceiros-ciranda">
     <div class="inner">
-        <h1><?php the_field('titulo_parceiros'); ?></h1>
+        <h2><?php the_field('titulo_parceiros'); ?></h2>
         <div class="parceiros-ciranda-slide owl-emenda">
             <div id="owl-parceiros-ciranda" class="owl-carousel owl-theme">
                 <!-- loop que carrega os logos dos parceiros -->
@@ -176,8 +176,8 @@ $(document).ready(function() {
 
 //JS: Integracao com Mailchimp 
 //[25/10/2019 - Fernando]
-$(".wpcf7-submit").click(function() {
-    const basepathAPI = "https://mathema.com.br/api/v1";
+$(".wpcf7-submit").click(function(event) {
+    const basepathAPI = "https://mathema.com.br/api/v2";
 
     // console.log("Nome: " + $("#name").val());
     // console.log("Email: " + $("#email").val());
@@ -200,6 +200,13 @@ $(".wpcf7-submit").click(function() {
     form.append("merge_fields[CIDADE]", $("input[name=cidade]").val());
     form.append("merge_fields[ESTADO]", $("select[name=estado]").val());
     form.append("tags[]", ["Projetos especiais"]);
+
+
+    // if ($("#name").val() == "Fernando") {
+    //     event.preventDefault();
+    //     console.log("preventDefault");
+    //     return
+    // }
 
     var settings = {
         async: true,
