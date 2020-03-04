@@ -307,14 +307,15 @@ function woocommerce_category_image()
 								<div class="box-cat-produto-planos">';
 			//breadcrumb								
 			?>
-			<div class="breadcrumbs">
-				<span><a href="<?php echo bloginfo('url'); ?>"><span>Home</span></a></span>
-				<span class="separador-breadcrumb"> › </span>
-				<span><a href="<?php echo bloginfo('url'); ?>/categoria-produto/formacao-online/"><span>Loja</span></a></span>
-				<span class="separador-breadcrumb"> › </span>
-				<span><a href="<?php echo bloginfo('url'); ?>/categoria-produto/formacao-online/"><span>Formação online</span></a></span>
-			</div>
-		<?php
+<div class="breadcrumbs">
+    <span><a href="<?php echo bloginfo('url'); ?>"><span>Home</span></a></span>
+    <span class="separador-breadcrumb"> › </span>
+    <span><a href="<?php echo bloginfo('url'); ?>/categoria-produto/formacao-online/"><span>Loja</span></a></span>
+    <span class="separador-breadcrumb"> › </span>
+    <span><a href="<?php echo bloginfo('url'); ?>/categoria-produto/formacao-online/"><span>Formação
+                online</span></a></span>
+</div>
+<?php
 					echo '<h1>' . $cat->name . '</h1>
 									<p>' . $cat->description . '</p>
 								</div>
@@ -323,45 +324,49 @@ function woocommerce_category_image()
 							</div>
 						</div>';
 				} ?>
-		<!-- LISTA OS 2 BOXES COM OS PLANOS ANUAIS -->
-		<div class="list-planos">
-			<!-- carrega os campos personalizados da categoria do produto -->
-			<?php if (have_rows('planos_cursos', 'product_cat_' . $catID)) : while (have_rows('planos_cursos', 'product_cat_' . $catID)) : the_row(); ?>
-					<div class="plano-item">
-						<img class="plano-item-img" src="<?php the_sub_field('icone_plano'); ?>" alt="<?php the_sub_field('titulo_plano'); ?>">
-						<h2><?php the_sub_field('titulo_plano'); ?></h2>
-						<div class="txt-plano">
-							<p><?php the_sub_field('texto_plano'); ?></p>
-						</div>
-						<div class="carac-plano"><?php the_sub_field('caracteristicas_plano'); ?></div>
-						<div class="valor-plano">
-							<div class="periodo-plano"><?php the_sub_field('periodo_plano'); ?></div>
-							<div class="parcelas-plano"><?php the_sub_field('valor_parcelado_plano'); ?></div>
-							<div class="avista-plano"><?php the_sub_field('valor_a_vista_plano'); ?></div>
-						</div>
-						<!-- INÍCIO LISTA OS PRODUTOS DO PLANO -->
-						<div class="list-produtos-plano">
-							<?php
+<!-- LISTA OS 2 BOXES COM OS PLANOS ANUAIS -->
+<div class="list-planos">
+    <!-- carrega os campos personalizados da categoria do produto -->
+    <?php if (have_rows('planos_cursos', 'product_cat_' . $catID)) : while (have_rows('planos_cursos', 'product_cat_' . $catID)) : the_row(); ?>
+    <div class="plano-item">
+        <img class="plano-item-img" src="<?php the_sub_field('icone_plano'); ?>"
+            alt="<?php the_sub_field('titulo_plano'); ?>">
+        <h2><?php the_sub_field('titulo_plano'); ?></h2>
+        <div class="txt-plano">
+            <p><?php the_sub_field('texto_plano'); ?></p>
+        </div>
+        <div class="carac-plano"><?php the_sub_field('caracteristicas_plano'); ?></div>
+        <div class="valor-plano">
+            <div class="periodo-plano"><?php the_sub_field('periodo_plano'); ?></div>
+            <div class="parcelas-plano"><?php the_sub_field('valor_parcelado_plano'); ?></div>
+            <div class="avista-plano"><?php the_sub_field('valor_a_vista_plano'); ?></div>
+        </div>
+        <!-- INÍCIO LISTA OS PRODUTOS DO PLANO -->
+        <div class="list-produtos-plano">
+            <?php
 											if (have_rows('produtos_plano')) : while (have_rows('produtos_plano')) : the_row(); ?>
-									<!-- pega os elementos do produto (botão) usando o ID -->
-									<?php $product = wc_get_product(get_sub_field('produto_plano_item')); ?>
-									<div class="produto-plano-item">
-										<!-- retira da string (título do produto as palavras "Plano anual ") -->
-										<h3><?php the_sub_field('nome_de_exibicao_produto_plano_item'); ?></h3>
-										<form class="cart" action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>" method="post" enctype='multipart/form-data'>
-											<button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" class="single_add_to_cart_button button alt"><?php echo esc_html($product->single_add_to_cart_text()); ?></button>
-										</form>
-									</div>
-							<?php endwhile;
+            <!-- pega os elementos do produto (botão) usando o ID -->
+            <?php $product = wc_get_product(get_sub_field('produto_plano_item')); ?>
+            <div class="produto-plano-item">
+                <!-- retira da string (título do produto as palavras "Plano anual ") -->
+                <h3><?php the_sub_field('nome_de_exibicao_produto_plano_item'); ?></h3>
+                <form class="cart"
+                    action="<?php echo esc_url(apply_filters('woocommerce_add_to_cart_form_action', $product->get_permalink())); ?>"
+                    method="post" enctype='multipart/form-data'>
+                    <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>"
+                        class="single_add_to_cart_button button alt"><?php echo esc_html($product->single_add_to_cart_text()); ?></button>
+                </form>
+            </div>
+            <?php endwhile;
 											endif;    ?>
-							<!-- FIM LISTA OS PRODUTOS DO PLANO -->
-						</div>
-					</div>
-			<?php endwhile;
+            <!-- FIM LISTA OS PRODUTOS DO PLANO -->
+        </div>
+    </div>
+    <?php endwhile;
 					endif; ?>
-		</div>
+</div>
 
-	<?php
+<?php
 			/**SE FOR OUTRA CATEGORIA O TEMPLATE É IGUAL PRA TODAS */
 		} else {
 			global $wp_query;
@@ -491,16 +496,16 @@ function woocommerce_category_image()
 		//SE FOR A CATEGORIA PLANOS NÃO EXIBE O SELECT/
 		if (is_product_category('planos')) { } elseif (is_product_category('formacao-online')) {
 			?>
-		<div class="filtros-container">
-			<?php dynamic_sidebar('filtros-formacao-online'); ?>
-		</div>
-	<?php
+<div class="filtros-container">
+    <?php dynamic_sidebar('filtros-formacao-online'); ?>
+</div>
+<?php
 		} elseif (is_product_category('formacao-presencial')) {
 			?>
-		<div class="filtros-container">
-			<?php dynamic_sidebar('filtros-formacao-presencial'); ?>
-		</div>
-	<?php
+<div class="filtros-container">
+    <?php dynamic_sidebar('filtros-formacao-presencial'); ?>
+</div>
+<?php
 		} else {
 			global $wp_query;
 			$cat = $wp_query->get_queried_object();
@@ -553,127 +558,133 @@ function woocommerce_category_image()
 			};
 			?>
 
-		<!-- INFOGRÁFICO  -->
-		<?php if (get_field('infografico', 'product_cat_' . $isChild)) : ?>
-			<section class="infografico-fo">
-				<div class="inner">
-					<div class="box-infografico">
-						<?php echo wp_get_attachment_image(get_field('infografico', 'product_cat_' . $isChild), 'infografico', '', array('class' => 'infografico-img')); ?>
-					</div>
-				</div>
-			</section>
-		<?php endif; ?>
+<!-- INFOGRÁFICO  -->
+<?php if (get_field('infografico', 'product_cat_' . $isChild)) : ?>
+<section class="infografico-fo">
+    <div class="inner">
+        <div class="box-infografico">
+            <?php echo wp_get_attachment_image(get_field('infografico', 'product_cat_' . $isChild), 'infografico', '', array('class' => 'infografico-img')); ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
-		<!-- EXPERIMENTE -->
-		<?php if (get_field('titulo_experimente', 'product_cat_' . $isChild)) : ?>
-			<section class="experimente">
-				<div class="inner">
-					<div class="experimente-info">
-						<h2><?php echo get_field('titulo_experimente', 'product_cat_' . $isChild); ?></h2>
-						<p class="experimente-txt"><?php echo get_field('texto_experimente', 'product_cat_' . $isChild); ?></p>
-					</div>
-					<?php
+<!-- EXPERIMENTE -->
+<?php if (get_field('titulo_experimente', 'product_cat_' . $isChild)) : ?>
+<section class="experimente">
+    <div class="inner">
+        <div class="experimente-info">
+            <h2><?php echo get_field('titulo_experimente', 'product_cat_' . $isChild); ?></h2>
+            <p class="experimente-txt"><?php echo get_field('texto_experimente', 'product_cat_' . $isChild); ?></p>
+        </div>
+        <?php
 								$linkExperimente = get_field('link_do_botao_experimente', 'product_cat_' . $isChild);
 								$linkExperimente_url = $linkExperimente['url'];
 								$linkExperimente_target = $linkExperimente['target'] ? $linkExperimente['target'] : '_self';
 								?>
-					<a class="btn-vagas" href="<?php echo esc_url($linkExperimente_url); ?>" target="<?php echo esc_attr($linkExperimente_target); ?>"><span><?php echo get_field('rotulo_do_botao_experimente', 'product_cat_' . $isChild); ?></span></a>
-				</div>
-			</section>
-		<?php endif; ?>
+        <a class="btn-vagas" href="<?php echo esc_url($linkExperimente_url); ?>"
+            target="<?php echo esc_attr($linkExperimente_target); ?>"><span><?php echo get_field('rotulo_do_botao_experimente', 'product_cat_' . $isChild); ?></span></a>
+    </div>
+</section>
+<?php endif; ?>
 
-		<!-- CONHEÇA PLANOS -->
-		<?php if (get_field('titulo_conheca_planos', 'product_cat_' . $isChild)) : ?>
-			<section class="conheca-planos" style="background-image:url(<?php echo get_field('imagem_background_conheca_planos', 'product_cat_' . $isChild); ?>)">
-				<div class="inner">
-					<div class="conheca-planos-info">
-						<h2><?php echo get_field('titulo_conheca_planos', 'product_cat_' . $isChild); ?></h2>
-						<a class="btn-vagas" href="<?php echo get_field('link_do_botao_conheca_planos', 'product_cat_' . $isChild); ?>"><span><?php echo get_field('rotulo_do_botao_conheca_planos', 'product_cat_' . $isChild); ?></span></a>
-					</div>
-				</div>
-			</section>
-		<?php endif; ?>
+<!-- CONHEÇA PLANOS -->
+<?php if (get_field('titulo_conheca_planos', 'product_cat_' . $isChild)) : ?>
+<section class="conheca-planos"
+    style="background-image:url(<?php echo get_field('imagem_background_conheca_planos', 'product_cat_' . $isChild); ?>)">
+    <div class="inner">
+        <div class="conheca-planos-info">
+            <h2><?php echo get_field('titulo_conheca_planos', 'product_cat_' . $isChild); ?></h2>
+            <a class="btn-vagas"
+                href="<?php echo get_field('link_do_botao_conheca_planos', 'product_cat_' . $isChild); ?>"><span><?php echo get_field('rotulo_do_botao_conheca_planos', 'product_cat_' . $isChild); ?></span></a>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
-		<!-- DEPOIMENTOS -->
-		<?php if (have_rows('itens_depoimentos', 'product_cat_' . $isChild)) : ?>
-			<section class="historias-ciranda">
-				<div class="inner">
-					<h1><?php the_field('titulo_depoimentos', 'product_cat_' . $isChild); ?></h1>
-					<!-- SLIDE -->
-					<div class="historias-ciranda-slide owl-emenda">
-						<div id="owl-historias-ciranda" class="owl-carousel owl-theme">
-							<!-- loop que carrega os resultados -->
-							<?php if (have_rows('itens_depoimentos', 'product_cat_' . $isChild)) : while (have_rows('itens_depoimentos', 'product_cat_' . $isChild)) : the_row(); ?>
-									<!-- ITEM -->
-									<div class="historias-ciranda-item">
-										<div class="historias-ciranda-item-autor">
-											<?php echo wp_get_attachment_image(get_sub_field('imagem_depoimento', 'product_cat_' . $isChild), 'autor-imagem', '', array('class' => 'historias-ciranda-item-img')); ?>
-											<h6><?php the_sub_field('autor_depoimento', 'product_cat_' . $isChild); ?></h6>
-											<span class="subtitulo"><?php the_sub_field('cargo_depoimento', 'product_cat_' . $isChild); ?></span>
-										</div>
-										<div class="historias-ciranda-item-info">
-											<p><?php the_sub_field('depoimento_depoimento', 'product_cat_' . $isChild); ?></p>
-										</div>
-									</div>
-							<?php endwhile;
+<!-- DEPOIMENTOS -->
+<?php if (have_rows('itens_depoimentos', 'product_cat_' . $isChild)) : ?>
+<section class="historias-ciranda">
+    <div class="inner">
+        <h1><?php the_field('titulo_depoimentos', 'product_cat_' . $isChild); ?></h1>
+        <!-- SLIDE -->
+        <div class="historias-ciranda-slide owl-emenda">
+            <div id="owl-historias-ciranda" class="owl-carousel owl-theme">
+                <!-- loop que carrega os resultados -->
+                <?php if (have_rows('itens_depoimentos', 'product_cat_' . $isChild)) : while (have_rows('itens_depoimentos', 'product_cat_' . $isChild)) : the_row(); ?>
+                <!-- ITEM -->
+                <div class="historias-ciranda-item">
+                    <div class="historias-ciranda-item-autor">
+                        <?php echo wp_get_attachment_image(get_sub_field('imagem_depoimento', 'product_cat_' . $isChild), 'autor-imagem', '', array('class' => 'historias-ciranda-item-img')); ?>
+                        <h6><?php the_sub_field('autor_depoimento', 'product_cat_' . $isChild); ?></h6>
+                        <span
+                            class="subtitulo"><?php the_sub_field('cargo_depoimento', 'product_cat_' . $isChild); ?></span>
+                    </div>
+                    <div class="historias-ciranda-item-info">
+                        <p><?php the_sub_field('depoimento_depoimento', 'product_cat_' . $isChild); ?></p>
+                    </div>
+                </div>
+                <?php endwhile;
 										endif; ?>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</section>
-		<?php endif; ?>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section>
+<?php endif; ?>
 
-		<!-- CONTRATAR MODALIDADE -->
-		<?php if (get_field('rotulo_do_botao_link_pagina_especifica', 'product_cat_' . $isChild)) : ?>
-			<section class="contratar-modalidade quero-ciranda">
-				<div class="inner">
-					<a class="btn-vagas" href="<?php echo get_field('link_do_botao_link_pagina_especifica', 'product_cat_' . $isChild); ?>"><span><?php echo get_field('rotulo_do_botao_link_pagina_especifica', 'product_cat_' . $isChild); ?></span></a>
-				</div>
-			</section>
-		<?php endif; ?>
+<!-- CONTRATAR MODALIDADE -->
+<?php if (get_field('rotulo_do_botao_link_pagina_especifica', 'product_cat_' . $isChild)) : ?>
+<section class="contratar-modalidade quero-ciranda">
+    <div class="inner">
+        <a class="btn-vagas"
+            href="<?php echo get_field('link_do_botao_link_pagina_especifica', 'product_cat_' . $isChild); ?>"><span><?php echo get_field('rotulo_do_botao_link_pagina_especifica', 'product_cat_' . $isChild); ?></span></a>
+    </div>
+</section>
+<?php endif; ?>
 
-		<!-- GALERIA DE IMAGENS -->
-		<?php if (get_field('titulo_galeria_imagens', 'product_cat_' . $isChild)) : ?>
-			<section class="galeria-imagens">
-				<div class="inner">
-					<h2><?php echo get_field('titulo_galeria_imagens', 'product_cat_' . $isChild); ?></h2>
-					<!-- SLIDE -->
-					<div class="galeria-imagens-slide owl-emenda">
-						<div id="owl-galeria-imagens" class="owl-carousel owl-theme">
-							<!-- loop que carrega os resultados -->
-							<?php if (have_rows('itens_galeria_imagens', 'product_cat_' . $isChild)) : while (have_rows('itens_galeria_imagens', 'product_cat_' . $isChild)) : the_row(); ?>
-									<!-- ITEM -->
-									<div class="galeria-imagem-item">
-										<?php echo wp_get_attachment_image(get_sub_field('imagem_galeria_imagens', 'product_cat_' . $isChild), 'imagem-galeria', '', array('class' => 'galeria-imagem-item-img')); ?>
-										<div class="galeria-imagem-item-legenda">
-											<p><?php the_sub_field('resumo_galeria_imagens', 'product_cat_' . $isChild); ?></p>
-										</div>
-									</div>
-							<?php endwhile;
+<!-- GALERIA DE IMAGENS -->
+<?php if (get_field('titulo_galeria_imagens', 'product_cat_' . $isChild)) : ?>
+<section class="galeria-imagens">
+    <div class="inner">
+        <h2><?php echo get_field('titulo_galeria_imagens', 'product_cat_' . $isChild); ?></h2>
+        <!-- SLIDE -->
+        <div class="galeria-imagens-slide owl-emenda">
+            <div id="owl-galeria-imagens" class="owl-carousel owl-theme">
+                <!-- loop que carrega os resultados -->
+                <?php if (have_rows('itens_galeria_imagens', 'product_cat_' . $isChild)) : while (have_rows('itens_galeria_imagens', 'product_cat_' . $isChild)) : the_row(); ?>
+                <!-- ITEM -->
+                <div class="galeria-imagem-item">
+                    <?php echo wp_get_attachment_image(get_sub_field('imagem_galeria_imagens', 'product_cat_' . $isChild), 'imagem-galeria', '', array('class' => 'galeria-imagem-item-img')); ?>
+                    <div class="galeria-imagem-item-legenda">
+                        <p><?php the_sub_field('resumo_galeria_imagens', 'product_cat_' . $isChild); ?></p>
+                    </div>
+                </div>
+                <?php endwhile;
 										endif; ?>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</section>
-		<?php endif; ?>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</section>
+<?php endif; ?>
 
-		<!-- FORMULÁRIO SUGESTÃO -->
-		<?php if (get_field('texto_formulario_sugestao', 'product_cat_' . $isChild)) : ?>
-			<section class="formulario-fp">
-				<div class="inner">
-					<div class="box-contato">
-						<div class="contato-form">
-							<p class="desc-form"><?php echo get_field('texto_formulario_sugestao', 'product_cat_' . $isChild); ?></p>
-							<?php echo do_shortcode(get_field('formulario_formulario_sugestao', 'product_cat_' . $isChild)); ?>
-						</div>
-					</div>
-				</div>
-			</section>
-		<?php endif; ?>
+<!-- FORMULÁRIO SUGESTÃO -->
+<?php if (get_field('texto_formulario_sugestao', 'product_cat_' . $isChild)) : ?>
+<section class="formulario-fp">
+    <div class="inner">
+        <div class="box-contato">
+            <div class="contato-form">
+                <p class="desc-form"><?php echo get_field('texto_formulario_sugestao', 'product_cat_' . $isChild); ?>
+                </p>
+                <?php echo do_shortcode(get_field('formulario_formulario_sugestao', 'product_cat_' . $isChild)); ?>
+            </div>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
 
-	<?php
+<?php
 
 
 		}
@@ -725,13 +736,13 @@ add_theme_support( 'wc-product-gallery-slider' );*/
 			$term_link = get_term_link($term);
 		}
 		?>
-	<div class="breadcrumbs breadcrumbs-mobile">
-		<span><a href="<?php echo bloginfo('url'); ?>"><span>Home</span></a></span>
-		<span class="separador-breadcrumb"> › </span>
-		<span><a href="<?php echo esc_url($term_link); ?>"><span>Loja</span></a></span>
-		<span class="separador-breadcrumb"> › </span>
-		<span><a href="<?php echo esc_url($term_link); ?>"><span><?php echo $product_cat_name; ?></span></a></span>
-	</div>
+<div class="breadcrumbs breadcrumbs-mobile">
+    <span><a href="<?php echo bloginfo('url'); ?>"><span>Home</span></a></span>
+    <span class="separador-breadcrumb"> › </span>
+    <span><a href="<?php echo esc_url($term_link); ?>"><span>Loja</span></a></span>
+    <span class="separador-breadcrumb"> › </span>
+    <span><a href="<?php echo esc_url($term_link); ?>"><span><?php echo $product_cat_name; ?></span></a></span>
+</div>
 <?php
 }
 
@@ -811,13 +822,13 @@ function abre_top_product()
 		$term_link = get_term_link($term);
 	}
 	?>
-	<div class="breadcrumbs">
-		<span><a href="<?php echo bloginfo('url'); ?>"><span>Home</span></a></span>
-		<span class="separador-breadcrumb"> › </span>
-		<span><a href="<?php echo esc_url($term_link); ?>"><span>Loja</span></a></span>
-		<span class="separador-breadcrumb"> › </span>
-		<span><a href="<?php echo esc_url($term_link); ?>"><span><?php echo $product_cat_name; ?></span></a></span>
-	</div>
+<div class="breadcrumbs">
+    <span><a href="<?php echo bloginfo('url'); ?>"><span>Home</span></a></span>
+    <span class="separador-breadcrumb"> › </span>
+    <span><a href="<?php echo esc_url($term_link); ?>"><span>Loja</span></a></span>
+    <span class="separador-breadcrumb"> › </span>
+    <span><a href="<?php echo esc_url($term_link); ?>"><span><?php echo $product_cat_name; ?></span></a></span>
+</div>
 <?php
 }
 
@@ -1185,13 +1196,13 @@ add_filter('woocommerce_after_checkout_form', 'ajusta_label_campo_complemento');
 function ajusta_label_campo_complemento()
 {
 	?>
-	<script>
-		$(document).ready(function() {
-			$("#billing_address_2_field label").replaceWith('<div class="rotulo">Complemento (opcional)</div>');
-			$("#shipping_address_2_field label").replaceWith('<div class="rotulo">Complemento (opcional)</div>');
-		})
-	</script>
-	<?php
+<script>
+$(document).ready(function() {
+    $("#billing_address_2_field label").replaceWith('<div class="rotulo">Complemento (opcional)</div>');
+    $("#shipping_address_2_field label").replaceWith('<div class="rotulo">Complemento (opcional)</div>');
+})
+</script>
+<?php
 	}
 
 
@@ -1209,32 +1220,32 @@ function ajusta_label_campo_complemento()
 		$user_in_mathema_online_group = (in_array("4", $user_group_ids));
 		if ($user_in_mathema_online_group) {
 			?>
-		<div id="btn-online" class="btn-sala-aula sala-de-aula">
-			<div class="btn-sala-aula-titulo">
-				<a href="https://mathema.com.br/online/my"><span>Acessar ambiente de estudos online</span></a>
-			</div>
-		</div>
-	<?php
+<div id="btn-online" class="btn-sala-aula sala-de-aula">
+    <div class="btn-sala-aula-titulo">
+        <a href="https://mathema.com.br/online/my"><span>Acessar ambiente de estudos online</span></a>
+    </div>
+</div>
+<?php
 		}
 
 		$user_in_ciranda_group = (in_array("3", $user_group_ids));
 		if ($user_in_ciranda_group) {
 			?>
-		<div id="btn-ciranda" class="btn-sala-aula conteudo-ciranda">
+<div id="btn-ciranda" class="btn-sala-aula conteudo-ciranda">
 
-			<div class="btn-sala-aula-titulo">
-				<a href="https://mathema.com.br/calendario-de-formacao/"><span>Acessar ambiente do Ciranda</span></a>
-			</div>
-		</div>
-	<?php
+    <div class="btn-sala-aula-titulo">
+        <a href="https://mathema.com.br/calendario-de-formacao/"><span>Acessar ambiente do Ciranda</span></a>
+    </div>
+</div>
+<?php
 		}
 		?>
 
 
-	<?php
+<?php
 		//  //elseif( $user_group_ids[1] == 4 && $user_group_ids[2] == '' ) {
 		?>
-	<!-- <div id="btn-online" class="btn-sala-aula sala-de-aula">		                      
+<!-- <div id="btn-online" class="btn-sala-aula sala-de-aula">		                      
 		<div class="btn-sala-aula-titulo">
 			<a href="https://mathema.com.br/online/my"><span>Acessar ambiente de estudos online</span></a>
 		</div>                   
@@ -1256,7 +1267,7 @@ function ajusta_label_campo_complemento()
 		//}	
 		?> -->
 
-	<div class="clearfix"></div>
+<div class="clearfix"></div>
 <?php
 }
 
@@ -1326,8 +1337,8 @@ function wordpress_pagination()
 {
 
 	?>
-	<div class="paginacao">
-		<?php
+<div class="paginacao">
+    <?php
 
 			global $wp_query;
 
@@ -1364,7 +1375,7 @@ function wordpress_pagination()
 			));
 
 			?>
-	</div>
+</div>
 <?php
 }
 
@@ -1411,19 +1422,19 @@ add_action('wp_footer', 'wpmidia_activate_masked_input');
 function wpmidia_activate_masked_input()
 {
 	?>
-	<script type="text/javascript">
-		$('#tel').focusout(function() {
-			var phone, element;
-			element = $(this);
-			element.unmask();
-			phone = element.val().replace(/\D/g, '');
-			if (phone.length > 10) {
-				element.mask("(99) 99999-999?9");
-			} else {
-				element.mask("(99) 9999-9999?9");
-			}
-		}).trigger('focusout');
-	</script>
+<script type="text/javascript">
+$('#tel').focusout(function() {
+    var phone, element;
+    element = $(this);
+    element.unmask();
+    phone = element.val().replace(/\D/g, '');
+    if (phone.length > 10) {
+        element.mask("(99) 99999-999?9");
+    } else {
+        element.mask("(99) 9999-9999?9");
+    }
+}).trigger('focusout');
+</script>
 <?php
 }
 
@@ -1432,19 +1443,20 @@ add_action('wp_footer', 'contact_form_success');
 function contact_form_success()
 {
 	?>
-	<script type="text/javascript">
-		document.addEventListener('wpcf7mailsent', function(event) {
-			$(document).one("ajaxComplete", function(event, xhr, settings) {
-				var data = xhr.responseText;
-				var jsonResponse = JSON.parse(data);
-				// console.log(jsonResponse);
-				if (!jsonResponse.hasOwnProperty('into') || $('.wpcf7' + jsonResponse.into).length === 0) return;
-				$('#mensagem-sucesso').html(jsonResponse.message);
-				$('body').css("overflow", "hidden");
-				$('#sucesso').fadeIn();
-			});
-		}, false);
-	</script>
+<script type="text/javascript">
+document.addEventListener('wpcf7mailsent', function(event) {
+    $(document).one("ajaxComplete", function(event, xhr, settings) {
+        var data = xhr.responseText;
+        var jsonResponse = JSON.parse(data);
+        // console.log(jsonResponse);
+        if (!jsonResponse.hasOwnProperty('into') || $('.wpcf7' + jsonResponse.into).length === 0)
+            return;
+        $('#mensagem-sucesso').html(jsonResponse.message);
+        $('body').css("overflow", "hidden");
+        $('#sucesso').fadeIn();
+    });
+}, false);
+</script>
 <?php
 }
 
@@ -1987,5 +1999,13 @@ function add_cpf_no_moodle($userdetails, $upgrade = 0)
 }
 
 add_action('eb_moodle_user_profile_details', 'add_cpf_no_moodle', 99);
+
+function disable_shipping_calc_on_cart( $show_shipping ) {
+    if( is_cart() ) {
+        return false;
+    }
+    return $show_shipping;
+}
+add_filter( 'woocommerce_cart_ready_to_calc_shipping', 'disable_shipping_calc_on_cart', 99 );
 
 ?>
