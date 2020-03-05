@@ -31,7 +31,7 @@
 <section id="porque" class="porque porque-ciranda">
     <div class="inner">
         <?php if (get_field('titulo_por_que_o_mathema')) : ?>
-        <h1><?php the_field('titulo_por_que_o_mathema'); ?></h1>
+        <h2><?php the_field('titulo_por_que_o_mathema'); ?></h2>
         <?php endif; ?>
         <div class="list-porque">
             <?php
@@ -85,7 +85,7 @@
             <div id="tab-<?php echo $a; ?>">
                 <div class="download-ciranda-txt">
                     <div>
-                        <h1><?php the_sub_field('titulo_aba_vertical'); ?></h1>
+                        <h2><?php the_sub_field('titulo_aba_vertical'); ?></h2>
                         <?php the_sub_field('texto_aba_vertical'); ?>
                     </div>
                 </div>
@@ -112,7 +112,7 @@
 <section class="resultados-ciranda">
     <div class="inner">
         <div class="resultados-ciranda-txt">
-            <h1><?php the_field('titulo_resultados'); ?></h1>
+            <h2><?php the_field('titulo_resultados'); ?></h2>
             <p><?php the_field('texto_resultados'); ?></p>
         </div>
         <!-- SLIDE -->
@@ -143,7 +143,7 @@
 <!-- HISTORIAS CIRANDA -->
 <section class="historias-ciranda">
     <div class="inner">
-        <h1><?php the_field('titulo_depoimentos'); ?></h1>
+        <h2><?php the_field('titulo_depoimentos'); ?></h2>
         <!-- SLIDE -->
         <div class="historias-ciranda-slide owl-emenda">
             <div id="owl-historias-ciranda" class="owl-carousel owl-theme">
@@ -174,7 +174,7 @@
 <section class="minuto-home historias-ciranda-video">
     <div class="inner">
         <div class="minuto-home-conteudo">
-            <h1><?php the_field('titulo_galeria_video'); ?></h1>
+            <h2><?php the_field('titulo_galeria_video'); ?></h2>
             <div class="minuto-home-txt">
                 <p><?php the_field('texto_galeria_video'); ?></p>
             </div>
@@ -220,7 +220,7 @@
 <!-- PARCEIROS CIRANDA -->
 <section class="parceiros-ciranda">
     <div class="inner">
-        <h1><?php the_field('titulo_parceiros'); ?></h1>
+        <h2><?php the_field('titulo_parceiros'); ?></h2>
         <div class="parceiros-ciranda-slide owl-emenda">
             <div id="owl-parceiros-ciranda" class="owl-carousel owl-theme">
                 <!-- loop que carrega os logos dos parceiros -->
@@ -240,7 +240,7 @@
 <section id="quero-ciranda" class="quero-ciranda">
     <div class="inner">
         <div class="quero-ciranda-box">
-            <h1><?php the_field('titulo_formulario_solicitacao'); ?></h1>
+            <h2><?php the_field('titulo_formulario_solicitacao'); ?></h2>
             <?php if (get_field('texto_formulario_solicitacao')) : ?>
             <p><?php the_field('texto_formulario_solicitacao'); ?></p>
             <?php endif; ?>
@@ -257,7 +257,7 @@
 <!-- RELATOS CIRANDA -->
 <section class="relatos-ciranda">
     <div class="inner">
-        <h1><?php the_field('titulo_3_posts'); ?></h1>
+        <h2><?php the_field('titulo_3_posts'); ?></h2>
         <!-- PEGA A CATEGORIA -->
         <?php $cat3Posts = get_field('categoria_3_posts'); ?>
         <div class="relatos-ciranda-list">
@@ -285,7 +285,7 @@
                     <a href="<?php the_permalink(); ?>"><?php the_post_thumbnail('blog-relacionada'); ?></a>
                 </div>
                 <a class="relato-ciranda-item-link" href="<?php the_permalink(); ?>">
-                    <h3><?php the_title(); ?></h3>
+                    <h4><?php the_title(); ?></h4>
                 </a>
                 <div class="data"><?php the_time('j \d\e F \d\e Y') ?></div>
             </div>

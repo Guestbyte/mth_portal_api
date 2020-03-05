@@ -19,7 +19,7 @@
             <li><a class="animate" href="#beneficios">Benefícios</a></li>
             <li><a class="animate" href="#como-funciona">Como funciona</a></li>                        
             <li><a class="animate" href="#depoimentos">Depoimentos</a></li>
-            <li><a class="animate" href="#experimente">Experimente</a></li>                
+            <li><a class="animate" href="#experimente">Cursos gratuitos</a></li>                
         </ul>        
         <div class="clearfix"></div> 
     </div>

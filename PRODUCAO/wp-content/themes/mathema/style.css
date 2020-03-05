@@ -4250,15 +4250,18 @@ CIRANDA NOVA
     z-index: 2;
 }
 
+.quero-ciranda-form .wpcf7{
+    overflow: hidden;
+}
 .quero-ciranda-form::after {
-    content: "";
-    background: #7090E8;
-    width: 816px;
-    height: 83px;
-    position: absolute;
-    top: 209px;
-    left: 0;
-    z-index: -1;
+	content: "";
+	background: #7090E8;
+	width: 816px;
+	height: calc( 100% - 448px );
+	position: absolute;
+	top: 209px;
+	left: 0;
+	z-index: -1;
 }
 
 .quero-ciranda-form h3 {
@@ -4275,6 +4278,10 @@ CIRANDA NOVA
     float: left;
 }
 
+.quero-ciranda-form span.numero-alunos {	
+	width: 656px;
+}
+
 .quero-ciranda-form input[type=text],
 .quero-ciranda-form input[type=email],
 .quero-ciranda-form input[type=tel],
@@ -4284,6 +4291,14 @@ CIRANDA NOVA
     width: 324px;
     float: none;
     margin: 0;
+}
+
+.quero-ciranda-form span.numero-alunos select {	
+	width: 100%;
+}
+
+.quero-ciranda-form  .fase-escolar-container {	
+	border: 2px solid #7090E8;
 }
 
 .quero-ciranda-form input[type="submit"] {
@@ -6597,20 +6612,20 @@ BLOG
     display: none;
 }
 
-.post-blog-inner h4,
+.post-blog-inner h3,
 .post-blog-inner .data {
     width: 100%;
     color: #426DA9;
 }
 
-.post-blog-inner h4 {
+.post-blog-inner h3 {
     font-family: 'GloberBold';
     font-size: 18px;
     margin-bottom: 5px;
     transition: all 200ms ease-in;
 }
 
-.post-blog-inner h4:hover {
+.post-blog-inner h3:hover {
     color: #7C53CF;
 }
 

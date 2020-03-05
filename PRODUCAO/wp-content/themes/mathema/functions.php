@@ -751,14 +751,14 @@ add_action('woocommerce_product_thumbnails', 'list_3_produtos_aletorios', 50);
 function list_3_produtos_aletorios(){
 
 
-	$pageQuery = new WP_Query( 'page_id=2' ); $pageQuery->the_post();
-		$image_add = wp_get_attachment_image_src(get_field('imagem_anuncio_produto'), 'full');
+	$pageQuery = new WP_Query( 'page_id=92' ); $pageQuery->the_post();
+		$image_add = get_field('imagem_anuncio_produto');
 		$link_add = get_field('link_anuncio_produto');
 	wp_reset_postdata();
 
 	/**carrega a imagem usando o ID */
 	if ($image_add) {
-		echo '<a href="' . $link_add . '"><img class="img-add-produto" src="' . $image_add[0] . '" alt=""></a>';
+		echo '<a href="' . $link_add . '"><img class="img-add-produto" src="' . $image_add . '" alt=""></a>';
 	}
 
 	echo '<div id="produtos-aletorios" class="produtos-aletorios">';

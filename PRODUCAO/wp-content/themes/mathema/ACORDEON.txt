@@ -1,0 +1,46 @@
+<!-- ABAS ACCORDEON -->
+                <div class="abas-accordion">
+                    <h1 class="temas-titulo">Conheça alguns temas disponíveis:</h1>
+                
+                    <!-- loop que carrega os accordeons -->
+                    <div id="abas-accordion">
+                    <?php
+                    if( have_rows('abas_temas') ): 
+                    $c=0;
+                    $d=0;
+                    ?>
+                        <!-- MENU ABAS -->
+                        <ul>
+                        <?php                   
+                        while ( have_rows('abas_temas') ) :
+                        $c++;
+                        the_row(); ?>               
+                            <li><a href="#acc-<?php echo $c; ?>"><?php the_sub_field('titulo_aba_tema'); ?><img class="seta-tab" src="<?php echo bloginfo('template_directory');?>/img/seta-baixo-tab.png" alt=""></a></li>                                           
+                        <?php endwhile; ?>   
+                        </ul>  
+                        <!-- PAINEIS -->
+                        <?php                   
+                        while ( have_rows('abas_temas') ) :
+                        $d++;
+                        the_row(); ?>         
+                        <div id="acc-<?php echo $d; ?>">
+                            <div class="aba-accordion-conteudo">
+                                <div class="aba-accordion-conteudo-info">
+                                    <div class="aba-accordion-conteudo-info-item"><span>Duração:</span> <?php the_sub_field('duracao_aba_tema'); ?></div>
+                                    <div class="aba-accordion-conteudo-info-item"><span>Local:</span> <?php the_sub_field('local_aba_tema'); ?></div>
+                                </div>                        
+                                <div class="aba-accordion-conteudo-txt">
+                                    <h3><?php the_sub_field('subtitulo_aba_tema'); ?></h3>
+                                    <?php the_sub_field('texto_aba_tema'); ?>
+                                </div>                        
+                                <?php echo wp_get_attachment_image( get_sub_field('imagem_aba_tema' ), 'aba-accordion' ); ?>
+                                <?php if( get_sub_field('legenda_da_imagem_aba_tema' ) ):  ?>  
+                                <div class="aba-accordion-img-legenda"><p><?php the_sub_field('legenda_da_imagem_aba_tema'); ?></p></div>
+                                <?php endif; ?>                         
+                            </div>
+                        </div>
+                        <?php endwhile; ?>
+                    <?php endif; ?>                  
+                    </div>
+
+                </div>

@@ -49,6 +49,8 @@ function route_mailchimp_subscribe($post)
 
 function route_woocommerce_webhooks($order_id = false)
 {
+    //WIP Sincronizar status do pedido com as listas do MC
+    
     wh_log('------------------[ route_woocommerce_webhooks ]------------------');
     global $MailChimp;
     $mc_customers_list_id = '803e6a1581'; // CLIENTES MATHEMA ONLINE II : https://us16.admin.mailchimp.com/lists/members?id=165933
@@ -198,8 +200,6 @@ function route_woocommerce_webhooks($order_id = false)
     //     }
     // }
 
-    // return json_encode($mc_array, JSON_UNESCAPED_UNICODE);
-
     $order_onhold = ($order->status == 'on-hold');
     $order_pending = ($order->status == 'pending');
     $order_boleto = ($order_payment_method == 'Boleto');
@@ -213,8 +213,6 @@ function route_woocommerce_webhooks($order_id = false)
         wh_log("Order status: $order->status | Payment method: $order_payment_method. Subscribing on diferent audience: $mc_list_id");
     }
 
-    // return json_encode($mc_list_id, JSON_UNESCAPED_UNICODE);
-
     $mc_result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
 
     $member_subscribed = ($mc_result['status'] == 'subscribed');
@@ -225,9 +223,9 @@ function route_woocommerce_webhooks($order_id = false)
 
     $member_exists = ($mc_result['title'] == 'Member Exists');
     if ($member_exists) {
-        // @todo route_woocommerce_webhooks: Refatorar para funções globais
+        //TODO Refatorar para funções globais
 
-        wh_log($mc_result['title'] . ": Tryng to update data...");
+        wh_log($mc_result['title'] . ": Trying to update data...");
 
         $subscriber_hash = md5($order->billing->email);
         $put_result = $MailChimp->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
@@ -318,11 +316,11 @@ function route_woocommerce_webhooks($order_id = false)
     return json_encode($return, JSON_UNESCAPED_UNICODE);
 }
 
-function route_woocommerce_webhooks_bulk($status = 'completed', $after = '2020-02-01T00:00:00', $before = '2020-03-01T00:00:00')
+function route_woocommerce_webhooks_bulk($status = 'completed', $after = '2019-06-01T00:00:00', $before = '2020-01-01T00:00:00')
 {
 
     wh_log("Bulk process started: Status=$status, After: $after, Before: $before ");
-    wh_log("Gethering orders... ");
+    wh_log("Gathering orders... ");
 
     $orders = json_decode(WP_API("GET", "/wc/v3/orders/?order=asc&status[0]=$status&after=$after&before=$before&"));
 

@@ -1,0 +1,97 @@
+/* Custom Login Styles */
+body.login {
+	background-color: #F9ECBF;	
+	height:100%;
+}
+
+#login{
+	position:relative !important;
+	}
+/* logo */
+h1 {
+	width: 100%;
+	height: auto;
+}
+.login h1 a {
+	background: url("img/manzua.svg") no-repeat scroll center center transparent;
+	background-size: auto 100%;  
+    height: 60px;
+    margin: 0 auto;
+    width: 100%;
+}
+/* messages */
+.message {
+	background:#fff !important;
+	border: none !important;
+	 bottom: -135px;
+    color: #666666;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    width: 300px;
+}
+.login #login_error {
+	background-color:#fff;
+	border-color:#c00;
+	color:#c00
+}
+/* login form */
+.login form {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: medium none !important;
+    box-shadow: none !important;  
+	font-weight: normal;
+	padding: 25px !important;   
+}
+.login label {
+	color:#000
+}
+.login input {
+	border: 2px solid #000;
+	color: #000;
+	background: #FFF !important;
+}
+.login input:focus{
+	border: 2px solid #F9ECBF;
+	box-shadow: none;
+	outline: none;
+}
+.login .button-primary {
+	font-family: 'Abril Fatface', cursive;
+    font-size: 18px;
+	border: 2px solid #000;	
+	color: #000;
+	text-transform: uppercase;
+	line-height: 30px !important;
+	padding: 10px 0;
+	background: #FFF;
+	border-radius: 0;
+	box-shadow: none;
+	text-shadow: none;
+}
+.login .button-primary:hover{
+	background-color: #F9ECBF !important;
+	border: 2px solid #000; 
+	color: #000;	
+}
+	
+/* links below login forms */
+.login #nav, .login #backtoblog {
+	float: none;
+	padding: 2px;
+	margin: 20px auto 0;
+	text-align: center;
+}
+.login #nav a, .login #backtoblog a {
+	color:#000!important;
+	text-decoration:none;
+	 text-shadow: none !important;
+}
+.login #nav a:hover, .login #backtoblog a:hover {
+	color:#F39B72!important;
+}
+
+.login #nav, .login #backtoblog {
+    text-shadow: none !important;
+}
+

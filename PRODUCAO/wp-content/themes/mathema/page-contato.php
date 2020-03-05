@@ -23,7 +23,7 @@
         </div>
         <!-- LISTA OUTROS CANAIS -->
         <div class="outros-canais-list">
-            <h1><?php the_field('titulo_outros_canais'); ?></h1>
+            <h2><?php the_field('titulo_outros_canais'); ?></h2>
             <!-- loop que carrega os downloads -->
             <?php if (have_rows('outros_canais')) : while (have_rows('outros_canais')) : the_row(); ?>
             <!-- ITEM -->
@@ -60,7 +60,7 @@ $(document).ready(function() {
     });
 })
 
-//JS: Integração com Mailchimp 
+//JS: Integraï¿½ï¿½o com Mailchimp 
 //[23/10/2019 - Fernando]
 
 // $(".wpcf7-submit").click(function() {
