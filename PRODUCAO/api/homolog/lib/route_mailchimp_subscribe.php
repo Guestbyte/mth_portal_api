@@ -11,7 +11,7 @@ function route_mailchimp_subscribe(array $post)
     wh_log('=======[ API request - route: route_mailchimp_subscribe ]=========');
     global $MailChimp;
 
-    //fake post
+    //fake post for debugging 
     // $post = array(
     //     "list_id" => "f3397d3993",
     //     "status" => "subscribed",
