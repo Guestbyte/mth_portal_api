@@ -21,5 +21,6 @@ function mailchimp_create_tags(array $tags_to_create_on_list, string $mc_list_id
         if ($error_on_add_tag) {
             return return_error('Mailchimp Subscribe', 'Error on update tag!', $mc_result_add_tag_to_list);
         }
+        wh_log("TAG created: " . $tag);
     }
 }
