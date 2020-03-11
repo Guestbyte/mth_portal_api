@@ -112,3 +112,65 @@ function mth_is_onhold_list($order, $order_payment_method) {
      
     return $is_onhold_list;
 }
+
+function baseRoute($data) {
+$data = array(
+      "name" => "MTH API",
+      "description" => "HOMOLOG: WebService para viabilizar as integrações do Mathema.",
+      "home" => "https://mathema.com.br",
+      "url" => "https://mathema.com.br/api/homolog/",
+      "version" => "1.5",
+      "status" => "beta",
+      "author" => "Fernando Ortiz de Mello - fernando.ortiz@mathema.com.br",
+      "routes" => [
+        "/" => [
+          "methods" => ["GET"],
+        ],
+        "/mailchimp/subscribe" => [
+          "methods" => ["GET"],
+          "args" => [
+            "documentação em andamento"
+          ]
+        ],
+        "/woocommerce/webhooks" => [
+          "methods" => ["POST"],
+          "args" => [
+            "arg" => [
+              "required" => true,
+              "description" => "Numero do pedido.",
+              "type" => "integer"
+            ]
+          ]
+        ],
+        "/woocommerce/webhooks/{id}" => [
+          "methods" => ["GET"],
+          "args" => [
+            "id" => [
+              "required" => true,
+              "description" => "Numero do pedido.",
+              "type" => "integer"
+            ]
+          ]
+        ],
+        "/woocommerce/webhooks/bulk/{status}" => [
+          "description" => "Processa a integração retroativamente.",
+          "methods" => ["GET"],
+          "args" => [
+            "status" => [
+              "required" => false,
+              "description" => "Status do pedido.",
+              "default" => "completed",
+              "type" => "string",
+              "enum" => [
+                "on-hold",
+                "completed"
+              ]
+            ]
+          ]
+        ]
+      ]
+    );
+
+       header('HTTP/1.1 200 OK');
+        echo json_encode($data, JSON_UNESCAPED_UNICODE);
+  }
