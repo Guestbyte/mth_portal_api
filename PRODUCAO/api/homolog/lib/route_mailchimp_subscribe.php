@@ -6,7 +6,7 @@
  * @param array $post
  * @return void
  */
-function route_mailchimp_subscribe(array $post)
+function route_mailchimp_subscribe($post)
 {
     wh_log('=======[ API request - route: route_mailchimp_subscribe ]=========');
     global $MailChimp;
