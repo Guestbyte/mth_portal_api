@@ -12,7 +12,7 @@ function route_woocommerce_webhooks($order_id = false)
     $rawData = file_get_contents("php://input");
     $jsonData = json_decode($rawData);
 
-    $order_id = '69126'; // for debugging proposes 
+    // $order_id = '69126'; // for debugging proposes 
 
     if ($order_id) {
         @$jsonData->id = $order_id;
