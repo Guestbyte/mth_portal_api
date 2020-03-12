@@ -3,7 +3,7 @@ require '../vendor/autoload.php';
 require './MailChimp.php';
 require './credentials.php';
 require './functions.php';
-require './lib/mthRoute.class.php';
+require './lib/API.class.php';
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -22,7 +22,7 @@ header("Access-Control-Allow-Headers: Authorization");
 wh_log('==================[ Incoming Request ]==================');
 
 $API = new API('/api/homolog');
-$API->route('/', 'baseRoute', $data)
-    ->route('/woocommerce/webhooks/', 'route_woocommerce_webhooks')
+$API->route('/woocommerce/webhooks/', 'route_woocommerce_webhooks')
     ->route('/mailchimp/subscribe/', 'route_mailchimp_subscribe', $_POST)
-    ->route('/woocommerce/webhooks/bulk/', 'route_woocommerce_webhooks_bulk');
+    ->route('/woocommerce/webhooks/bulk/', 'route_woocommerce_webhooks_bulk')
+    ->catchError();
