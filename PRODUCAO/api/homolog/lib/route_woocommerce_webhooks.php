@@ -116,8 +116,8 @@ function route_woocommerce_webhooks($order_id = false)
     }
 
     // CAMPANHA: Quem compra uma Plano, ganha de presente um curso gratis. 
-    // TODO mth_campaign_plano: função ainda em teste
-    // mth_campaign_plano();
+    // TODO campaign_plano: função ainda em teste
+    // $MTH->campaign_plano();
     
     $mc_list_id = (mth_is_onhold_list($order, @$order_payment_method)) ? $mc_onhold_list_id : $mc_customers_list_id;
 
