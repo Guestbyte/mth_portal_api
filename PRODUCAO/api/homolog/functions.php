@@ -2,7 +2,6 @@
 require 'lib/route_mailchimp_subscribe.php';
 require 'lib/route_woocommerce_webhooks.php';
 require 'lib/route_woocommerce_webhooks_bulk.php';
-require 'lib/mth_create_coupom.php';
 require 'lib/mth_campaign_plano.php';
 
 /**

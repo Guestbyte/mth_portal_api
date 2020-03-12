@@ -15,13 +15,13 @@ function mth_campaign_plano()
     $use_limit = 1; // quantas vezes pode ser usado
     $description = 'API: Campanha Compre Plano ganhe Curso. Cliente: ' . $order->billing->email;
 
-    $coupom = mth_create_coupom($code, $percent, $date_expires, $product_categories, $use_limit, $description);
+    $coupon = $MTH->create_coupon($code, $percent, $date_expires, $product_categories, $use_limit, $description);
 
-    if (isset($coupom->code)) {
-        wh_log("Coupom created: " . $coupom->code);
-        $mc_array['merge_fields']['CUPOM_PRES'] = $coupom->code;
+    if (isset($coupon->code)) {
+        wh_log("Coupon created: " . $coupon->code);
+        $mc_array['merge_fields']['CUPOM_PRES'] = $coupon->code;
     } else {
-        wh_log("Error create new coupom: \n" . print_r($coupom, true));
-        $return['error_coupom'] = 'Error create new coupom.';
+        wh_log("Error create new coupon: \n" . print_r($coupon, true));
+        $return['error_coupon'] = 'Error create new coupon.';
     }
 }
