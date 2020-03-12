@@ -164,8 +164,6 @@ function subscribe(string $mc_list_id, array $mc_array)
     $member_exists = ($result['title'] == 'Member Exists');
     if ($member_exists) {
 
-        // TODO Use global functions 
-        
         $subscriber_hash = md5($mc_array['email_address']);
         $result = $MailChimp->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
 

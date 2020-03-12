@@ -1,9 +1,11 @@
 <?php
 require '../vendor/autoload.php';
+require './credentials.php';
 require './lib/MailChimp.class.php';
 require './lib/MailChimp.extends.class.php';
-require './credentials.php';
-require './functions.php';
+require './lib/route_mailchimp_subscribe.php';
+require './lib/route_woocommerce_webhooks.php';
+require './lib/route_woocommerce_webhooks_bulk.php';
 require './lib/API.class.php';
 require './lib/MTH.class.php';
 
@@ -30,3 +32,11 @@ $API->route('/woocommerce/webhooks/', 'route_woocommerce_webhooks')
     ->route('/mailchimp/subscribe/', 'route_mailchimp_subscribe', $_POST)
     ->route('/woocommerce/webhooks/bulk/', 'route_woocommerce_webhooks_bulk')
     ->catchError();
+
+    /**
+ * Write message in log file 
+ *
+ * @param string $msg
+ * @return void
+ */
+function wh_log(string $msg){ global $log; $log->warning($msg); }

@@ -6,6 +6,7 @@ function route_woocommerce_webhooks($order_id = false)
     wh_log('------------------[ route_woocommerce_webhooks ]------------------');
     global $MailChimp;
     global $API;
+    global $MTH;
     
     $mc_customers_list_id = '803e6a1581'; // CLIENTES MATHEMA ONLINE II : https://us16.admin.mailchimp.com/lists/members?id=165933
     $mc_onhold_list_id = '31cfca9bfd';
@@ -56,7 +57,7 @@ function route_woocommerce_webhooks($order_id = false)
     $mc_array['merge_fields']['ORDER_ID'] = $order->id;
     // $has_coupon = (isset($order->coupon_lines[0]->code));
 
-    $is_client = is_client($order);
+    $is_client = $MTH->is_client($order);
     $mc_array['merge_fields']['CLIENTE'] = ($is_client) ? 'SIM' : 'NAO';
     
     $member_tags = [];
@@ -102,6 +103,7 @@ function route_woocommerce_webhooks($order_id = false)
             }
         }
     }
+
     $mc_array['merge_fields']['CURSO'] = $mc_nome_curso;
     $mc_array['merge_fields']['SKU'] = $mc_sku_curso;
     $mc_array['tags'] = $member_tags;
@@ -119,7 +121,7 @@ function route_woocommerce_webhooks($order_id = false)
     // TODO campaign_plano: função ainda em teste
     // $MTH->campaign_plano();
     
-    $mc_list_id = (mth_is_onhold_list($order, @$order_payment_method)) ? $mc_onhold_list_id : $mc_customers_list_id;
+    $mc_list_id = ($MTH->is_onhold_list($order, @$order_payment_method)) ? $mc_onhold_list_id : $mc_customers_list_id;
 
     $mc_result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
 
