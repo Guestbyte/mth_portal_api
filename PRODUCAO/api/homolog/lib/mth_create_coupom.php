@@ -13,8 +13,9 @@
  */
 function mth_create_coupom(string $code, int $percent, int $date_expires = null, $product_categories = '', int $use_limit = null, string $description = '')
 {
+    global $API;
 
-    $result = WP_API("POST", "/wc/v3/coupons/?", [
+    $result = $API->request("POST", "/wc/v3/coupons/?", [
         'code' => $code,
         'amount' => $percent,
         'description' => $description,

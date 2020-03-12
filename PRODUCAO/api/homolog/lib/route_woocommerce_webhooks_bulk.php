@@ -6,7 +6,7 @@ function route_woocommerce_webhooks_bulk($status = 'completed', $after = '2019-0
     wh_log("Bulk process started: Status=$status, After: $after, Before: $before ");
     wh_log("Gathering orders... ");
 
-    $orders = json_decode(WP_API("GET", "/wc/v3/orders/?order=asc&status[0]=$status&after=$after&before=$before&"));
+    $orders = json_decode($API->request("GET", "/wc/v3/orders/?order=asc&status[0]=$status&after=$after&before=$before&"));
 
     if (!isset($orders)) {
         wh_log("Error retrieving order data: \n" . print_r($orders, true));
