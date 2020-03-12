@@ -10,6 +10,7 @@ function route_mailchimp_subscribe($post)
 {
     wh_log('=======[ API request - route: route_mailchimp_subscribe ]=========');
     global $MailChimp;
+    global $API;
 
     //fake post for debugging 
     // $post = array(
@@ -35,7 +36,7 @@ function route_mailchimp_subscribe($post)
 
     $valid_post = (isset($mc_list_id) && isset($email_address) && isset($status));
     if (!$valid_post) {
-        return return_error('Mailchimp Subscribe', 'Data posted is invalid!', $post);
+        return $API->return_error('Mailchimp Subscribe', 'Data posted is invalid!', $post);
     }
     wh_log("DATA: list_id: $mc_list_id, email: $email_address, status: $status !");
 

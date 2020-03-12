@@ -9,6 +9,7 @@
 function mailchimp_subscribe(string $mc_list_id, array $mc_array)
 {
     global $MailChimp;
+    global $API;
 
     $status_options = array('subscribed', 'unsubscribe');
     $valid_status = (in_array($mc_array['status'], $status_options));
@@ -16,7 +17,7 @@ function mailchimp_subscribe(string $mc_list_id, array $mc_array)
 
     $params_valid = ($valid_email and isset($mc_list_id) and $valid_status);
     if (!$params_valid) {
-        return return_error('Mailchimp Subscribe', 'Params passed is not valid!', $mc_array);
+        return $API->return_error('Mailchimp Subscribe', 'Params passed is not valid!', $mc_array);
     }
 
     $result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
@@ -36,7 +37,7 @@ function mailchimp_subscribe(string $mc_list_id, array $mc_array)
 
         $update_error = ($result['status'] !== 'subscribed');
         if ($update_error) {
-            return return_error('Mailchimp Subscribe', 'Error on update!', $result);
+            return $API->return_error('Mailchimp Subscribe', 'Error on update!', $result);
         }
 
         list($mc_list_tags_names_ids, $mc_list_tags_names) = mailchimp_get_segments($mc_list_id);
@@ -50,5 +51,5 @@ function mailchimp_subscribe(string $mc_list_id, array $mc_array)
         return return_success("Mailchimp Subscribe", "updated", $result);
     }
 
-    return return_error('Mailchimp Subscribe', 'Internal error: Mailchimp response not valid!', $result);
+    return $API->return_error('Mailchimp Subscribe', 'Internal error: Mailchimp response not valid!', $result);
 }

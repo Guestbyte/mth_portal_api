@@ -12,6 +12,7 @@
 function mailchimp_member_exist($mc_result, string $email, string $mc_list_id, array $mc_array) {
 
     global $MailChimp;
+    global $API;
 
     wh_log($mc_result['title'] . ": Trying to update data...");
 
@@ -19,7 +20,7 @@ function mailchimp_member_exist($mc_result, string $email, string $mc_list_id, a
     $put_result = $MailChimp->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
 
     if ($put_result['status'] !== 'subscribed') {
-            return return_error('route_woocommerce_webhooks', 'Error on subscribing to Mailchimp. ', $put_result);
+            return $API->return_error('route_woocommerce_webhooks', 'Error on subscribing to Mailchimp. ', $put_result);
     }
 
     list($mc_list_tags_names_ids, $mc_list_tags_names) = mailchimp_get_segments($mc_list_id);

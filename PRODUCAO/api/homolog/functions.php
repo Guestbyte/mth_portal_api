@@ -56,24 +56,6 @@ function return_success(string $name, string $status, $data = '')
 }
 
 /**
- * Return error message routine
- *
- * @param string $name Error name 
- * @param string $description Error description
- * @param string $data Optional. Detailed data
- * @return void
- */
-function return_error(string $name, string $description, $data = '')
-{
-    $return['name'] = $name;
-    $return['description'] = $description;
-    $return['data'] = $data ;
-    wh_log("$name: $description\n" . print_r($data, true));
-    header('HTTP/1.1 400 Bad Request');
-    return json_encode($return, JSON_UNESCAPED_UNICODE);
-}
-
-/**
  * Check if order type is from a client
  *
  * @param [type] $order

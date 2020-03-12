@@ -3,8 +3,9 @@ function route_woocommerce_webhooks($order_id = false)
 {
     //WIP Sincronizar status do pedido com as listas do MC
     
-    global $MailChimp;
     wh_log('------------------[ route_woocommerce_webhooks ]------------------');
+    global $MailChimp;
+    global $API;
     
     $mc_customers_list_id = '803e6a1581'; // CLIENTES MATHEMA ONLINE II : https://us16.admin.mailchimp.com/lists/members?id=165933
     $mc_onhold_list_id = '31cfca9bfd';
@@ -22,14 +23,14 @@ function route_woocommerce_webhooks($order_id = false)
     $order_id = ($jsonData->id) ? $jsonData->id : @$jsonData->arg;
 
     if (!isset($order_id)) {
-            return return_error('route_woocommerce_webhooks', 'Error identifying order id!', $jsonData);
+            return $API->return_error('route_woocommerce_webhooks', 'Error identifying order id!', $jsonData);
     }
  
     wh_log("Processing order: " . @$order_id);
 
     $order = WP_API("GET", "/wc/v3/orders/" . $order_id . "?");
     if (!isset($order->id)) {
-        return return_error('route_woocommerce_webhooks', 'Error retrieving order data', $order);
+        return $API->return_error('route_woocommerce_webhooks', 'Error retrieving order data', $order);
     }
 
     wh_log("Subscribing on MailChimp: " . $order_id);
@@ -66,7 +67,7 @@ function route_woocommerce_webhooks($order_id = false)
         $product = WP_API("GET", "/wc/v3/products/" . $item->product_id . "?");
 
         if (!isset($product->id)) {
-              return return_error('route_woocommerce_webhooks', 'Error retrieving product data: ', $product);
+              return $API->return_error('route_woocommerce_webhooks', 'Error retrieving product data: ', $product);
         }
 
         array_push($member_tags, $item->sku);
@@ -133,6 +134,6 @@ function route_woocommerce_webhooks($order_id = false)
     }
 
     if (!$member_exists and !$member_subscribed) {
-        return return_error('route_woocommerce_webhooks', 'Error on subscribing to Mailchimp. ', $mc_result);
+        return $API->return_error('route_woocommerce_webhooks', 'Error on subscribing to Mailchimp. ', $mc_result);
     }
 }

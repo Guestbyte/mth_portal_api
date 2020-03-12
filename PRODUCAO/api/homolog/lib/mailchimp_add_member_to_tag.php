@@ -11,6 +11,7 @@
 function mailchimp_add_member_to_tag(array $mc_list_tags_names_ids, string $mc_list_id, array $mc_array)
 {
     global $MailChimp;
+    global $API;
 
     $data['members_to_add'] = [$mc_array['email_address']];
 
@@ -24,7 +25,7 @@ function mailchimp_add_member_to_tag(array $mc_list_tags_names_ids, string $mc_l
         @$tag_added = ($mc_result_add_member_to_tag['members_added'][0]['status'] == 'subscribed');
 
         if (!$tag_exist and !$tag_added) {
-            return return_error('Mailchimp Subscribe', 'Error on add member to tag!', $mc_result_add_member_to_tag);
+            return $API->return_error('Mailchimp Subscribe', 'Error on add member to tag!', $mc_result_add_member_to_tag);
         }
     }
 }

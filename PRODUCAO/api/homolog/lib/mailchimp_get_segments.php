@@ -8,12 +8,13 @@
 function mailchimp_get_segments(string $mc_list_id)
 {
     global $MailChimp;
+    global $API;
 
     $segments = $MailChimp->get("lists/$mc_list_id/segments?count=1000");
 
     $error_get_segments = (is_array($segments['segments']));
     if (!$error_get_segments) {
-        return return_error('Mailchimp Subscribe', 'Error on get segments!', $segments);
+        return $API->return_error('Mailchimp Subscribe', 'Error on get segments!', $segments);
     }
 
     $segments_no_statics = array_filter($segments['segments'], function ($v, $k) {
