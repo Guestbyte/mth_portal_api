@@ -5,6 +5,7 @@ require './lib/MailChimp.extends.class.php';
 require './credentials.php';
 require './functions.php';
 require './lib/API.class.php';
+require './lib/MTH.class.php';
 
 use Monolog\Logger;
 use Monolog\Handler\StreamHandler;
@@ -14,6 +15,8 @@ $log = new Logger('name');
 $log->pushHandler(new StreamHandler('audit.log', Logger::WARNING));
 
 $MailChimp = new MTH_Mailchimp(MAILCHIMP_KEY);
+
+$MTH = new MTH();
 
 header("Access-Control-Allow-Origin: *");
 header("Content-type: application/json; charset=utf-8");

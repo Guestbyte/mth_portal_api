@@ -161,11 +161,13 @@ class API{
      */
     function request(string $method, string $route, $data = false)
     {
+        global $MTH;
+
         $pagecnt = 1;
         $itemcnt = 0;
         $itemassoc = array();
         $base_url = "https://mathema.com.br/wp-json";
-        $token = MTH_get_jwt_token();
+        $token = $MTH->get_jwt_token();
 
         while (1) {
 
