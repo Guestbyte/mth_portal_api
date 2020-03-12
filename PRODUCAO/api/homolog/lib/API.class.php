@@ -41,7 +41,13 @@ class API{
         }, $endpoint);
 
         if ($REQUEST_URI === $endpoint) {
-            echo $func($param);
+            
+            if (function_exists($func)) {
+                echo $func($param);
+            } else {
+                echo $this->$func($param);
+            }
+
             $this->routeMatch = true;
         }
         
@@ -52,6 +58,10 @@ class API{
         if ($this->routeMatch == false ) {
             $this->baseRoute();
         }
+    }
+
+    public function teste($param = null) {
+        echo "ok $param";
     }
 
     function baseRoute($data = null) {

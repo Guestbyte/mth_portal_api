@@ -7,10 +7,6 @@ class MTH {
         // $this->baseRoute = $endpoint;
     }
 
-    function teste() {
-        echo "OK";
-    }
-
     /**
      * Undocumented function
      *
