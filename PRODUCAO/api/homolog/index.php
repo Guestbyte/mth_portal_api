@@ -1,6 +1,7 @@
 <?php
 require '../vendor/autoload.php';
-require './MailChimp.php';
+require './lib/MailChimp.class.php';
+require './lib/MailChimp.extends.class.php';
 require './credentials.php';
 require './functions.php';
 require './lib/API.class.php';
@@ -12,7 +13,7 @@ use \DrewM\MailChimp\MailChimp;
 $log = new Logger('name');
 $log->pushHandler(new StreamHandler('audit.log', Logger::WARNING));
 
-$MailChimp = new MailChimp(MAILCHIMP_KEY);
+$MailChimp = new MTH_Mailchimp(MAILCHIMP_KEY);
 
 header("Access-Control-Allow-Origin: *");
 header("Content-type: application/json; charset=utf-8");

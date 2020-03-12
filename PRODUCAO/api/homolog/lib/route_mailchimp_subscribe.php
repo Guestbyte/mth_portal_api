@@ -51,5 +51,5 @@ function route_mailchimp_subscribe($post)
         $mc_array['tags'][$key] = $value;
     }
 
-    return mailchimp_subscribe($mc_list_id, $mc_array);
+    return $MailChimp->subscribe($mc_list_id, $mc_array);
 }

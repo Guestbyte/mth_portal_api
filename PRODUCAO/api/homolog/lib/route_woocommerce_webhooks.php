@@ -28,7 +28,7 @@ function route_woocommerce_webhooks($order_id = false)
  
     wh_log("Processing order: " . @$order_id);
 
-    $order = WP_API("GET", "/wc/v3/orders/" . $order_id . "?");
+    $order = $API->request("GET", "/wc/v3/orders/" . $order_id . "?");
     if (!isset($order->id)) {
         return $API->return_error('route_woocommerce_webhooks', 'Error retrieving order data', $order);
     }
@@ -64,7 +64,7 @@ function route_woocommerce_webhooks($order_id = false)
         unset($product);
         $mc_nome_curso = $item->name;
         $mc_sku_curso = $item->sku;
-        $product = WP_API("GET", "/wc/v3/products/" . $item->product_id . "?");
+        $product = $API->request("GET", "/wc/v3/products/" . $item->product_id . "?");
 
         if (!isset($product->id)) {
               return $API->return_error('route_woocommerce_webhooks', 'Error retrieving product data: ', $product);
@@ -130,7 +130,7 @@ function route_woocommerce_webhooks($order_id = false)
 
     $member_exists = ($mc_result['title'] == 'Member Exists');
     if ($member_exists) {
-        return mailchimp_member_exist($mc_result, $order->billing->email, $mc_list_id, $mc_array);
+        return $MailChimp->member_exist($mc_result, $order->billing->email, $mc_list_id, $mc_array);
     }
 
     if (!$member_exists and !$member_subscribed) {
