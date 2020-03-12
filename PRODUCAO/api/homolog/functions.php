@@ -38,24 +38,6 @@ function wh_log(string $msg)
 }
 
 /**
- * Return success message routine
- *
- * @param string $name
- * @param string $status
- * @param string $data
- * @return void
- */
-function return_success(string $name, string $status, $data = '')
-{
-    $return['name'] = $name;
-    $return['status'] = $status;
-    $return['data'] = $data;
-    wh_log("$name: $status\n" . print_r($data, true));
-    header('HTTP/1.1 200 OK');
-    return json_encode($return, JSON_UNESCAPED_UNICODE);
-}
-
-/**
  * Check if order type is from a client
  *
  * @param [type] $order

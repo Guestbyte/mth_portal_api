@@ -24,7 +24,7 @@ function mailchimp_subscribe(string $mc_list_id, array $mc_array)
 
     $success_subscribe = ($result['status'] == 'subscribed');
     if ($success_subscribe) {
-        return return_success("Mailchimp Subscribe", "subscribed", $result);
+        return $API->return_success("Mailchimp Subscribe", "subscribed", $result);
     }
 
     $member_exists = ($result['title'] == 'Member Exists');
@@ -48,7 +48,7 @@ function mailchimp_subscribe(string $mc_list_id, array $mc_array)
 
         mailchimp_add_member_to_tag($mc_list_tags_names_ids, $mc_list_id, $mc_array);
 
-        return return_success("Mailchimp Subscribe", "updated", $result);
+        return $API->return_success("Mailchimp Subscribe", "updated", $result);
     }
 
     return $API->return_error('Mailchimp Subscribe', 'Internal error: Mailchimp response not valid!', $result);

@@ -115,6 +115,25 @@ class API{
         echo json_encode($data, JSON_UNESCAPED_UNICODE);
     }
 
+    
+    /**
+     * Return success message routine
+     *
+     * @param string $name
+     * @param string $status
+     * @param string $data
+     * @return void
+     */
+    function return_success(string $name, string $status, $data = '')
+    {
+        $return['name'] = $name;
+        $return['status'] = $status;
+        $return['data'] = $data;
+        wh_log("$name: $status\n" . print_r($data, true));
+        header('HTTP/1.1 200 OK');
+        return json_encode($return, JSON_UNESCAPED_UNICODE);
+    }
+
     /**
      * Return error message routine
      *

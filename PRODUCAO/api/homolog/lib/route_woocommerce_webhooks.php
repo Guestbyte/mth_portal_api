@@ -125,7 +125,7 @@ function route_woocommerce_webhooks($order_id = false)
 
     $member_subscribed = ($mc_result['status'] == 'subscribed');
     if ($member_subscribed) {
-        return return_success("route_woocommerce_webhooks", "Success subscribed to Mailchimp!", $mc_result);
+        return $API->return_success("route_woocommerce_webhooks", "Success subscribed to Mailchimp!", $mc_result);
     }
 
     $member_exists = ($mc_result['title'] == 'Member Exists');

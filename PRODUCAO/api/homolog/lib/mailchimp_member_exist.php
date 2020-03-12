@@ -31,5 +31,5 @@ function mailchimp_member_exist($mc_result, string $email, string $mc_list_id, a
 
     mailchimp_add_member_to_tag($mc_list_tags_names_ids, $mc_list_id, $mc_array);
 
-    return return_success("Mailchimp Subscribe", "updated", $put_result);
+    return $API->return_success("Mailchimp Subscribe", "updated", $put_result);
 }
