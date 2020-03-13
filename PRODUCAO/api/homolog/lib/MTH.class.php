@@ -168,7 +168,7 @@ class MTH {
      * @param [type] $order
      * @return array
      */
-    function prepare_data($order) {
+    function prepare_data_to_mailchimp($order) {
         global $MTH;
         global $API;
     

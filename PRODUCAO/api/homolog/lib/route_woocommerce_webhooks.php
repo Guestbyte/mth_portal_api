@@ -30,6 +30,7 @@ function route_woocommerce_webhooks($order_id = false)
     wh_log("Processing order: " . @$order_id);
 
     $order = $API->request("GET", "/wc/v3/orders/" . $order_id . "?");
+    
     if (!isset($order->id)) {
         return $API->return_error('route_woocommerce_webhooks', 'Error retrieving order data', $order);
     }
@@ -40,7 +41,7 @@ function route_woocommerce_webhooks($order_id = false)
     // TODO campaign_plano: função ainda em teste
     // $MTH->campaign_plano();
 
-    $mc_array = $MTH->prepare_data($order);
+    $mc_array = $MTH->prepare_data_to_mailchimp($order);
     
     $mc_list_id = ($MTH->is_onhold_list($order, @$order_payment_method)) ? $mc_onhold_list_id : $mc_customers_list_id;
 

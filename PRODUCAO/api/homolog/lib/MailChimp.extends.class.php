@@ -15,7 +15,6 @@ class MTH_Mailchimp extends MailChimp {
      */
   function create_tags(array $tags_to_create_on_list, string $mc_list_id)
     {
-        global $MailChimp;
         global $API;
 
         foreach ($tags_to_create_on_list as $tag) {
@@ -23,7 +22,7 @@ class MTH_Mailchimp extends MailChimp {
             $mc_array['name'] = $tag;
             $mc_array['static_segment'] = [];
 
-            $mc_result_add_tag_to_list = $MailChimp->post("lists/$mc_list_id/segments/", $mc_array);
+            $mc_result_add_tag_to_list = $this->post("lists/$mc_list_id/segments/", $mc_array);
 
             $error_on_add_tag = ($mc_result_add_tag_to_list['name'] !== $tag);
             if ($error_on_add_tag) {
@@ -43,7 +42,6 @@ class MTH_Mailchimp extends MailChimp {
      */
     function add_member_to_tag(array $mc_list_tags_names_ids, string $mc_list_id, array $mc_array)
     {
-        global $MailChimp;
         global $API;
 
         $data['members_to_add'] = [$mc_array['email_address']];
@@ -52,7 +50,7 @@ class MTH_Mailchimp extends MailChimp {
 
             $tag_id = array_search($member_tag, $mc_list_tags_names_ids);
 
-            $mc_result_add_member_to_tag = $MailChimp->post("lists/$mc_list_id/segments/" . $tag_id, $data);
+            $mc_result_add_member_to_tag = $this->post("lists/$mc_list_id/segments/" . $tag_id, $data);
 
             @$tag_exist = (strpos($mc_result_add_member_to_tag['errors'][0]['error'], "already exist"));
             @$tag_added = ($mc_result_add_member_to_tag['members_added'][0]['status'] == 'subscribed');
@@ -72,10 +70,9 @@ class MTH_Mailchimp extends MailChimp {
      */
     function get_segments(string $mc_list_id)
     {
-        global $MailChimp;
         global $API;
 
-        $segments = $MailChimp->get("lists/$mc_list_id/segments?count=1000");
+        $segments = $this->get("lists/$mc_list_id/segments?count=1000");
 
         $error_get_segments = (is_array($segments['segments']));
         if (!$error_get_segments) {
@@ -110,25 +107,24 @@ class MTH_Mailchimp extends MailChimp {
      */
     function member_exist($mc_result, string $email, string $mc_list_id, array $mc_array) {
 
-        global $MailChimp;
         global $API;
 
         wh_log($mc_result['title'] . ": Trying to update data...");
 
         $subscriber_hash = md5($email);
-        $put_result = $MailChimp->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
+        $put_result = $this->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
 
         if ($put_result['status'] !== 'subscribed') {
                 return $API->return_error('route_woocommerce_webhooks', 'Error on subscribing to Mailchimp. ', $put_result);
         }
 
-        list($mc_list_tags_names_ids, $mc_list_tags_names) = $MailChimp->get_segments($mc_list_id);
+        list($mc_list_tags_names_ids, $mc_list_tags_names) = $this->get_segments($mc_list_id);
 
         $tags_to_create_on_list = array_diff($mc_array['tags'], $mc_list_tags_names);
 
-        $MailChimp->create_tags($tags_to_create_on_list, $mc_list_id);
+        $this->create_tags($tags_to_create_on_list, $mc_list_id);
 
-        $MailChimp->add_member_to_tag($mc_list_tags_names_ids, $mc_list_id, $mc_array);
+        $this->add_member_to_tag($mc_list_tags_names_ids, $mc_list_id, $mc_array);
 
         return $API->return_success("Mailchimp Subscribe", "updated", $put_result);
     }
