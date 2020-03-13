@@ -67,11 +67,11 @@ class API{
     function baseRoute($data = null) {
         $data = array(
             "name" => "MTH API",
-            "description" => "HOMOLOG: WebService para viabilizar as integrações do Mathema.",
+            "description" => "WebService para viabilizar as integrações do Mathema.",
             "home" => "https://mathema.com.br",
             "url" => "https://mathema.com.br/api/homolog/",
-            "version" => "1.5",
-            "status" => "beta",
+            "version" => "3.0",
+            "status" => "production",
             "author" => "Fernando Ortiz de Mello - fernando.ortiz@mathema.com.br",
             "routes" => [
                 "/" => [
