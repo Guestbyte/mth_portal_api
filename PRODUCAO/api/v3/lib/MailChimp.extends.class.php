@@ -109,11 +109,9 @@ class MTH_Mailchimp extends MailChimp {
 
         global $API;
 
-        wh_log($mc_result['title'] . ": Trying to update data...");
-
         $subscriber_hash = md5($email);
         $put_result = $this->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
-
+        
         if ($put_result['status'] !== 'subscribed') {
                 return $API->return_error('route_woocommerce_webhooks', 'Error on subscribing to Mailchimp. ', $put_result);
         }
