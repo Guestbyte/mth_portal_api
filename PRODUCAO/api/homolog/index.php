@@ -33,6 +33,8 @@ $API->route('/woocommerce/webhooks/', 'route_woocommerce_webhooks')
     ->route('/woocommerce/webhooks/bulk/', 'route_woocommerce_webhooks_bulk')
     ->catchError();
 
+wh_log('==================[ End Request ]==================');
+
 /**
  * Write message in log file 
  *
