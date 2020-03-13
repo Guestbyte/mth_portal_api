@@ -1,7 +1,6 @@
 <?php
 function route_woocommerce_webhooks($order_id = false)
 {
-    //WIP Sincronizar status do pedido com as listas do MC
     
     wh_log('------------------[ route_woocommerce_webhooks ]------------------');
     global $MailChimp;
@@ -52,6 +51,8 @@ function route_woocommerce_webhooks($order_id = false)
     
     $mc_result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
     
+     //WIP Sincronizar status CANCELADO do pedido com a lista ONHOLD
+
     $order_boleto_completed = ($order_payment_method == 'Boleto' and $order->status == 'completed');
     $member_subscribed = ($mc_result['status'] == 'subscribed');
     if ($member_subscribed) {
