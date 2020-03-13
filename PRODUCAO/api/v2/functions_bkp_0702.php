@@ -4,24 +4,6 @@ function route_mailchimp_subscribe($post)
 {
     wh_log('=======[ API request - route: route_mailchimp_subscribe ]=========');
     global $MailChimp;
-
-    //fake post
-    // $post = array(
-    //     "list_id" => "f3397d3993",
-    //     "status" => "subscribed",
-    //     "email_address" => "teste1102_6@mathema.com.br",
-    //     "merge_fields" => [
-    //         "NOME" => "Fernando TESTE",
-    //         "ATUACAO" => "Ensino Fundamental",
-    //         "INSTITUICA" => "mathema",
-    //         "CELULAR" => "11 9999999",
-    //         "N_ALUNOS" => "1 a 20",
-    //         "CIDADE" => "sp",
-    //         "ESTADO" => "Acre (AC)"
-    //     ],
-    //     "tags" => ['NOVO2', 'NOVO3', 'NOVO4']
-    // );
-
     $data = (object) $post;
     $mc_list_id = @$data->list_id;
     $status = @$data->status;
@@ -29,9 +11,12 @@ function route_mailchimp_subscribe($post)
 
     $valid_post = (isset($mc_list_id) && isset($email_address) && isset($status));
     if (!$valid_post) {
-        return return_error('Mailchimp Subscribe', 'Data posted is invalid!', $post);
+        $err_array['status'] = 'Data posted is invalid!';
+        $err_array['post'] = $post;
+        wh_log("Data posted not valid.\n" . print_r($err_array, true));
+        // header('HTTP/1.1 400 Bad Request');
+        return json_encode($err_array, JSON_UNESCAPED_UNICODE);
     }
-    wh_log("DATA: list_id: $mc_list_id, email: $email_address, status: $status !");
 
     $mc_array['status'] = $status;
     $mc_array['email_address'] = $email_address;
@@ -44,20 +29,39 @@ function route_mailchimp_subscribe($post)
         $mc_array['tags'][$key] = $value;
     }
 
-    return mailchimp_subscribe($mc_list_id, $mc_array);
+    wh_log("Mailchimp data: \n" . print_r($data, true));
+    wh_log("Mailchimp mc_array: \n" . print_r($mc_array, true));
+    $result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
+
+    if ($result['title'] == 'Member Exists') {
+        wh_log("Member Exists on list, tryng to update...");
+        $subscriber_hash = md5($email_address);
+
+        $put_result = $MailChimp->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
+
+        if ($put_result['status'] !== 'subscribed') {
+            wh_log("Mailchimp Error: \n" . print_r($put_result, true));
+            $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
+            $return['return'] = $put_result;
+            // header('HTTP/1.1 500 Internal Server Error');
+            return json_encode($return, JSON_UNESCAPED_UNICODE);
+        }
+
+        wh_log("Success updated to Mailchimp!\n" . print_r($put_result, true));
+        return json_encode($put_result, JSON_UNESCAPED_UNICODE);
+    }
+
+    wh_log("Success subscribed to Mailchimp!\n" . print_r($result, true));
+    return json_encode($result, JSON_UNESCAPED_UNICODE);
 }
 
 function route_woocommerce_webhooks($order_id = false)
 {
     wh_log('------------------[ route_woocommerce_webhooks ]------------------');
     global $MailChimp;
-    $mc_customers_list_id = '803e6a1581'; // CLIENTES MATHEMA ONLINE II : https://us16.admin.mailchimp.com/lists/members?id=165933
-    $mc_onhold_list_id = '31cfca9bfd';
-
+    $mc_list_id = '803e6a1581'; // CLIENTES MATHEMA ONLINE II : https://us16.admin.mailchimp.com/lists/members?id=165933
     $rawData = file_get_contents("php://input");
     $jsonData = json_decode($rawData);
-
-    // $order_id = '69126';
 
     if ($order_id) {
         $jsonData->id = $order_id;
@@ -79,8 +83,8 @@ function route_woocommerce_webhooks($order_id = false)
     $order = WP_API("GET", "/wc/v3/orders/" . $order_id . "?");
 
     if (!isset($order->id)) {
-        wh_log("Error retrieving order data: \n" . print_r($order, true));
-        $return['error_order'] = 'Error on retrieving order data.';
+        wh_log("Error retriving order data: \n" . print_r($order, true));
+        $return['error_order'] = 'Error on retriving order data.';
         // header('HTTP/1.1 500 Internal Server Error');
         return json_encode($return, JSON_UNESCAPED_UNICODE);
     }
@@ -92,7 +96,7 @@ function route_woocommerce_webhooks($order_id = false)
     $mc_array['merge_fields']['NOME'] = $order->billing->first_name;
     $mc_array['merge_fields']['SOBRENOME'] = $order->billing->last_name;
     $mc_array['merge_fields']['COMPRA'] = $order->date_created;
-    ($order->date_completed) ? $mc_array['merge_fields']['PAGAMENTO'] = $order->date_completed : false;
+    $mc_array['merge_fields']['PAGAMENTO'] = $order->date_completed;
     $mc_array['merge_fields']['SITUACAO'] = $order->status;
     $mc_array['merge_fields']['ENDERECO'] = $order->billing->address_1;
     $mc_array['merge_fields']['BAIRRO'] = $order->billing->neighborhood;
@@ -108,14 +112,11 @@ function route_woocommerce_webhooks($order_id = false)
     $mc_array['merge_fields']['ORDER_ID'] = $order->id;
 
     // $has_coupon = (isset($order->coupon_lines[0]->code));
-
-    $is_paying_customer = get_paying_customer($order->customer_id);
-    $order_zero_cart = ($order->total == '0.00');
+    $is_paying_customer = get_paying_customer($order->customer_id);;
     $order_completed = ($order->status == 'completed');
-    $is_client = ($order_completed and ($is_paying_customer and !$order_zero_cart));
+    $is_client = ($is_paying_customer or $order_completed);
     $mc_array['merge_fields']['CLIENTE'] = ($is_client) ? 'SIM' : 'NAO';
-    
-    // return json_encode($mc_array, JSON_UNESCAPED_UNICODE);
+
     $member_tags = [];
     foreach ($order->line_items as $item) {
         unset($product);
@@ -124,10 +125,10 @@ function route_woocommerce_webhooks($order_id = false)
         $product = WP_API("GET", "/wc/v3/products/" . $item->product_id . "?");
 
         if (!isset($product->id)) {
-            wh_log("Error retrieving product data: \n" . print_r($product, true));
-            $return['error_product'] = 'Error on retrieving order data.';
+            wh_log("Error retriving product data: \n" . print_r($product, true));
+            $return['error_product'] = 'Error on retriving order data.';
             // header('HTTP/1.1 500 Internal Server Error');
-            continue;
+            break;
         }
 
         array_push($member_tags, $item->sku);
@@ -170,7 +171,6 @@ function route_woocommerce_webhooks($order_id = false)
         switch ($item->key) {
             case "Tipo de pagamento": // Curso gratis
                 $mc_array['merge_fields']['FORMA_PAGM'] = $item->value;
-                $order_payment_method = $item->value;
                 break;
         }
     }
@@ -198,19 +198,7 @@ function route_woocommerce_webhooks($order_id = false)
     //     }
     // }
 
-    $order_onhold = ($order->status == 'on-hold');
-    $order_pending = ($order->status == 'pending');
-    $order_boleto = ($order_payment_method == 'Boleto');
-
-    $order_onhold_boleto = ($order_onhold and $order_boleto);
-    $order_pending_boleto = ($order_pending and $order_boleto);
-
-    $mc_list_id = ($order_onhold_boleto or $order_pending_boleto) ? $mc_onhold_list_id : $mc_customers_list_id;
-
-    if ($order_onhold_boleto) {
-        wh_log("Order status: $order->status | Payment method: $order_payment_method. Subscribing on diferent audience: $mc_list_id");
-    }
-
+    // return json_encode($mc_array, JSON_UNESCAPED_UNICODE);
     $mc_result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
 
     $member_subscribed = ($mc_result['status'] == 'subscribed');
@@ -221,8 +209,6 @@ function route_woocommerce_webhooks($order_id = false)
 
     $member_exists = ($mc_result['title'] == 'Member Exists');
     if ($member_exists) {
-        // @todo route_woocommerce_webhooks: Refatorar para funções globais
-
         wh_log($mc_result['title'] . ": Tryng to update data...");
 
         $subscriber_hash = md5($order->billing->email);
@@ -238,7 +224,7 @@ function route_woocommerce_webhooks($order_id = false)
         }
 
         wh_log("Member data updated, tryng to update TAGs...");
-
+        // $mc_results = $MailChimp->get("lists/$mc_list_id/segments?count=1000&fields=segments.name,segments.id,segments.type");
         $mc_results = $MailChimp->get("lists/$mc_list_id/segments?count=1000");
 
         $mc_results_no_statics = array_filter($mc_results['segments'], function ($v, $k) {
@@ -306,7 +292,7 @@ function route_woocommerce_webhooks($order_id = false)
         wh_log("dump array posted: \n" . print_r($mc_array, true));
         $return['error_mailchimp'] = 'Error on subscribing to Mailchimp.';
         // header('HTTP/1.1 500 Internal Server Error');
-        return json_encode($mc_result, JSON_UNESCAPED_UNICODE);
+        return json_encode($return, JSON_UNESCAPED_UNICODE);
     }
 
     $return['status'] = '200';
@@ -314,17 +300,17 @@ function route_woocommerce_webhooks($order_id = false)
     return json_encode($return, JSON_UNESCAPED_UNICODE);
 }
 
-function route_woocommerce_webhooks_bulk($status = 'completed', $after = '2019-06-01T00:00:00', $before = '2020-01-01T00:00:00')
+function route_woocommerce_webhooks_bulk($status = 'completed', $after = '2019-01-01T00:00:00', $before = '2020-02-01T00:00:00')
 {
-
+    
     wh_log("Bulk process started: Status=$status, After: $after, Before: $before ");
-    wh_log("Gathering orders... ");
+    wh_log("Gethering orders... ");
 
     $orders = json_decode(WP_API("GET", "/wc/v3/orders/?order=asc&status[0]=$status&after=$after&before=$before&"));
 
     if (!isset($orders)) {
-        wh_log("Error retrieving order data: \n" . print_r($orders, true));
-        $return['error_order'] = 'Error on retrieving order data.';
+        wh_log("Error retriving order data: \n" . print_r($orders, true));
+        $return['error_order'] = 'Error on retriving order data.';
         // header('HTTP/1.1 500 Internal Server Error');
         return json_encode($return, JSON_UNESCAPED_UNICODE);
     }
@@ -350,6 +336,8 @@ function wh_log($msg)
 {
     global $log;
     $log->warning($msg);
+    // $logfile = 'api.log';
+    // file_put_contents($logfile, date("Y-m-d H:i:s") . " | " . $msg . "\n", FILE_APPEND);
 }
 
 function WP_API($method, $route, $data = false)
@@ -542,144 +530,4 @@ function mth_create_coupom($code, $percent, $date_expires = '', $product_categor
     ]);
 
     return $result;
-}
-
-function return_success(string $name, string $status, $data = null)
-{
-    $return['name'] = $name;
-    $return['status'] = $status;
-    $return['data'] = $data;
-    wh_log("$name: $status\n" . print_r($data, true));
-    header('HTTP/1.1 200 OK');
-    return json_encode($return, JSON_UNESCAPED_UNICODE);
-}
-
-function return_error(string $name, string $status, $data = null)
-{
-    $return['name'] = $name;
-    $return['status'] = $status;
-    $return['data'] = $data;
-    wh_log("$name: $status\n" . print_r($data, true));
-    header('HTTP/1.1 400 Bad Request');
-    return json_encode($return, JSON_UNESCAPED_UNICODE);
-}
-
-function mailchimp_get_segments($mc_list_id)
-{
-    global $MailChimp;
-
-    $segments = $MailChimp->get("lists/$mc_list_id/segments?count=1000");
-
-
-    $error_get_segments = (is_array($segments['segments']));
-    if (!$error_get_segments) {
-        return return_error('Mailchimp Subscribe', 'Error on get segments!', $segments);
-    }
-
-    $segments_no_statics = array_filter($segments['segments'], function ($v, $k) {
-        return $v['type'] == 'static';
-    }, ARRAY_FILTER_USE_BOTH);
-
-    $mc_list_tags_names_ids = [];
-    foreach ($segments_no_statics as $key) {
-        $mc_list_tags_names_ids[$key['id']] = $key['name'];
-    }
-
-    $mc_list_tags_names = [];
-    foreach ($segments_no_statics as $key) {
-        array_push($mc_list_tags_names, $key['name']);
-    }
-
-    return array($mc_list_tags_names_ids, $mc_list_tags_names);
-}
-
-function mailchimp_create_tags(array $tags_to_create_on_list, string $mc_list_id)
-{
-    global $MailChimp;
-
-    foreach ($tags_to_create_on_list as $tag) {
-
-        $mc_array['name'] = $tag;
-        $mc_array['static_segment'] = [];
-
-        $mc_result_add_tag_to_list = $MailChimp->post("lists/$mc_list_id/segments/", $mc_array);
-
-        $error_on_add_tag = ($mc_result_add_tag_to_list['name'] !== $tag);
-        if ($error_on_add_tag) {
-            return return_error('Mailchimp Subscribe', 'Error on update tag!', $mc_result_add_tag_to_list);
-        }
-    }
-}
-function mailchimp_add_member_to_tag(array $mc_list_tags_names_ids, string $mc_list_id, array $mc_array)
-{
-    global $MailChimp;
-
-    $data['members_to_add'] = [$mc_array['email_address']];
-
-    foreach ($mc_array['tags'] as $member_tag) {
-
-        $tag_id = array_search($member_tag, $mc_list_tags_names_ids);
-
-        $mc_result_add_member_to_tag = $MailChimp->post("lists/$mc_list_id/segments/" . $tag_id, $data);
-
-        $tag_exist = (strpos($mc_result_add_member_to_tag['errors'][0]['error'], "already exist"));
-        $tag_added = ($mc_result_add_member_to_tag['members_added'][0]['status'] == 'subscribed');
-
-        if (!$tag_exist and !$tag_added) {
-            return return_error('Mailchimp Subscribe', 'Error on add member to tag!', $mc_result_add_member_to_tag);
-        }
-        // return return_success("DUMP", "DUMP", $mc_result_add_member_to_tag);
-    }
-}
-
-/**
- * Undocumented function
- *
- * @param string $mc_list_id
- * @param array $mc_array
- * @return void
- */
-function mailchimp_subscribe(string $mc_list_id, array $mc_array)
-{
-    global $MailChimp;
-
-    $status_options = array('subscribed', 'unsubiscribe');
-    $valid_status = (in_array($mc_array['status'], $status_options));
-    $valid_email = (filter_var($mc_array['email_address'], FILTER_VALIDATE_EMAIL));
-
-    $params_valid = ($valid_email and isset($mc_list_id) and $valid_status);
-    if (!$params_valid) {
-        return return_error('Mailchimp Subscribe', 'Params passed is not valid!', $mc_array);
-    }
-
-    $result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
-
-    $success_subscribe = ($result['status'] == 'subscribed');
-    if ($success_subscribe) {
-        return return_success("Mailchimp Subscribe", "subscribed", $result);
-    }
-
-    $member_exists = ($result['title'] == 'Member Exists');
-    if ($member_exists) {
-
-        $subscriber_hash = md5($mc_array['email_address']);
-        $result = $MailChimp->put("lists/$mc_list_id/members/$subscriber_hash", $mc_array);
-
-        $update_error = ($result['status'] !== 'subscribed');
-        if ($update_error) {
-            return return_error('Mailchimp Subscribe', 'Error on update!', $result);
-        }
-
-        list($mc_list_tags_names_ids, $mc_list_tags_names) = mailchimp_get_segments($mc_list_id);
-
-        $tags_to_create_on_list = array_diff($mc_array['tags'], $mc_list_tags_names);
-
-        mailchimp_create_tags($tags_to_create_on_list, $mc_list_id);
-
-        mailchimp_add_member_to_tag($mc_list_tags_names_ids, $mc_list_id, $mc_array);
-
-        return return_success("Mailchimp Subscribe", "updated", $result);
-    }
-
-    return return_error('Mailchimp Subscribe', 'Internal error: Mailchimp response not valid!', $result);
 }
