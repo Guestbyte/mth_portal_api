@@ -1,6 +1,5 @@
 <?php
 
-
 class MTH {
 
     function __construct() {
@@ -125,10 +124,6 @@ class MTH {
         
         $is_onhold_list = ($order_onhold_boleto or $order_pending_boleto);
         
-        if ($is_onhold_list) {
-            wh_log("Order status: $order->status | Payment method: $order_payment_method. Subscribing on different audience: $mc_list_id");
-        }
-        
         return $is_onhold_list;
     }
 
@@ -252,6 +247,6 @@ class MTH {
                     break;
             }
         }
-        return $mc_array;
+        return array($mc_array, $order_payment_method);
     }
 }
