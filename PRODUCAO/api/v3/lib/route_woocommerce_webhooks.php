@@ -34,32 +34,27 @@ function route_woocommerce_webhooks($order_id = false)
         return $API->return_error('route_woocommerce_webhooks', 'Error retrieving order data', $order);
     }
 
-    wh_log("Subscribing on MailChimp: " . $order_id);
-
     // CAMPANHA: Quem compra uma Plano, ganha de presente um curso gratis. 
     // TODO campaign_plano: função ainda em teste
     // $MTH->campaign_plano();
 
     list($mc_array, $order_payment_method) = $MTH->prepare_data_to_mailchimp($order);
     
-    
     $is_onhold_list = $MTH->is_onhold_list($order, @$order_payment_method);
     
     $mc_list_id = ($is_onhold_list) ? $mc_onhold_list_id : $mc_customers_list_id;
-    
-    wh_log("Order status: $order->status | Payment method: $order_payment_method. Reference list ID: $mc_list_id");
+
+    wh_log("" . $order->billing->first_name. " ". $order->billing->last_name ." | " . $order->billing->email . " | Cliente: ". $mc_array['merge_fields']['CLIENTE'] . " | ". $mc_array['merge_fields']['SKU'] . " | " . $mc_array['merge_fields']['FORMA_PAGM'] . " | $order->status | $mc_list_id");
     
     $mc_result = $MailChimp->post("lists/$mc_list_id/members", $mc_array);
     
-     //WIP Sincronizar status CANCELADO do pedido com a lista ONHOLD
-
     $order_boleto_completed = ($order_payment_method == 'Boleto' and $order->status == 'completed');
     $member_subscribed = ($mc_result['status'] == 'subscribed');
     if ($member_subscribed) {
 
         ($order_boleto_completed) ? $MailChimp->deletePermanent($mc_onhold_list_id, $mc_array) : false ;
 
-        return $API->return_success("route_woocommerce_webhooks", "Success subscribed to Mailchimp!", $mc_result);
+        return $API->return_success("route_woocommerce_webhooks", "Success subscribed to Mailchimp!");
     }
     
     $member_exists = ($mc_result['title'] == 'Member Exists');

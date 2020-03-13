@@ -118,11 +118,13 @@ class MTH {
         $order_boleto = ($order_payment_method == 'Boleto');
         $order_onhold = ($order->status == 'on-hold');
         $order_pending = ($order->status == 'pending');
+        $order_cancelled = ($order->status == 'cancelled');
 
         $order_onhold_boleto = ($order_onhold and $order_boleto);
         $order_pending_boleto = ($order_pending and $order_boleto);
+        $order_cancelled_boleto = ($order_cancelled and $order_boleto);
         
-        $is_onhold_list = ($order_onhold_boleto or $order_pending_boleto);
+        $is_onhold_list = ($order_onhold_boleto or $order_pending_boleto or $order_cancelled_boleto);
         
         return $is_onhold_list;
     }
