@@ -9,5 +9,7 @@
             "email": "guestbyte@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "monolog/monolog": "^2.0"
+    }
 }
