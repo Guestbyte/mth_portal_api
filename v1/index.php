@@ -3,7 +3,7 @@ include('./MailChimp.php');
 
 use \DrewM\MailChimp\MailChimp;
 
-$MailChimp = new MailChimp('6b64f119d239790236c85be24171200e-us16');
+$MailChimp = new MailChimp('XXX');
 // $mailchimp_list_id = '2da8383add'; // Lista MATHEMA ONLINE : https://us16.admin.mailchimp.com/lists/members?id=131005
 // $mailchimp_list_id = '803e6a1581'; // Lista CLIENTES MATHEMA ONLINE II : https://us16.admin.mailchimp.com/lists/members?id=165933
 // $mailchimp_list_id = 'f3397d3993'; // Lista 'Leads Portal' : https://us16.admin.mailchimp.com/lists/members?id=177689
@@ -137,7 +137,7 @@ function WP_API($method, $route, $data = false)
   $itemcnt = 0;
   $itemassoc = array();
   $base_url = "https://mathema.com.br/wp-json";
-  // $token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvbWF0aGVtYS5jb20uYnIiLCJpYXQiOjE1NzE2NjYzNzAsIm5iZiI6MTU3MTY2NjM3MCwiZXhwIjoxNTcyMjcxMTcwLCJkYXRhIjp7InVzZXIiOnsiaWQiOiIyIn19fQ.ft4d3UFFFFYDnFfnd8oKOtyUdoTeV5Y0r7Wcpb_iixA";
+  // $token = "XXX";
   $token = MTH_get_jwt_token();
 
   while (1) {
