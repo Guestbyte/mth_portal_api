@@ -1,3 +1,2 @@
 <?php
-// define("MAILCHIMP_KEY", "6b64f119d239790236c85be24171200e-us16"); //OLD
-define("MAILCHIMP_KEY", "3d49107c687e016eb05e331c0194d556-us16");
+define("MAILCHIMP_KEY", "XXX");
